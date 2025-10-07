@@ -357,26 +357,64 @@ html {
   background: var(--gradient-primary);
 }
 
-/* Investment Highlight Styles */
+/* Enhanced Investment Highlight Styles */
 .investment-highlight {
-  box-shadow: var(--shadow-medium);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  animation: pulse-glow 2s ease-in-out infinite;
+  box-shadow: 0 20px 40px rgba(212, 165, 116, 0.2);
+  border: 2px solid rgba(212, 165, 116, 0.3);
+  backdrop-filter: blur(15px);
+  border-radius: var(--border-radius-lg);
+  position: relative;
+  overflow: hidden;
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
 @keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: var(--shadow-medium), 0 0 20px rgba(212, 165, 116, 0.3);
+    box-shadow: 0 20px 40px rgba(212, 165, 116, 0.2),
+      0 0 30px rgba(212, 165, 116, 0.3);
+    border-color: rgba(212, 165, 116, 0.3);
   }
   50% {
-    box-shadow: var(--shadow-large), 0 0 30px rgba(212, 165, 116, 0.5);
+    box-shadow: 0 25px 50px rgba(212, 165, 116, 0.3),
+      0 0 40px rgba(212, 165, 116, 0.5);
+    border-color: rgba(212, 165, 116, 0.5);
+  }
+}
+
+.investment-highlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  animation: shine 4s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
 
 .investment-highlight h4 {
   color: var(--primary-color);
+  position: relative;
+  z-index: 2;
 }
 
 /* Simplified Hero Section */
@@ -523,24 +561,62 @@ html {
   transform: translateY(-5px);
 }
 
-/* Property Cards */
+/* Enhanced Property Cards */
 .property-card {
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
   transition: all var(--transition-medium);
-  box-shadow: var(--shadow-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.property-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(30, 58, 138, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+  z-index: 1;
 }
 
 .property-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-large);
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(30, 58, 138, 0.2);
+}
+
+.property-card:hover::before {
+  opacity: 1;
 }
 
 .property-image {
-  height: 250px;
+  height: 280px;
   overflow: hidden;
   position: relative;
+}
+
+.property-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+.property-card:hover .property-image::after {
+  opacity: 1;
 }
 
 .property-image img {
@@ -551,7 +627,7 @@ html {
 }
 
 .property-card:hover .property-image img {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 .property-badge {
@@ -583,12 +659,14 @@ html {
   color: var(--accent-color);
 }
 
-/* Category Cards */
+/* Enhanced Category Cards with Premium Animation */
 .category-card {
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(30, 58, 138, 0.1);
   transition: all var(--transition-medium);
   position: relative;
   overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
 }
 
 .category-card::before {
@@ -601,28 +679,55 @@ html {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(212, 165, 116, 0.1),
+    rgba(212, 165, 116, 0.15),
     transparent
   );
   transition: left var(--transition-slow);
+}
+
+.category-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform var(--transition-medium);
+  transform-origin: left;
 }
 
 .category-card:hover::before {
   left: 100%;
 }
 
+.category-card:hover::after {
+  transform: scaleX(1);
+}
+
 .category-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-large);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
   border-color: var(--accent-color);
+  background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
 }
 
 .category-icon {
-  transition: transform var(--transition-medium);
+  transition: all var(--transition-medium);
+  position: relative;
+  z-index: 2;
 }
 
 .category-card:hover .category-icon {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(5deg);
+  color: var(--primary-color) !important;
+}
+
+.category-card:hover .category-icon i {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Testimonials */
@@ -991,6 +1096,911 @@ html {
 
 .skip-link:focus {
   top: 6px;
+}
+
+/* Enhanced Property Finder Section */
+.property-finder-section {
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+}
+
+.property-finder-card {
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 25px 50px rgba(30, 58, 138, 0.15);
+  border: 1px solid rgba(30, 58, 138, 0.1);
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-medium);
+}
+
+.property-finder-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 35px 70px rgba(30, 58, 138, 0.25);
+}
+
+.property-finder-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--accent-color),
+    var(--primary-color)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: -200% 0;
+  }
+  50% {
+    background-position: 200% 0;
+  }
+}
+
+/* Property Search Header */
+.property-search-header {
+  margin-bottom: 2rem;
+}
+
+.property-search-header .bg-primary-light {
+  background-color: rgba(30, 58, 138, 0.1) !important;
+  border: 2px solid rgba(30, 58, 138, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.property-search-header .bg-primary-light:hover {
+  background-color: rgba(30, 58, 138, 0.15) !important;
+  border-color: rgba(30, 58, 138, 0.3);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Property Search Content */
+.property-search-content {
+  position: relative;
+}
+
+/* Search Form Styling */
+.property-search-form {
+  position: relative;
+}
+
+.search-field {
+  position: relative;
+}
+
+.search-field .form-label {
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.search-field .form-control,
+.search-field .form-select {
+  border: 2px solid #e5e7eb;
+  border-radius: var(--border-radius);
+  padding: 0.875rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  background-color: var(--white);
+}
+
+.search-field .form-control:focus,
+.search-field .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(30, 58, 138, 0.25);
+  outline: none;
+}
+
+.search-field .input-group-text {
+  border: 2px solid #e5e7eb;
+  border-right: none;
+  background-color: var(--light-bg);
+  color: var(--primary-color);
+}
+
+.search-field .form-control.border-start-0 {
+  border-left: 2px solid #e5e7eb;
+}
+
+.search-field .input-group:focus-within .input-group-text {
+  border-color: var(--primary-color);
+}
+
+.search-field .input-group:focus-within .form-control {
+  border-left-color: var(--primary-color);
+}
+
+/* Search Button */
+.search-btn {
+  background: var(--gradient-primary);
+  border: none;
+  font-family: var(--font-accent);
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-medium);
+  box-shadow: var(--shadow-medium);
+  position: relative;
+  overflow: hidden;
+  height: 58px;
+}
+
+.search-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left var(--transition-slow);
+}
+
+.search-btn:hover::before {
+  left: 100%;
+}
+
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  background: var(--gradient-primary);
+}
+
+/* Advanced Filters */
+.advanced-filters-toggle {
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.advanced-filters-toggle:hover {
+  color: var(--primary-dark) !important;
+  text-decoration: none;
+}
+
+.advanced-filters-toggle .toggle-icon {
+  transition: transform var(--transition-fast);
+  font-size: 0.8rem;
+}
+
+.advanced-filters-toggle[aria-expanded="true"] .toggle-icon {
+  transform: rotate(180deg);
+}
+
+.advanced-filters-content {
+  background-color: var(--light-bg);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.advanced-filters-content .form-label {
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.advanced-filters-content .form-select {
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Tab Content */
+.tab-content {
+  min-height: 200px;
+}
+
+.tab-pane {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* Responsive Design for Property Finder */
+@media (max-width: 991.98px) {
+  .property-finder-section {
+    margin-top: -30px;
+    padding: 3rem 0;
+  }
+
+  .property-finder-card {
+    margin: 0 1rem;
+  }
+
+  .property-tabs .nav-pills {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .property-tabs .nav-link {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .search-field {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .property-finder-section {
+    margin-top: -20px;
+    padding: 2rem 0;
+  }
+
+  .property-finder-card {
+    padding: 1.5rem !important;
+    margin: 0 0.5rem;
+  }
+
+  .property-tabs .nav-pills {
+    padding: 0.25rem;
+  }
+
+  .property-tabs .nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .search-field .form-control,
+  .search-field .form-select {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .search-btn {
+    height: 52px;
+    font-size: 0.9rem;
+  }
+
+  .advanced-filters-content {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .property-finder-card {
+    margin: 0;
+    border-radius: var(--border-radius);
+  }
+
+  .property-tabs .nav-pills {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .property-tabs .nav-item {
+    flex: 1;
+    min-width: calc(50% - 0.25rem);
+  }
+
+  .property-tabs .nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .search-field .form-control,
+  .search-field .form-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Enhanced Property Price Insights Section */
+.insight-card {
+  transition: all var(--transition-medium);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-color),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform var(--transition-medium);
+}
+
+.insight-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.insight-card:hover::before {
+  transform: translateX(100%);
+}
+
+.chart-bars {
+  animation: chartFadeIn 1s ease-out 0.5s both;
+}
+
+.bar {
+  animation: barGrow 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+  transform-origin: bottom;
+}
+
+.bar:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bar:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.bar:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.bar:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.bar:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.bar:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+@keyframes chartFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes barGrow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.metrics .d-flex {
+  transition: all var(--transition-fast);
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+}
+
+.metrics .d-flex:hover {
+  background-color: rgba(147, 51, 234, 0.05);
+  transform: translateX(8px);
+}
+
+.price-comparison .comparison-item {
+  transition: all var(--transition-fast);
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+}
+
+.price-comparison .comparison-item:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+  transform: translateX(8px);
+}
+
+.config-item {
+  transition: all var(--transition-fast);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius);
+}
+
+.config-item:hover {
+  background-color: rgba(16, 185, 129, 0.05);
+  transform: translateX(5px);
+}
+
+/* Enhanced Micro-interactions and UX Improvements */
+
+/* Improved form interactions */
+.search-field .form-control:focus,
+.search-field .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.15);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.search-field .form-control:focus + .input-group-text,
+.search-field .input-group:focus-within .input-group-text {
+  border-color: var(--primary-color);
+  background-color: rgba(30, 58, 138, 0.05);
+}
+
+/* Enhanced button micro-interactions */
+.btn {
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Loading states */
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced testimonial cards */
+.testimonial-card {
+  border: 1px solid rgba(30, 58, 138, 0.1);
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+}
+
+.testimonial-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transition: transform var(--transition-medium);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(30, 58, 138, 0.1);
+  background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+}
+
+.testimonial-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Improved stats animation */
+.stat-item {
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.05) 0%,
+    rgba(212, 165, 116, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.stat-item:hover {
+  background-color: transparent;
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(30, 58, 138, 0.1);
+}
+
+.stat-item:hover::before {
+  opacity: 1;
+}
+
+.stat-item h3 {
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced footer animations */
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.1) 0%,
+    rgba(30, 58, 138, 0.2) 100%
+  );
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-links a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  border-radius: 50%;
+}
+
+.social-links a:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 10px 20px rgba(30, 58, 138, 0.3);
+}
+
+.social-links a:hover::before {
+  opacity: 1;
+}
+
+.social-links a i {
+  position: relative;
+  z-index: 2;
+  transition: color var(--transition-fast);
+}
+
+.social-links a:hover i {
+  color: white;
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-medium);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+}
+
+/* Enhanced mobile responsiveness improvements */
+@media (max-width: 768px) {
+  .insight-card {
+    margin-bottom: 2rem;
+  }
+
+  .property-finder-card {
+    margin: 0 1rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .chart-bars {
+    height: 60px !important;
+  }
+
+  .category-card {
+    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .testimonial-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Performance optimizations */
+.property-image img,
+.about-image-wrapper img {
+  will-change: transform;
+}
+
+.btn,
+.category-card,
+.testimonial-card,
+.insight-card {
+  will-change: transform;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .chart-bars .bar,
+  .animate-on-scroll,
+  .property-finder-card::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Hot Selling Real Estate Projects Section */
+.hot-projects-tabs .city-tab {
+  font-family: var(--font-accent);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  transition: all var(--transition-fast);
+}
+
+.hot-projects-tabs .city-tab:hover {
+  background-color: rgba(30, 58, 138, 0.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.hot-projects-tabs .city-tab.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.hot-projects-carousel {
+  overflow: hidden;
+  position: relative;
+}
+
+.projects-container {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: max-content;
+  display: flex;
+  gap: 16px;
+}
+
+.project-card {
+  min-width: 320px;
+  max-width: 320px;
+  background: white;
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(30, 58, 138, 0.1);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+}
+
+.project-number {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.9),
+    rgba(30, 58, 138, 0.7)
+  );
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.project-image-container {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.1);
+}
+
+.project-image-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+.project-card:hover .project-image-container::after {
+  opacity: 1;
+}
+
+.project-details {
+  background: white;
+  position: relative;
+  z-index: 2;
+}
+
+.project-details h5 {
+  font-family: var(--font-primary);
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+
+.project-price {
+  padding: 0.75rem;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.05),
+    rgba(212, 165, 116, 0.05)
+  );
+  border-radius: var(--border-radius);
+  border-left: 3px solid var(--primary-color);
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark)
+  );
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+  transition: all var(--transition-medium);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.carousel-nav:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+}
+
+.carousel-prev {
+  left: -25px;
+}
+
+.carousel-next {
+  right: -25px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hot-projects-tabs .d-flex {
+    justify-content: center;
+  }
+
+  .hot-projects-tabs .city-tab {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .project-card {
+    min-width: 280px;
+    max-width: 280px;
+  }
+
+  .project-image-container {
+    height: 180px;
+  }
+
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .carousel-prev {
+    left: -20px;
+  }
+
+  .carousel-next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .projects-container {
+    padding: 0 1rem;
+  }
+
+  .project-card {
+    min-width: 260px;
+    max-width: 260px;
+  }
+
+  .carousel-nav {
+    display: none;
+  }
 }
 
 /* Investment Section Animations */

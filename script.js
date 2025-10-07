@@ -1,12 +1,293 @@
 /**
- * Urban Investors - Luxury Real Estate Website JavaScript
- * Handles interactive features, form validation, and dynamic content
+/**
+ * Urban Investors - Enhanced Luxury Real Estate Website JavaScript
+ * Handles interactive features, form validation, dynamic content, and advanced UX
  */
+
+// Enhanced utility functions
+const utils = {
+  debounce: (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  },
+
+  throttle: (func, limit) => {
+    let inThrottle;
+    return function () {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
+  },
+};
+
+// Enhanced scroll animations class
+class ScrollAnimations {
+  constructor() {
+    this.animatedElements = new Set();
+    this.init();
+  }
+
+  init() {
+    this.observeElements();
+    this.setupIntersectionObserver();
+  }
+
+  observeElements() {
+    const elements = document.querySelectorAll(
+      ".animate-on-scroll, [data-animation]"
+    );
+    elements.forEach((el) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(30px)";
+      el.style.transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
+    });
+  }
+
+  setupIntersectionObserver() {
+    const options = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !this.animatedElements.has(entry.target)) {
+          this.animateElement(entry.target);
+          this.animatedElements.add(entry.target);
+        }
+      });
+    }, options);
+
+    document
+      .querySelectorAll(".animate-on-scroll, [data-animation]")
+      .forEach((el) => {
+        observer.observe(el);
+      });
+  }
+
+  animateElement(element) {
+    const delay = element.dataset.delay || "0s";
+
+    setTimeout(() => {
+      element.style.opacity = "1";
+      element.style.transform = "translateY(0)";
+
+      // Add special animations for chart bars
+      if (element.querySelector(".chart-bars")) {
+        this.animateChartBars(element.querySelector(".chart-bars"));
+      }
+    }, parseFloat(delay) * 1000);
+  }
+
+  animateChartBars(chartContainer) {
+    const bars = chartContainer.querySelectorAll(".bar");
+    bars.forEach((bar, index) => {
+      bar.style.transform = "scaleY(0)";
+      bar.style.transformOrigin = "bottom";
+      bar.style.transition = `transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${
+        index * 0.1
+      }s`;
+
+      setTimeout(() => {
+        bar.style.transform = "scaleY(1)";
+      }, 100);
+    });
+  }
+}
 
 // DOM Content Loaded Event
 document.addEventListener("DOMContentLoaded", function () {
   initializeWebsite();
+
+  // Initialize enhanced features
+  new ScrollAnimations();
+  new EnhancedNavbar();
+  setupPropertyFinderAnimations();
 });
+
+/**
+ * Enhanced navbar with glass morphism
+ */
+class EnhancedNavbar {
+  constructor() {
+    this.navbar = document.querySelector(".navbar-modern");
+    this.init();
+  }
+
+  init() {
+    if (!this.navbar) return;
+
+    const handleScroll = utils.throttle(() => {
+      const scrolled = window.scrollY > 50;
+      this.navbar.classList.toggle("scrolled", scrolled);
+
+      if (scrolled) {
+        this.navbar.style.backgroundColor = "rgba(255, 255, 255, 0.95)";
+        this.navbar.style.backdropFilter = "blur(20px)";
+        this.navbar.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)";
+      } else {
+        this.navbar.style.backgroundColor = "rgba(255, 255, 255, 1)";
+        this.navbar.style.backdropFilter = "none";
+        this.navbar.style.boxShadow = "none";
+      }
+    }, 16);
+
+    window.addEventListener("scroll", handleScroll);
+  }
+}
+
+/**
+ * Setup hot selling projects carousel
+ */
+function setupHotProjectsCarousel() {
+  const carousel = document.querySelector(".hot-projects-carousel");
+  if (!carousel) return;
+
+  const container = carousel.querySelector(".projects-container");
+  const prevBtn = carousel.querySelector(".carousel-prev");
+  const nextBtn = carousel.querySelector(".carousel-next");
+  const cards = container.querySelectorAll(".project-card");
+
+  if (!container || !prevBtn || !nextBtn || cards.length === 0) return;
+
+  let currentIndex = 0;
+  const cardWidth = 320 + 16; // card width + gap
+
+  function getVisibleCards() {
+    const containerWidth = container.parentElement.offsetWidth;
+    const cardWidthWithGap = 320 + 16; // card width + gap
+    const visibleCards = Math.floor(containerWidth / cardWidthWithGap);
+    // Ensure we show at least 1 card and not more than total cards
+    return Math.max(1, Math.min(visibleCards, cards.length));
+  }
+
+  function getMaxIndex() {
+    const visibleCards = getVisibleCards();
+    return Math.max(0, cards.length - visibleCards);
+  }
+
+  function updateCarousel() {
+    const translateX = -currentIndex * cardWidth;
+    container.style.transform = `translateX(${translateX}px)`;
+
+    const maxIndex = getMaxIndex();
+
+    // Update button states
+    prevBtn.style.opacity = currentIndex === 0 ? "0.5" : "1";
+    nextBtn.style.opacity = currentIndex >= maxIndex ? "0.5" : "1";
+    prevBtn.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
+    nextBtn.style.pointerEvents = currentIndex >= maxIndex ? "none" : "auto";
+  }
+
+  prevBtn.addEventListener("click", () => {
+    const maxIndex = getMaxIndex();
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const maxIndex = getMaxIndex();
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      updateCarousel();
+    }
+  });
+
+  // Touch/swipe support
+  let startX = 0;
+  let isDragging = false;
+
+  container.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  container.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+  });
+
+  container.addEventListener("touchend", (e) => {
+    if (!isDragging) return;
+
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    const maxIndex = getMaxIndex();
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && currentIndex < maxIndex) {
+        currentIndex++;
+      } else if (diff < 0 && currentIndex > 0) {
+        currentIndex--;
+      }
+      updateCarousel();
+    }
+
+    isDragging = false;
+  });
+
+  // Initialize
+  console.log(`Hot Projects Carousel: Found ${cards.length} cards`);
+  updateCarousel();
+  
+  // Ensure all cards are visible by setting container width
+  const totalWidth = cards.length * cardWidth;
+  container.style.width = `${totalWidth}px`;
+
+  // Handle resize
+  window.addEventListener(
+    "resize",
+    utils.debounce(() => {
+      const newMaxIndex = getMaxIndex();
+
+      if (currentIndex > newMaxIndex) {
+        currentIndex = newMaxIndex;
+      }
+
+      updateCarousel();
+    }, 250)
+  );
+}
+
+/**
+ * Setup property finder animations
+ */
+function setupPropertyFinderAnimations() {
+  const propertyCard = document.querySelector(".property-finder-card");
+  if (propertyCard) {
+    // Add stagger animation to form fields
+    const formFields = propertyCard.querySelectorAll(".search-field");
+    formFields.forEach((field, index) => {
+      field.style.opacity = "0";
+      field.style.transform = "translateY(20px)";
+      field.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+
+      setTimeout(() => {
+        field.style.opacity = "1";
+        field.style.transform = "translateY(0)";
+      }, index * 100 + 500);
+    });
+  }
+
+  // Initialize hot projects carousel
+  setTimeout(() => {
+    setupHotProjectsCarousel();
+  }, 100);
+}
 
 /**
  * Initialize all website functionality

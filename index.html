@@ -119,6 +119,402 @@
       </div>
     </section>
 
+    <!-- Property Finder Section -->
+    <section class="property-finder-section py-5 bg-white">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div
+              class="property-finder-card bg-white rounded-lg shadow-xl p-4 p-lg-5"
+            >
+              <div class="text-center mb-4">
+                <h3 class="h4 fw-bold text-dark mb-2">
+                  Find Your Perfect Investment Property
+                </h3>
+                <p class="text-muted mb-0">
+                  Discover luxury properties tailored to your investment goals
+                </p>
+              </div>
+
+              <!-- Property Search Header -->
+              <div class="property-search-header mb-4 text-center">
+                <div
+                  class="d-inline-flex align-items-center bg-primary-light rounded-pill px-4 py-2"
+                >
+                  <i class="fas fa-home me-2 text-primary"></i>
+                  <span class="fw-bold text-primary">Buy Properties</span>
+                </div>
+              </div>
+
+              <!-- Search Form -->
+              <div class="property-search-content">
+                <form class="property-search-form" id="propertySearchForm">
+                  <div class="row g-3">
+                    <!-- Location Search -->
+                    <div class="col-lg-4 col-md-6">
+                      <div class="search-field">
+                        <label for="location" class="form-label fw-medium"
+                          >Location</label
+                        >
+                        <div class="input-group">
+                          <span class="input-group-text bg-light border-end-0">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                          </span>
+                          <input
+                            type="text"
+                            class="form-control border-start-0 ps-0"
+                            id="location"
+                            placeholder="City, Area, or Project Name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Property Type -->
+                    <div class="col-lg-2 col-md-6">
+                      <div class="search-field">
+                        <label for="propertyType" class="form-label fw-medium"
+                          >Property Type</label
+                        >
+                        <select class="form-select" id="propertyType">
+                          <option value="">All Types</option>
+                          <option value="apartment">Apartment</option>
+                          <option value="villa">Villa</option>
+                          <option value="penthouse">Penthouse</option>
+                          <option value="townhouse">Townhouse</option>
+                          <option value="plot">Plot/Land</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Budget Range -->
+                    <div class="col-lg-2 col-md-6">
+                      <div class="search-field">
+                        <label for="budget" class="form-label fw-medium"
+                          >Budget</label
+                        >
+                        <select class="form-select" id="budget">
+                          <option value="">All Budgets</option>
+                          <option value="50-100">₹50L - ₹1Cr</option>
+                          <option value="100-250">₹1Cr - ₹2.5Cr</option>
+                          <option value="250-500">₹2.5Cr - ₹5Cr</option>
+                          <option value="500-1000">₹5Cr - ₹10Cr</option>
+                          <option value="1000+">₹10Cr+</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- BHK Configuration -->
+                    <div class="col-lg-2 col-md-6">
+                      <div class="search-field">
+                        <label for="bhk" class="form-label fw-medium"
+                          >BHK</label
+                        >
+                        <select class="form-select" id="bhk">
+                          <option value="">All BHK</option>
+                          <option value="1">1 BHK</option>
+                          <option value="2">2 BHK</option>
+                          <option value="3">3 BHK</option>
+                          <option value="4">4 BHK</option>
+                          <option value="5+">5+ BHK</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Search Button -->
+                    <div class="col-lg-2 col-md-12">
+                      <div class="search-field">
+                        <label class="form-label fw-medium text-white">.</label>
+                        <button
+                          type="submit"
+                          class="btn btn-primary w-100 h-100 search-btn"
+                        >
+                          <i class="fas fa-search me-2"></i>Search
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Advanced Filters Toggle -->
+                  <div class="row mt-3">
+                    <div class="col-12 text-center">
+                      <button
+                        type="button"
+                        class="btn btn-link text-primary p-0 advanced-filters-toggle"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#advancedFilters"
+                        aria-expanded="false"
+                        aria-controls="advancedFilters"
+                      >
+                        <i class="fas fa-sliders-h me-2"></i>Advanced Filters
+                        <i class="fas fa-chevron-down ms-2 toggle-icon"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Advanced Filters -->
+                  <div class="collapse" id="advancedFilters">
+                    <div class="advanced-filters-content mt-4 pt-4 border-top">
+                      <div class="row g-3">
+                        <div class="col-md-3">
+                          <label for="possession" class="form-label fw-medium"
+                            >Possession Status</label
+                          >
+                          <select class="form-select" id="possession">
+                            <option value="">Any</option>
+                            <option value="ready">Ready to Move</option>
+                            <option value="construction">
+                              Under Construction
+                            </option>
+                            <option value="new-launch">New Launch</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <label for="furnishing" class="form-label fw-medium"
+                            >Furnishing</label
+                          >
+                          <select class="form-select" id="furnishing">
+                            <option value="">Any</option>
+                            <option value="furnished">Fully Furnished</option>
+                            <option value="semi-furnished">
+                              Semi Furnished
+                            </option>
+                            <option value="unfurnished">Unfurnished</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <label for="parking" class="form-label fw-medium"
+                            >Parking</label
+                          >
+                          <select class="form-select" id="parking">
+                            <option value="">Any</option>
+                            <option value="1">1 Parking</option>
+                            <option value="2">2 Parking</option>
+                            <option value="3+">3+ Parking</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <label for="amenities" class="form-label fw-medium"
+                            >Key Amenities</label
+                          >
+                          <select class="form-select" id="amenities">
+                            <option value="">Any</option>
+                            <option value="pool">Swimming Pool</option>
+                            <option value="gym">Gymnasium</option>
+                            <option value="club">Clubhouse</option>
+                            <option value="security">24/7 Security</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hot Selling Real Estate Projects Section -->
+    <section class="py-5 bg-light">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="mb-5">
+              <h2 class="display-6 fw-bold mb-3">
+                Hot Selling Real Estate Projects in Noida
+              </h2>
+              <p class="text-muted lead mb-4">
+                Premium residential developments in Noida's most sought-after
+                locations
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hot Projects Carousel -->
+        <div class="row">
+          <div class="col-12">
+            <div class="hot-projects-carousel position-relative">
+              <div class="projects-container">
+                <!-- Project 1 -->
+                <div
+                  class="project-card animate-on-scroll"
+                  data-animation="fadeInUp"
+                  data-delay="0.1s"
+                >
+                  <div class="project-number">1</div>
+                  <div class="project-image-container">
+                    <img
+                      src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                      alt="Supertech Eco Village"
+                      class="project-image"
+                    />
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2">Supertech Eco Village</h5>
+                    <p class="text-muted mb-3">Sector 1, Greater Noida West</p>
+                    <div class="project-price">
+                      <span class="text-primary fw-bold h6"
+                        >₹ 45 Lakh to 75 Lakh</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div
+                  class="project-card animate-on-scroll"
+                  data-animation="fadeInUp"
+                  data-delay="0.2s"
+                >
+                  <div class="project-number">2</div>
+                  <div class="project-image-container">
+                    <img
+                      src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                      alt="Ace Platinum"
+                      class="project-image"
+                    />
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2">Ace Platinum</h5>
+                    <p class="text-muted mb-3">Sector 70A, Noida</p>
+                    <div class="project-price">
+                      <span class="text-primary fw-bold h6"
+                        >₹ 85 Lakh to 1.2 Cr</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div
+                  class="project-card animate-on-scroll"
+                  data-animation="fadeInUp"
+                  data-delay="0.3s"
+                >
+                  <div class="project-number">3</div>
+                  <div class="project-image-container">
+                    <img
+                      src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                      alt="Mahagun Medalleo"
+                      class="project-image"
+                    />
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2">Mahagun Medalleo</h5>
+                    <p class="text-muted mb-3">Sector 107, Noida</p>
+                    <div class="project-price">
+                      <span class="text-primary fw-bold h6"
+                        >₹ 1.5 Cr to 2.8 Cr</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div
+                  class="project-card animate-on-scroll"
+                  data-animation="fadeInUp"
+                  data-delay="0.4s"
+                >
+                  <div class="project-number">4</div>
+                  <div class="project-image-container">
+                    <img
+                      src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                      alt="Godrej Woods"
+                      class="project-image"
+                    />
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2">Godrej Woods</h5>
+                    <p class="text-muted mb-3">Sector 43, Noida</p>
+                    <div class="project-price">
+                      <span class="text-primary fw-bold h6"
+                        >₹ 2.2 Cr to 3.5 Cr</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div
+                  class="project-card animate-on-scroll"
+                  data-animation="fadeInUp"
+                  data-delay="0.5s"
+                >
+                  <div class="project-number">5</div>
+                  <div class="project-image-container">
+                    <img
+                      src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                      alt="ATS Knightsbridge"
+                      class="project-image"
+                    />
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2">ATS Knightsbridge</h5>
+                    <p class="text-muted mb-3">Sector 124, Noida</p>
+                    <div class="project-price">
+                      <span class="text-primary fw-bold h6"
+                        >₹ 1.8 Cr to 3.2 Cr</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div
+                  class="project-card animate-on-scroll"
+                  data-animation="fadeInUp"
+                  data-delay="0.6s"
+                >
+                  <div class="project-number">6</div>
+                  <div class="project-image-container">
+                    <img
+                      src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                      alt="Paras Quartier"
+                      class="project-image"
+                    />
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2">Paras Quartier</h5>
+                    <p class="text-muted mb-3">Sector 2, Gwal Pahari</p>
+                    <div class="project-price">
+                      <span class="text-primary fw-bold h6"
+                        >₹ 4.5 Cr to 8.5 Cr</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Navigation Arrows -->
+              <button
+                class="carousel-nav carousel-prev"
+                aria-label="Previous projects"
+              >
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button
+                class="carousel-nav carousel-next"
+                aria-label="Next projects"
+              >
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- View All Button -->
+        <div class="text-center mt-5">
+          <a href="#contact" class="btn btn-primary btn-lg px-5">
+            <i class="fas fa-building me-2"></i>View All Projects
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Investment Opportunity Section -->
     <section class="py-5 bg-accent text-dark">
       <div class="container py-4">
@@ -161,6 +557,267 @@
             <a href="#contact" class="btn btn-primary btn-lg px-5 py-3">
               <i class="fas fa-rocket me-2"></i>Secure Your Investment
             </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Property Price Insights Section -->
+    <section class="py-5 bg-white">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="mb-5">
+              <h2 class="display-6 fw-bold mb-3">
+                Property Price Insights in Noida
+              </h2>
+              <p class="text-muted lead mb-4">
+                Get accurate property price insights in Noida with local trends,
+                median rates, and micro-market comparisons. Make smarter
+                investment choices backed by real-time data and location
+                benchmarks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insights Cards -->
+        <div class="row g-4">
+          <!-- Asking Price Card -->
+          <div class="col-lg-3 col-md-6">
+            <div
+              class="insight-card bg-light p-4 rounded h-100 animate-on-scroll"
+              style="background-color: #fdf6f0 !important"
+              data-animation="fadeInUp"
+              data-delay="0.1s"
+            >
+              <div
+                class="d-flex justify-content-between align-items-start mb-3"
+              >
+                <div>
+                  <h5 class="fw-bold mb-1">Asking Price</h5>
+                  <p class="text-muted small mb-0">in Noida</p>
+                </div>
+                <i class="fas fa-chart-line" style="color: #ff6b35"></i>
+              </div>
+              <div class="mb-3">
+                <i class="fas fa-lightbulb text-warning me-2"></i>
+                <small class="text-muted"
+                  >Noida has 22,068 Listings on Marketplaces with Median Price
+                  of ₹ 11.9 K/Sq.Ft.</small
+                >
+              </div>
+              <div class="price-chart text-center">
+                <div
+                  class="chart-bars d-flex align-items-end justify-content-center gap-1 mb-2"
+                  style="height: 80px"
+                >
+                  <div
+                    class="bar rounded-top"
+                    style="height: 20%; width: 12px; background-color: #ff6b35"
+                  ></div>
+                  <div
+                    class="bar rounded-top"
+                    style="height: 35%; width: 12px; background-color: #ff6b35"
+                  ></div>
+                  <div
+                    class="bar rounded-top"
+                    style="height: 65%; width: 12px; background-color: #ff6b35"
+                  ></div>
+                  <div
+                    class="bar rounded-top"
+                    style="height: 100%; width: 12px; background-color: #ff6b35"
+                  ></div>
+                  <div
+                    class="bar rounded-top"
+                    style="height: 80%; width: 12px; background-color: #ff6b35"
+                  ></div>
+                  <div
+                    class="bar rounded-top"
+                    style="height: 45%; width: 12px; background-color: #ff6b35"
+                  ></div>
+                  <div
+                    class="bar rounded-top"
+                    style="height: 25%; width: 12px; background-color: #ff6b35"
+                  ></div>
+                </div>
+                <div class="fw-bold text-dark">₹11,900</div>
+                <small class="text-muted">Price Range (Rs./Sqft)</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Govt. Registrations Card -->
+          <div class="col-lg-3 col-md-6">
+            <div
+              class="insight-card bg-light p-4 rounded h-100 animate-on-scroll"
+              style="background-color: #f8f4ff !important"
+              data-animation="fadeInUp"
+              data-delay="0.2s"
+            >
+              <div
+                class="d-flex justify-content-between align-items-start mb-3"
+              >
+                <div>
+                  <h5 class="fw-bold mb-1">Govt. Registrations</h5>
+                  <p class="text-muted small mb-0">in Noida</p>
+                </div>
+                <i class="fas fa-chart-bar" style="color: #9333ea"></i>
+              </div>
+              <div class="mb-3">
+                <i class="fas fa-lightbulb text-warning me-2"></i>
+                <small class="text-muted"
+                  >6,234 Sales Transactions Registered in Noida From Oct 24 to
+                  Sep 25 at Avg. Price of ₹ 7,650 / Sq. Ft.</small
+                >
+              </div>
+              <div class="metrics">
+                <div class="d-flex align-items-center mb-3">
+                  <i class="fas fa-chart-line me-3" style="color: #9333ea"></i>
+                  <div>
+                    <div class="small text-muted">Sales Transactions</div>
+                    <div class="fw-bold h5 mb-0">6,234</div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <i class="fas fa-coins me-3" style="color: #9333ea"></i>
+                  <div>
+                    <div class="small text-muted">Gross Sales Value</div>
+                    <div class="fw-bold h6 mb-0">₹ 7,712 Cr</div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-building me-3" style="color: #9333ea"></i>
+                  <div>
+                    <div class="small text-muted">Registered Rate</div>
+                    <div class="fw-bold h6 mb-0">₹ 7,650 / Sq. Ft.</div>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <small class="text-muted"
+                    >Transaction Period Oct 24 to Sep 25</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Micromarket Price Comparison Card -->
+          <div class="col-lg-3 col-md-6">
+            <div
+              class="insight-card bg-light p-4 rounded h-100 animate-on-scroll"
+              style="background-color: #f0f4ff !important"
+              data-animation="fadeInUp"
+              data-delay="0.3s"
+            >
+              <div
+                class="d-flex justify-content-between align-items-start mb-3"
+              >
+                <div>
+                  <h5 class="fw-bold mb-1">Micromarket Price Comparison</h5>
+                  <p class="text-muted small mb-0">in Noida</p>
+                </div>
+                <i class="fas fa-chart-area" style="color: #3b82f6"></i>
+              </div>
+              <div class="mb-3">
+                <i class="fas fa-lightbulb text-warning me-2"></i>
+                <small class="text-muted"
+                  >Noida avg. price is ₹ 11.9 K/Sq.Ft.</small
+                >
+              </div>
+              <div class="price-comparison">
+                <div
+                  class="comparison-item d-flex justify-content-between align-items-center mb-2"
+                >
+                  <div class="flex-grow-1">
+                    <div class="small text-muted">Noida Expressway</div>
+                    <div class="progress mt-1" style="height: 4px">
+                      <div
+                        class="progress-bar bg-primary"
+                        style="width: 85%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="fw-bold ms-3">₹ 12,000</div>
+                </div>
+                <div
+                  class="comparison-item d-flex justify-content-between align-items-center"
+                >
+                  <div class="flex-grow-1">
+                    <div class="small text-muted">Noida Central</div>
+                    <div class="progress mt-1" style="height: 4px">
+                      <div
+                        class="progress-bar bg-primary"
+                        style="width: 82%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="fw-bold ms-3">₹ 11,500</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rental Supply Card -->
+          <div class="col-lg-3 col-md-6">
+            <div
+              class="insight-card bg-light p-4 rounded h-100 animate-on-scroll"
+              style="background-color: #f0fdf4 !important"
+              data-animation="fadeInUp"
+              data-delay="0.4s"
+            >
+              <div
+                class="d-flex justify-content-between align-items-start mb-3"
+              >
+                <div>
+                  <h5 class="fw-bold mb-1">Rental Supply</h5>
+                  <p class="text-muted small mb-0">in Noida</p>
+                </div>
+                <i class="fas fa-chart-pie" style="color: #10b981"></i>
+              </div>
+              <div class="mb-3">
+                <i class="fas fa-lightbulb text-warning me-2"></i>
+                <small class="text-muted"
+                  >Monthly Rent in Noida ranges from ₹ 18.5 K to ₹ 2.5 L with
+                  options available for...</small
+                >
+              </div>
+              <div class="rental-config">
+                <div class="config-header d-flex justify-content-between mb-2">
+                  <small class="text-muted fw-medium">Configurations</small>
+                  <small class="text-muted fw-medium">Avg BHK Prices</small>
+                </div>
+                <div
+                  class="config-item d-flex justify-content-between align-items-center mb-2"
+                >
+                  <span class="small">Studio</span>
+                  <span class="fw-bold text-primary">₹ 18.5 K</span>
+                </div>
+                <div
+                  class="config-item d-flex justify-content-between align-items-center mb-2"
+                >
+                  <span class="small">1 BHK</span>
+                  <span class="fw-bold text-primary">₹ 23.3 K</span>
+                </div>
+                <div
+                  class="config-item d-flex justify-content-between align-items-center mb-2"
+                >
+                  <span class="small">2 BHK</span>
+                  <span class="fw-bold text-primary">₹ 28.8 K</span>
+                </div>
+                <div
+                  class="config-item d-flex justify-content-between align-items-center mb-3"
+                >
+                  <span class="small">3 BHK</span>
+                  <span class="fw-bold text-primary">₹ 40.1 K</span>
+                </div>
+                <div class="text-center">
+                  <a href="#" class="btn btn-outline-primary btn-sm"
+                    >View More</a
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
