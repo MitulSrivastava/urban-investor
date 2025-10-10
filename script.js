@@ -1087,6 +1087,12 @@ function observePropertyCards() {
  * Simple property interaction functions
  */
 function viewProperty(propertyId) {
+  // Redirect to dasnac.html for Manhattan Penthouse (ID 1)
+  if (propertyId === 1) {
+    window.location.href = "dasnac.html";
+    return;
+  }
+
   showNotification(
     `Property #${propertyId} details available. Our team will contact you with comprehensive information.`,
     "success"
