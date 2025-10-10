@@ -1,9 +1,9 @@
 /**
- * Urban Investors - Enhanced Luxury Real Estate Website JavaScript
- * Handles interactive features, form validation, dynamic content, and premium UX for HNI clients
+ * Urban Investors - Professional JavaScript
+ * Handles interactive features with clean animations for professional experience
  */
 
-// Enhanced utility functions
+// Utility functions
 const utils = {
   debounce: (func, wait) => {
     let timeout;
@@ -29,19 +29,9 @@ const utils = {
       }
     };
   },
-
-  // Premium easing functions for luxury feel
-  easing: {
-    easeOutCubic: t => 1 - Math.pow(1 - t, 3),
-    easeInOutCubic: t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
-    easeOutElastic: t => {
-      const c4 = (2 * Math.PI) / 3;
-      return t === 0 ? 0 : t === 1 ? 1 : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
-    }
-  }
 };
 
-// Enhanced scroll animations class
+// Subtle scroll animations class
 class ScrollAnimations {
   constructor() {
     this.animatedElements = new Set();
@@ -59,15 +49,15 @@ class ScrollAnimations {
     );
     elements.forEach((el) => {
       el.style.opacity = "0";
-      el.style.transform = "translateY(30px)";
-      el.style.transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
+      el.style.transform = "translateY(20px)";
+      el.style.transition = "all 0.6s ease-out";
     });
   }
 
   setupIntersectionObserver() {
     const options = {
       threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
+      rootMargin: "0px 0px -30px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -92,27 +82,7 @@ class ScrollAnimations {
     setTimeout(() => {
       element.style.opacity = "1";
       element.style.transform = "translateY(0)";
-
-      // Add special animations for chart bars
-      if (element.querySelector(".chart-bars")) {
-        this.animateChartBars(element.querySelector(".chart-bars"));
-      }
     }, parseFloat(delay) * 1000);
-  }
-
-  animateChartBars(chartContainer) {
-    const bars = chartContainer.querySelectorAll(".bar");
-    bars.forEach((bar, index) => {
-      bar.style.transform = "scaleY(0)";
-      bar.style.transformOrigin = "bottom";
-      bar.style.transition = `transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${
-        index * 0.1
-      }s`;
-
-      setTimeout(() => {
-        bar.style.transform = "scaleY(1)";
-      }, 100);
-    });
   }
 }
 
@@ -128,213 +98,380 @@ function initializeWebsite() {
   setupContactForm();
   setupNewsletterForm();
   setupPropertyFinderAnimations();
-  setupAccessibility();
   setupLazyLoading();
   setupInvestmentTracking();
 }
 
-// DOM Content Loaded Event with Premium Loading Experience
-document.addEventListener("DOMContentLoaded", function () {
-  // Show premium loading screen
-  showPremiumLoader();
-  
-  // Initialize website after short delay for premium feel
-  setTimeout(() => {
-    initializeWebsite();
-    initializeServicesPage();
+/* =================================================================== */
+/* PROPERTY PAGE SPECIFIC FUNCTIONS */
+/* =================================================================== */
 
-    // Initialize enhanced features
-    new ScrollAnimations();
-    new EnhancedNavbar();
-    new PremiumInteractions();
-    setupPropertyFinderAnimations();
-    
-    // Hide loader with elegant transition
-    hidePremiumLoader();
-  }, 1200);
+/**
+ * Initialize property page functionality
+ */
+function initializePropertyPage() {
+  // Only run on property page
+  if (!document.querySelector(".property-page")) {
+    setupPropertyContactForm();
+    setupPropertyScrollEffects();
+    setupPropertyCarousel();
+    setupPropertyModalForms();
+    setupPropertyUnitEnquiry();
+    setupPropertyCallbackRequests();
+    setupPropertyAnimations();
+  }
+}
+
+/**
+ * Setup property contact form
+ */
+function setupPropertyContactForm() {
+  const form = document.getElementById("propertyContactForm");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Get form data
+    const formData = {
+      name: form.querySelector('input[type="text"]')?.value,
+      phone: form.querySelector('input[type="tel"]')?.value,
+      email: form.querySelector('input[type="email"]')?.value,
+      interest: form.querySelector("select")?.value,
+      project: "Dasnac",
+    };
+
+    // Validate form
+    if (!validatePropertyForm(formData)) {
+      showNotification("Please fill all required fields", "error");
+      return;
+    }
+
+    // Submit form
+    submitPropertyContactForm(formData);
+  });
+}
+
+/**
+ * Setup property scroll effects
+ */
+function setupPropertyScrollEffects() {
+  // Smooth scroll for navigation links
+  const navLinks = document.querySelectorAll('a[href^="#"]');
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+
+      if (href.startsWith("#") && href !== "#") {
+        e.preventDefault();
+        const target = document.querySelector(href);
+
+        if (target) {
+          const offsetTop = target.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          });
+        }
+      }
+    });
+  });
+}
+
+/**
+ * Setup property carousel functionality
+ */
+function setupPropertyCarousel() {
+  const carousel = document.getElementById("projectGallery");
+  if (!carousel) return;
+
+  // Auto-play carousel
+  const carouselInstance = new bootstrap.Carousel(carousel, {
+    interval: 5000,
+    wrap: true,
+  });
+
+  // Pause on hover
+  carousel.addEventListener("mouseenter", () => {
+    carouselInstance.pause();
+  });
+
+  carousel.addEventListener("mouseleave", () => {
+    carouselInstance.cycle();
+  });
+}
+
+/**
+ * Setup property modal forms
+ */
+function setupPropertyModalForms() {
+  // Quick enquiry forms
+  const enquireModals = document.querySelectorAll('[data-bs-toggle="modal"]');
+
+  enquireModals.forEach((trigger) => {
+    trigger.addEventListener("click", function () {
+      const modalId = this.getAttribute("data-bs-target");
+      const modal = document.querySelector(modalId);
+
+      if (modal) {
+        const form = modal.querySelector("form");
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            handlePropertyEnquiry(this);
+          });
+        }
+      }
+    });
+  });
+}
+
+/**
+ * Handle unit-specific enquiries
+ */
+function setupPropertyUnitEnquiry() {
+  window.enquireUnit = function (unitType) {
+    showNotification(
+      `Thank you for your interest in ${unitType} units at Dasnac. Our team will contact you with detailed information within 24 hours.`,
+      "success"
+    );
+
+    // Track the enquiry
+    trackPropertyLead("unit_enquiry", {
+      unitType: unitType,
+      project: "Dasnac",
+      timestamp: new Date().toISOString(),
+    });
+  };
+}
+
+/**
+ * Setup property callback requests
+ */
+function setupPropertyCallbackRequests() {
+  window.requestPropertyCallback = function () {
+    showNotification(
+      "Callback request received! Our team will call you within 30 minutes during business hours.",
+      "success"
+    );
+
+    // Track callback request
+    trackPropertyLead("callback_request", {
+      project: "Dasnac",
+      timestamp: new Date().toISOString(),
+    });
+  };
+}
+
+/**
+ * Property form validation
+ */
+function validatePropertyForm(data) {
+  const requiredFields = ["name", "phone", "email"];
+
+  for (let field of requiredFields) {
+    if (!data[field] || data[field].trim() === "") {
+      return false;
+    }
+  }
+
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(data.email)) {
+    return false;
+  }
+
+  // Phone validation (basic)
+  const phoneRegex = /^[6-9]\d{9}$/;
+  if (!phoneRegex.test(data.phone.replace(/\D/g, "").slice(-10))) {
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Submit property contact form
+ */
+function submitPropertyContactForm(data) {
+  const submitBtn = document.querySelector(
+    '#propertyContactForm button[type="submit"]'
+  );
+
+  if (!submitBtn) return;
+
+  const originalText = submitBtn.innerHTML;
+
+  // Show loading state
+  submitBtn.classList.add("loading");
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+  submitBtn.disabled = true;
+
+  // Simulate API call
+  setTimeout(() => {
+    // Reset button
+    submitBtn.classList.remove("loading");
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
+
+    // Show success message
+    showNotification(
+      "Thank you! Your request has been submitted. Our team will contact you within 24 hours with the brochure and detailed information.",
+      "success"
+    );
+
+    // Reset form
+    const form = document.getElementById("propertyContactForm");
+    if (form) form.reset();
+
+    // Track conversion
+    trackPropertyLead("brochure_download", data);
+  }, 2000);
+}
+
+/**
+ * Handle property enquiry
+ */
+function handlePropertyEnquiry(form) {
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  // Add project info
+  data.project = "Dasnac";
+  data.timestamp = new Date().toISOString();
+
+  showNotification(
+    "Thank you for your enquiry! We will contact you shortly with detailed information.",
+    "success"
+  );
+
+  // Reset form
+  form.reset();
+
+  // Close modal if it exists
+  const modal = form.closest(".modal");
+  if (modal) {
+    const modalInstance = bootstrap.Modal.getInstance(modal);
+    if (modalInstance) modalInstance.hide();
+  }
+
+  // Track lead
+  trackPropertyLead("enquiry", data);
+}
+
+/**
+ * Track property leads for analytics
+ */
+function trackPropertyLead(type, data) {
+  console.log(`Property Lead tracked: ${type}`, data);
+
+  // Google Analytics integration
+  if (typeof gtag !== "undefined") {
+    gtag("event", "lead_generation", {
+      lead_type: type,
+      project_name: "Dasnac",
+      user_phone: data.phone || "",
+      user_email: data.email || "",
+    });
+  }
+
+  // Facebook Pixel integration
+  if (typeof fbq !== "undefined") {
+    fbq("track", "Lead", {
+      content_name: "Dasnac",
+      content_category: "Real Estate",
+      value: 1,
+      currency: "INR",
+    });
+  }
+}
+
+/**
+ * Setup property animations
+ */
+function setupPropertyAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate-on-scroll");
+      }
+    });
+  }, observerOptions);
+
+  // Observe elements for animations
+  const animateElements = document.querySelectorAll(
+    ".feature-card, .amenity-card, .location-card, .stat-card"
+  );
+  animateElements.forEach((el) => {
+    observer.observe(el);
+  });
+}
+
+/**
+ * WhatsApp integration for property
+ */
+function openPropertyWhatsApp(message = "") {
+  const defaultMessage =
+    message ||
+    "Hi, I'm interested in Dasnac project. Please share more details about the LEED Platinum certified sustainable development.";
+  const phoneNumber = "919876543210"; // Replace with actual WhatsApp business number
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    defaultMessage
+  )}`;
+  window.open(url, "_blank");
+}
+
+/**
+ * Schedule property site visit
+ */
+function schedulePropertySiteVisit() {
+  showNotification(
+    "Site visit request noted! Our team will contact you to schedule a convenient time for your visit to Dasnac.",
+    "success"
+  );
+
+  trackPropertyLead("site_visit_request", {
+    project: "Dasnac",
+    timestamp: new Date().toISOString(),
+  });
+}
+
+// Initialize property page functions when DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  // Check if we're on a property page and initialize accordingly
+  if (document.querySelector(".hero-section")) {
+    initializePropertyPage();
+  }
+});
+
+// Export property functions for global access
+window.enquireUnit = window.enquireUnit || function () {};
+window.requestPropertyCallback =
+  window.requestPropertyCallback || function () {};
+window.openPropertyWhatsApp = openPropertyWhatsApp;
+window.schedulePropertySiteVisit = schedulePropertySiteVisit;
+
+// DOM Content Loaded Event
+document.addEventListener("DOMContentLoaded", function () {
+  // Initialize website immediately without loading screen
+  initializeWebsite();
+  initializeServicesPage();
+
+  // Initialize subtle features
+  new ScrollAnimations();
+  new EnhancedNavbar();
+  new ElegantInteractions();
+  setupPropertyFinderAnimations();
 });
 
 /**
- * Premium loading screen for luxury experience
- */
-function showPremiumLoader() {
-  const loader = document.createElement('div');
-  loader.className = 'page-loader';
-  loader.innerHTML = `
-    <div class="loader-content">
-      <div class="loader-logo animate-fade-in-up">
-        <i class="fas fa-building me-2"></i>
-        Urban Investors
-      </div>
-      <div class="loader-spinner"></div>
-      <div class="loader-text mt-3 text-white-75">
-        Curating Luxury Properties...
-      </div>
-    </div>
-  `;
-  
-  document.body.appendChild(loader);
-  document.body.classList.add('page-loading');
-}
-
-function hidePremiumLoader() {
-  const loader = document.querySelector('.page-loader');
-  if (loader) {
-    loader.classList.add('fade-out');
-    document.body.classList.remove('page-loading');
-    
-    setTimeout(() => {
-      loader.remove();
-    }, 600);
-  }
-}
-
-/**
- * Premium interactions class for enhanced UX
- */
-class PremiumInteractions {
-  constructor() {
-    this.init();
-  }
-
-  init() {
-    this.setupMagneticButtons();
-    this.setupParallaxElements();
-    this.setupMouseFollower();
-    this.setupPremiumHovers();
-  }
-
-  setupMagneticButtons() {
-    const magneticElements = document.querySelectorAll('.btn-primary, .btn-accent, .property-card');
-    
-    magneticElements.forEach(el => {
-      el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        const moveX = x * 0.15;
-        const moveY = y * 0.15;
-        
-        el.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
-      });
-      
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = 'translate(0px, 0px) scale(1)';
-      });
-    });
-  }
-
-  setupParallaxElements() {
-    const parallaxElements = document.querySelectorAll('.hero-background, .about-image-wrapper img');
-    
-    window.addEventListener('scroll', utils.throttle(() => {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-      
-      parallaxElements.forEach(el => {
-        if (el.classList.contains('hero-background')) {
-          el.style.transform = `translateY(${rate}px)`;
-        } else {
-          el.style.transform = `translateY(${rate * 0.3}px) scale(1.1)`;
-        }
-      });
-    }, 16));
-  }
-
-  setupMouseFollower() {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-    
-    // Add cursor styles
-    const style = document.createElement('style');
-    style.textContent = `
-      .custom-cursor {
-        width: 20px;
-        height: 20px;
-        background: rgba(30, 58, 138, 0.7);
-        border-radius: 50%;
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-        transform: translate(-50%, -50%);
-      }
-      
-      .custom-cursor.hover {
-        width: 60px;
-        height: 60px;
-        background: rgba(212, 165, 116, 0.3);
-        border: 2px solid rgba(212, 165, 116, 0.8);
-      }
-    `;
-    document.head.appendChild(style);
-    
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-    
-    // Enhance cursor on hover
-    const hoverElements = document.querySelectorAll('a, button, .property-card, .project-card');
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-  }
-
-  setupPremiumHovers() {
-    // Add ripple effect to buttons
-    const buttons = document.querySelectorAll('.btn');
-    
-    buttons.forEach(button => {
-      button.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.cssText = `
-          position: absolute;
-          width: ${size}px;
-          height: ${size}px;
-          left: ${x}px;
-          top: ${y}px;
-          background: rgba(255, 255, 255, 0.4);
-          border-radius: 50%;
-          transform: scale(0);
-          animation: ripple 0.6s ease-out;
-          pointer-events: none;
-        `;
-        
-        this.style.position = 'relative';
-        this.style.overflow = 'hidden';
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-          ripple.remove();
-        }, 600);
-      });
-    });
-    
-    // Add ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes ripple {
-        to {
-          transform: scale(2);
-          opacity: 0;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-}
-
-/**
- * Enhanced navbar with glass morphism
+ * Enhanced navbar
  */
 class EnhancedNavbar {
   constructor() {
@@ -383,9 +520,8 @@ function setupHotProjectsCarousel() {
 
   function getVisibleCards() {
     const containerWidth = container.parentElement.offsetWidth;
-    const cardWidthWithGap = 320 + 16; // card width + gap
+    const cardWidthWithGap = 320 + 16;
     const visibleCards = Math.floor(containerWidth / cardWidthWithGap);
-    // Ensure we show at least 1 card and not more than total cards
     return Math.max(1, Math.min(visibleCards, cards.length));
   }
 
@@ -400,7 +536,6 @@ function setupHotProjectsCarousel() {
 
     const maxIndex = getMaxIndex();
 
-    // Update button states
     prevBtn.style.opacity = currentIndex === 0 ? "0.5" : "1";
     nextBtn.style.opacity = currentIndex >= maxIndex ? "0.5" : "1";
     prevBtn.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
@@ -408,7 +543,6 @@ function setupHotProjectsCarousel() {
   }
 
   prevBtn.addEventListener("click", () => {
-    const maxIndex = getMaxIndex();
     if (currentIndex > 0) {
       currentIndex--;
       updateCarousel();
@@ -456,24 +590,18 @@ function setupHotProjectsCarousel() {
     isDragging = false;
   });
 
-  // Initialize
-  console.log(`Hot Projects Carousel: Found ${cards.length} cards`);
   updateCarousel();
 
-  // Ensure all cards are visible by setting container width
   const totalWidth = cards.length * cardWidth;
   container.style.width = `${totalWidth}px`;
 
-  // Handle resize
   window.addEventListener(
     "resize",
     utils.debounce(() => {
       const newMaxIndex = getMaxIndex();
-
       if (currentIndex > newMaxIndex) {
         currentIndex = newMaxIndex;
       }
-
       updateCarousel();
     }, 250)
   );
@@ -485,21 +613,19 @@ function setupHotProjectsCarousel() {
 function setupPropertyFinderAnimations() {
   const propertyCard = document.querySelector(".property-finder-card");
   if (propertyCard) {
-    // Add stagger animation to form fields
     const formFields = propertyCard.querySelectorAll(".search-field");
     formFields.forEach((field, index) => {
       field.style.opacity = "0";
-      field.style.transform = "translateY(20px)";
-      field.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+      field.style.transform = "translateY(15px)";
+      field.style.transition = "all 0.5s ease-out";
 
       setTimeout(() => {
         field.style.opacity = "1";
         field.style.transform = "translateY(0)";
-      }, index * 100 + 500);
+      }, index * 100 + 300);
     });
   }
 
-  // Initialize hot projects carousel
   setTimeout(() => {
     setupHotProjectsCarousel();
   }, 100);
@@ -509,7 +635,6 @@ function setupPropertyFinderAnimations() {
  * Initialize services page functionality
  */
 function initializeServicesPage() {
-  // Check if we're on the services page
   if (!document.querySelector(".services-hero")) return;
 
   setupServicesAnimations();
@@ -521,11 +646,10 @@ function initializeServicesPage() {
  * Setup services page animations
  */
 function setupServicesAnimations() {
-  // Animate service cards on scroll
   const serviceCards = document.querySelectorAll(".service-card");
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
+    rootMargin: "0px 0px -30px 0px",
   };
 
   const serviceObserver = new IntersectionObserver((entries) => {
@@ -534,44 +658,42 @@ function setupServicesAnimations() {
         setTimeout(() => {
           entry.target.style.opacity = "1";
           entry.target.style.transform = "translateY(0)";
-        }, index * 150);
+        }, index * 100); // Faster stagger for hero cards
       }
     });
   }, observerOptions);
 
   serviceCards.forEach((card) => {
     card.style.opacity = "0";
-    card.style.transform = "translateY(30px)";
-    card.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+    card.style.transform = "translateY(20px)";
+    card.style.transition = "all 0.6s ease-out";
     serviceObserver.observe(card);
   });
 
-  // Animate process steps
+  // Animate process steps with enhanced timing
   const processSteps = document.querySelectorAll(".process-step");
   processSteps.forEach((step, index) => {
     step.style.opacity = "0";
     step.style.transform = "translateY(30px)";
-    step.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+    step.style.transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
 
-    setTimeout(() => {
-      const processObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.opacity = "1";
-              entry.target.style.transform = "translateY(0)";
-            }, index * 200);
-          }
-        });
-      }, observerOptions);
+    const processObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }, index * 150); // Slightly faster for better flow
+        }
+      });
+    }, observerOptions);
 
-      processObserver.observe(step);
-    }, 100);
+    processObserver.observe(step);
   });
 }
 
 /**
- * Setup services contact form
+ * Setup services contact form functionality
  */
 function setupServicesContactForm() {
   const form = document.getElementById("servicesContactForm");
@@ -589,11 +711,11 @@ function setupServicesContactForm() {
 
     // Get form data
     const formData = {
-      firstName: document.getElementById("firstName").value,
-      lastName: document.getElementById("lastName").value,
-      email: document.getElementById("email").value,
-      service: document.getElementById("service").value,
-      message: document.getElementById("message").value,
+      firstName: document.getElementById("firstName")?.value,
+      lastName: document.getElementById("lastName")?.value,
+      email: document.getElementById("email")?.value,
+      service: document.getElementById("service")?.value,
+      message: document.getElementById("message")?.value,
     };
 
     // Simulate form submission
@@ -627,7 +749,7 @@ function setupServicesContactForm() {
 }
 
 /**
- * Setup service navigation
+ * Setup service navigation and smooth scrolling
  */
 function setupServiceNavigation() {
   // Smooth scroll for service links
@@ -656,7 +778,7 @@ function setupServiceNavigation() {
   // Highlight active service section
   const sections = document.querySelectorAll("section[id]");
 
-  window.addEventListener("scroll", () => {
+  const handleScroll = utils.throttle(() => {
     const scrollPos = window.scrollY + 150;
 
     sections.forEach((section) => {
@@ -679,7 +801,9 @@ function setupServiceNavigation() {
         }
       }
     });
-  });
+  }, 100);
+
+  window.addEventListener("scroll", handleScroll);
 }
 
 /**
@@ -688,8 +812,8 @@ function setupServiceNavigation() {
 function setupNavigation() {
   const navbar = document.querySelector(".navbar");
   const navLinks = document.querySelectorAll(".nav-link");
+  const hashLinks = document.querySelectorAll('a[href^="#"]');
 
-  // Navbar scroll effect
   window.addEventListener("scroll", function () {
     if (window.scrollY > 50) {
       navbar.classList.add("scrolled");
@@ -702,26 +826,25 @@ function setupNavigation() {
     }
   });
 
-  // Smooth scrolling for navigation links
-  navLinks.forEach((link) => {
+  // Enhanced smooth scrolling for all hash links (including hero button)
+  hashLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
 
-      if (href.startsWith("#")) {
+      if (href.startsWith("#") && href !== "#") {
         e.preventDefault();
         const target = document.querySelector(href);
 
         if (target) {
-          const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+          const offsetTop = target.offsetTop - 80;
 
           window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
           });
 
-          // Close mobile menu if open
           const navbarCollapse = document.querySelector(".navbar-collapse");
-          if (navbarCollapse.classList.contains("show")) {
+          if (navbarCollapse && navbarCollapse.classList.contains("show")) {
             bootstrap.Collapse.getInstance(navbarCollapse).hide();
           }
         }
@@ -729,14 +852,18 @@ function setupNavigation() {
     });
   });
 
-  // Active link highlighting
   window.addEventListener("scroll", updateActiveNavLink);
 }
 
 /**
- * Update active navigation link based on scroll position
+ * Update active navigation link
  */
 function updateActiveNavLink() {
+  // Skip auto-updating nav links on property page
+  if (document.querySelector(".property-page")) {
+    return;
+  }
+
   const sections = document.querySelectorAll("section[id]");
   const scrollPos = window.scrollY + 100;
 
@@ -763,11 +890,8 @@ function updateActiveNavLink() {
 function generatePropertyCards() {
   const propertiesGrid = document.getElementById("properties-grid");
 
-  // Safety check - if properties grid doesn't exist, skip
   if (!propertiesGrid) {
-    console.warn(
-      "Properties grid element not found - skipping property cards generation"
-    );
+    console.warn("Properties grid element not found");
     return;
   }
 
@@ -857,7 +981,6 @@ function generatePropertyCards() {
     propertiesGrid.appendChild(propertyCard);
   });
 
-  // Add entrance animations
   observePropertyCards();
 }
 
@@ -934,7 +1057,7 @@ function createPropertyCard(property) {
 }
 
 /**
- * Property card intersection observer for animations
+ * Property card intersection observer
  */
 function observePropertyCards() {
   const observer = new IntersectionObserver(
@@ -948,24 +1071,66 @@ function observePropertyCards() {
     },
     {
       threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
+      rootMargin: "0px 0px -30px 0px",
     }
   );
 
-  // Initially hide cards and observe them
   document.querySelectorAll(".property-card").forEach((card, index) => {
     card.parentElement.style.opacity = "0";
-    card.parentElement.style.transform = "translateY(30px)";
-    card.parentElement.style.transition = `all 0.6s ease-out ${index * 0.1}s`;
+    card.parentElement.style.transform = "translateY(20px)";
+    card.parentElement.style.transition = `all 0.5s ease-out ${index * 0.1}s`;
     observer.observe(card.parentElement);
   });
 }
 
 /**
- * Contact form setup and validation
+ * Simple property interaction functions
+ */
+function viewProperty(propertyId) {
+  showNotification(
+    `Property #${propertyId} details available. Our team will contact you with comprehensive information.`,
+    "success"
+  );
+
+  console.log(`Viewing property ${propertyId}`);
+
+  setTimeout(() => {
+    const contactSection = document.querySelector("#contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }, 1500);
+}
+
+function scheduleViewing(propertyId) {
+  showNotification(
+    `Viewing request submitted for Property #${propertyId}. Our representative will contact you within 24 hours.`,
+    "success"
+  );
+
+  console.log(`Viewing scheduled for property ${propertyId}`);
+
+  setTimeout(() => {
+    const contactSection = document.querySelector("#contact");
+    const message = document.querySelector("#message");
+
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+
+    if (message) {
+      message.value = `I would like to schedule a viewing for Property ID: ${propertyId}. Please contact me with available times.`;
+    }
+  }, 1500);
+}
+
+/**
+ * Contact form setup
  */
 function setupContactForm() {
   const contactForm = document.getElementById("contactForm");
+  if (!contactForm) return;
+
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   const btnText = submitBtn.querySelector(".btn-text");
   const btnLoading = submitBtn.querySelector(".btn-loading");
@@ -973,47 +1138,39 @@ function setupContactForm() {
   contactForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    // Reset validation
     this.classList.remove("was-validated");
 
-    // Validate form
     if (!this.checkValidity()) {
       this.classList.add("was-validated");
       return;
     }
 
-    // Show loading state
     submitBtn.disabled = true;
-    btnText.classList.add("d-none");
-    btnLoading.classList.remove("d-none");
+    if (btnText) btnText.classList.add("d-none");
+    if (btnLoading) btnLoading.classList.remove("d-none");
 
     try {
-      // Simulate form submission
       await simulateFormSubmission();
 
-      // Show success message
       showNotification(
         "Thank you! Your message has been sent successfully. We'll contact you within 24 hours.",
         "success"
       );
 
-      // Reset form
       this.reset();
       this.classList.remove("was-validated");
     } catch (error) {
       showNotification(
-        "Sorry, there was an error sending your message. Please try again or call us directly.",
+        "Sorry, there was an error sending your message. Please try again.",
         "error"
       );
     } finally {
-      // Reset button state
       submitBtn.disabled = false;
-      btnText.classList.remove("d-none");
-      btnLoading.classList.add("d-none");
+      if (btnText) btnText.classList.remove("d-none");
+      if (btnLoading) btnLoading.classList.add("d-none");
     }
   });
 
-  // Real-time validation
   const inputs = contactForm.querySelectorAll("input, select, textarea");
   inputs.forEach((input) => {
     input.addEventListener("blur", function () {
@@ -1029,7 +1186,7 @@ function setupContactForm() {
 }
 
 /**
- * Validate individual form field
+ * Validate form field
  */
 function validateField(field) {
   const isValid = field.checkValidity();
@@ -1046,12 +1203,11 @@ function validateField(field) {
 }
 
 /**
- * Simulate form submission (replace with actual API call)
+ * Simulate form submission
  */
 function simulateFormSubmission() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // Simulate 95% success rate
       if (Math.random() > 0.05) {
         resolve();
       } else {
@@ -1095,10 +1251,9 @@ function isValidEmail(email) {
 }
 
 /**
- * Show notification to user
+ * Show notification
  */
 function showNotification(message, type = "info") {
-  // Remove existing notifications
   const existingNotifications = document.querySelectorAll(".notification");
   existingNotifications.forEach((notification) => notification.remove());
 
@@ -1121,49 +1276,12 @@ function showNotification(message, type = "info") {
 
   document.body.appendChild(notification);
 
-  // Auto-remove after 5 seconds
   setTimeout(() => {
     if (notification.parentElement) {
       notification.style.animation = "slideOutRight 0.3s ease-in";
       setTimeout(() => notification.remove(), 300);
     }
   }, 5000);
-}
-
-/**
- * Scroll effects and animations
- */
-function setupScrollEffects() {
-  // Parallax effect for hero section
-  window.addEventListener("scroll", function () {
-    const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector(".hero-background");
-
-    if (heroBackground) {
-      heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-  });
-
-  // Fade-in animations for sections
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in");
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
-    }
-  );
-
-  // Observe sections for animations
-  const sections = document.querySelectorAll("section:not(#home)");
-  sections.forEach((section) => {
-    observer.observe(section);
-  });
 }
 
 /**
@@ -1189,309 +1307,206 @@ function setupLazyLoading() {
 }
 
 /**
- * Accessibility enhancements
+ * Enhanced UI/UX interactions for elegant experience
  */
-function setupAccessibility() {
-  // Skip to content link
-  const skipLink = document.createElement("a");
-  skipLink.href = "#main-content";
-  skipLink.className = "skip-link";
-  skipLink.textContent = "Skip to main content";
-  document.body.insertBefore(skipLink, document.body.firstChild);
-
-  // Add main content ID
-  const mainContent =
-    document.querySelector("main") || document.querySelector("#home");
-  if (mainContent) {
-    mainContent.id = "main-content";
+class ElegantInteractions {
+  constructor() {
+    this.init();
   }
 
-  // Keyboard navigation for cards
-  const propertyCards = document.querySelectorAll(".property-card");
-  propertyCards.forEach((card) => {
-    card.setAttribute("tabindex", "0");
-    card.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        const viewButton = this.querySelector(".btn-primary");
-        if (viewButton) viewButton.click();
+  init() {
+    this.setupSmoothAnimations();
+    this.setupElegantHovers();
+    this.setupFormEnhancements();
+    this.setupScrollEffects();
+    this.setupPageTransitions();
+  }
+
+  setupSmoothAnimations() {
+    // Add entrance animations to cards
+    const cards = document.querySelectorAll(
+      ".card, .service-card, .property-card"
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }, index * 100);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cards.forEach((card) => {
+      card.style.opacity = "0";
+      card.style.transform = "translateY(20px)";
+      card.style.transition = "all 0.6s ease-out";
+      observer.observe(card);
+    });
+  }
+
+  setupElegantHovers() {
+    // Enhanced button ripple effects
+    const buttons = document.querySelectorAll(".btn");
+
+    buttons.forEach((button) => {
+      button.addEventListener("mouseenter", function (e) {
+        this.style.transform = "translateY(-2px)";
+      });
+
+      button.addEventListener("mouseleave", function (e) {
+        this.style.transform = "translateY(0)";
+      });
+    });
+
+    // Elegant card interactions
+    const interactiveCards = document.querySelectorAll(
+      ".property-card, .service-card, .testimonial-card"
+    );
+
+    interactiveCards.forEach((card) => {
+      card.addEventListener("mouseenter", function () {
+        this.style.transform = "translateY(-8px) scale(1.02)";
+      });
+
+      card.addEventListener("mouseleave", function () {
+        this.style.transform = "translateY(0) scale(1)";
+      });
+    });
+  }
+
+  setupFormEnhancements() {
+    // Elegant form field animations
+    const formFields = document.querySelectorAll(".form-control, .form-select");
+
+    formFields.forEach((field) => {
+      field.addEventListener("focus", function () {
+        this.parentElement.style.transform = "translateY(-2px)";
+        this.style.boxShadow = "0 8px 25px rgba(30, 58, 138, 0.15)";
+      });
+
+      field.addEventListener("blur", function () {
+        this.parentElement.style.transform = "translateY(0)";
+        this.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.05)";
+      });
+    });
+
+    // Enhanced form validation feedback
+    const forms = document.querySelectorAll("form");
+
+    forms.forEach((form) => {
+      const inputs = form.querySelectorAll("input, select, textarea");
+
+      inputs.forEach((input) => {
+        input.addEventListener("input", function () {
+          if (this.checkValidity()) {
+            this.classList.remove("is-invalid");
+            this.classList.add("is-valid");
+          }
+        });
+      });
+    });
+  }
+
+  setupScrollEffects() {
+    // Elegant scroll-based animations
+    let ticking = false;
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset;
+
+          // Parallax effect for hero images
+          const heroImages = document.querySelectorAll(
+            ".hero-background, .services-hero"
+          );
+          heroImages.forEach((img) => {
+            img.style.transform = `translateY(${scrolled * 0.3}px)`;
+          });
+
+          // Floating effect for certain elements
+          const floatingElements =
+            document.querySelectorAll(".floating-element");
+          floatingElements.forEach((element, index) => {
+            const speed = 0.5 + index * 0.1;
+            element.style.transform = `translateY(${
+              Math.sin(scrolled * 0.01 + index) * 10
+            }px)`;
+          });
+
+          ticking = false;
+        });
+        ticking = true;
       }
     });
-  });
+  }
 
-  // Enhanced focus management for modals and forms
-  document.addEventListener("focusin", function (e) {
-    if (e.target.closest(".modal")) {
-      // Trap focus within modals
-      trapFocus(e.target.closest(".modal"));
-    }
-  });
-}
+  setupPageTransitions() {
+    // Smooth page transitions
+    document.body.classList.add("page-enter");
 
-/**
- * Focus trapping for accessibility
- */
-function trapFocus(element) {
-  const focusableElements = element.querySelectorAll(
-    'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-  );
+    // Enhanced link transitions
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
 
-  const firstFocusableElement = focusableElements[0];
-  const lastFocusableElement = focusableElements[focusableElements.length - 1];
+    internalLinks.forEach((link) => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
 
-  element.addEventListener("keydown", function (e) {
-    if (e.key === "Tab") {
-      if (e.shiftKey) {
-        if (document.activeElement === firstFocusableElement) {
-          lastFocusableElement.focus();
-          e.preventDefault();
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         }
-      } else {
-        if (document.activeElement === lastFocusableElement) {
-          firstFocusableElement.focus();
-          e.preventDefault();
-        }
-      }
-    }
-  });
-}
+      });
+    });
+  }
 
-/**
- * Enhanced property interaction functions with premium UX
- */
-function viewProperty(propertyId) {
-  // Create premium modal with animation
-  const modal = document.createElement('div');
-  modal.className = 'premium-property-modal';
-  modal.innerHTML = `
-    <div class="modal-overlay" onclick="closePremiumModal()"></div>
-    <div class="modal-content animate-scale-in">
-      <button class="modal-close" onclick="closePremiumModal()">
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="modal-header">
-        <h3 class="gradient-text">Property Details</h3>
-        <p class="text-muted">Premium Real Estate Opportunity</p>
-      </div>
-      <div class="modal-body">
-        <div class="property-gallery mb-4">
-          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-               alt="Property" class="img-fluid rounded">
-        </div>
-        <div class="property-info">
-          <h4>Luxury Property #${propertyId}</h4>
-          <p>Experience unparalleled luxury in this exceptional property. Our team will provide you with detailed information and arrange an exclusive viewing.</p>
-          <div class="property-features mt-3">
-            <span class="badge bg-primary me-2"><i class="fas fa-bed me-1"></i>4 Beds</span>
-            <span class="badge bg-primary me-2"><i class="fas fa-bath me-1"></i>3 Baths</span>
-            <span class="badge bg-primary"><i class="fas fa-ruler me-1"></i>2,500 sq ft</span>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-accent me-3" onclick="scheduleViewing(${propertyId})">
-          <i class="fas fa-calendar-alt me-2"></i>Schedule Viewing
-        </button>
-        <button class="btn btn-outline-primary" onclick="closePremiumModal()">
-          Close
-        </button>
-      </div>
-    </div>
-  `;
-  
-  // Add modal styles
-  const style = document.createElement('style');
-  style.textContent = `
-    .premium-property-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 10000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: modalFadeIn 0.3s ease-out;
-    }
-    
-    .modal-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-    }
-    
-    .modal-content {
-      background: linear-gradient(145deg, #ffffff, #f8fafc);
-      border-radius: 20px;
-      max-width: 600px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .modal-close {
-      position: absolute;
+  // Elegant notification system
+  static showElegantNotification(message, type = "info", duration = 5000) {
+    const notification = document.createElement("div");
+    notification.className = `alert alert-${type} position-fixed animate-fade-in-down`;
+    notification.style.cssText = `
       top: 20px;
       right: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 2;
-    }
-    
-    .modal-close:hover {
-      background: #ff4757;
-      color: white;
-      transform: scale(1.1);
-    }
-    
-    .modal-header, .modal-body, .modal-footer {
-      padding: 1.5rem;
-    }
-    
-    .modal-footer {
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
-      background: rgba(248, 250, 252, 0.5);
-    }
-    
-    @keyframes modalFadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-  `;
-  
-  document.head.appendChild(style);
-  document.body.appendChild(modal);
-  document.body.style.overflow = 'hidden';
-  
-  console.log(`Premium property modal opened for property ${propertyId}`);
-}
-
-function scheduleViewing(propertyId) {
-  // Enhanced scheduling with premium UX
-  showNotification(
-    `Viewing Request Initiated. Our luxury property consultant will contact you within 2 hours to schedule an exclusive viewing for Property #${propertyId}.`,
-    "success"
-  );
-  
-  // Close modal if open
-  closePremiumModal();
-  
-  // Scroll to contact form with pre-filled message
-  setTimeout(() => {
-    const contactSection = document.querySelector("#contact");
-    const message = document.querySelector("#message");
-
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-
-    if (message) {
-      message.value = `I would like to schedule an exclusive viewing for Property ID: ${propertyId}. Please contact me with available times for a premium consultation.`;
-    }
-  }, 1500);
-  
-  console.log(`Premium viewing scheduled for property ${propertyId}`);
-}
-
-function closePremiumModal() {
-  const modal = document.querySelector('.premium-property-modal');
-  if (modal) {
-    modal.style.animation = 'modalFadeOut 0.3s ease-in';
-    
-    setTimeout(() => {
-      modal.remove();
-      document.body.style.overflow = '';
-    }, 300);
-    
-    // Add fade out animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes modalFadeOut {
-        from {
-          opacity: 1;
-          transform: scale(1);
-        }
-        to {
-          opacity: 0;
-          transform: scale(0.8);
-        }
-      }
+      z-index: 1050;
+      min-width: 300px;
+      max-width: 400px;
+      animation: slideInRight 0.5s ease-out;
+      backdrop-filter: blur(10px);
     `;
-    document.head.appendChild(style);
+
+    notification.innerHTML = `
+      <div class="d-flex align-items-center">
+        <i class="fas fa-${
+          type === "success"
+            ? "check-circle"
+            : type === "error"
+            ? "exclamation-triangle"
+            : "info-circle"
+        } me-2"></i>
+        <span>${message}</span>
+        <button type="button" class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
+      </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      if (notification.parentElement) {
+        notification.style.animation = "slideOutRight 0.3s ease-in";
+        setTimeout(() => notification.remove(), 300);
+      }
+    }, duration);
   }
 }
-
-/**
- * Add CSS animations dynamically
- */
-function addAnimationStyles() {
-  const style = document.createElement("style");
-  style.textContent = `
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideOutRight {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-        
-        .animate-fade-in {
-            animation: fadeInUp 0.8s ease-out;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            .animate-fade-in {
-                animation: none;
-            }
-        }
-    `;
-  document.head.appendChild(style);
-}
-
-// Initialize animation styles
-addAnimationStyles();
-
-// Performance optimization: Debounce scroll events
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-// Apply debouncing to scroll events
-const debouncedScrollHandler = debounce(updateActiveNavLink, 100);
-window.addEventListener("scroll", debouncedScrollHandler);
 
 /**
  * Investment opportunity tracking
@@ -1504,13 +1519,11 @@ function setupInvestmentTracking() {
     investmentButton.addEventListener("click", function (e) {
       e.preventDefault();
 
-      // Track investment interest
       showNotification(
-        "Redirecting to secure investment consultation. Our team will contact you within 2 hours.",
+        "Investment consultation request received. Our team will contact you within 2 hours.",
         "success"
       );
 
-      // Scroll to contact form with pre-filled investment interest
       setTimeout(() => {
         const contactSection = document.querySelector("#contact");
         const investmentRange = document.querySelector("#investmentRange");
@@ -1526,28 +1539,31 @@ function setupInvestmentTracking() {
 
         if (message) {
           message.value =
-            "I am interested in the Assured Exit Option investment opportunity with ₹50 Lakhs investment and 1-year exit strategy. Please provide more details.";
+            "I am interested in the Assured Exit Option investment opportunity. Please provide more details about the ₹50 Lakhs investment with 1-year exit strategy.";
         }
       }, 1000);
     });
   }
-
-  // Add animation to investment highlights
-  if (investmentSection) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-slide-in");
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(investmentSection);
-  }
 }
+
+// Add CSS animations
+function addAnimationStyles() {
+  const style = document.createElement("style");
+  style.textContent = `
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+  document.head.appendChild(style);
+}
+
+addAnimationStyles();
 
 // Error handling for failed image loads
 document.addEventListener(
