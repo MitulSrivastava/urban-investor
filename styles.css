@@ -56,6 +56,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-top: 100px; /* Account for fixed navbar */
 }
 
 /* Prevent horizontal scrollbar */
@@ -131,7 +132,7 @@ html {
 /* Ensure viewport doesn't exceed screen width */
 .container,
 .container-fluid {
-  overflow: hidden;
+  max-width: 100%;
 }
 
 section {
@@ -303,6 +304,10 @@ p {
   transition: all var(--transition-medium);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1040;
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 
 .navbar-modern.scrolled {
@@ -453,6 +458,7 @@ p {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  z-index: 1;
 }
 
 .hero-background {
@@ -907,6 +913,243 @@ p {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===============================================
+   SERVICES SECTION - MODERN DESIGN
+   =============================================== */
+
+.services-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #e8f1ff 100%);
+  position: relative;
+}
+
+.services-bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba(59, 130, 246, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(30, 58, 138, 0.05) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+.service-badge {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(30, 58, 138, 0.1) 100%
+  );
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 2px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Service Card Modern Design */
+.service-card-modern {
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+}
+
+.service-card-modern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6 0%, #1e3a8a 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card-modern:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.service-card-modern:hover::before {
+  transform: scaleX(1);
+}
+
+/* Service Number */
+.service-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(30, 58, 138, 0.1) 100%
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--primary-color);
+  font-family: var(--font-accent);
+  transition: all 0.3s ease;
+}
+
+.service-card-modern:hover .service-number {
+  background: var(--primary-color);
+  color: white;
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* Service Icon Wrapper */
+.service-icon-wrapper {
+  position: relative;
+}
+
+.service-icon-modern {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-icon-modern i {
+  font-size: 2rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.service-card-modern:hover .service-icon-modern {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+}
+
+.service-card-modern:hover .service-icon-modern i {
+  transform: scale(1.1);
+}
+
+/* Service Features List */
+.service-features li {
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.9375rem;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+}
+
+.service-features li i {
+  font-size: 1.125rem;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+}
+
+.service-features li:hover {
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+.service-features li:hover i {
+  transform: scale(1.2);
+}
+
+/* Highlight Card */
+.service-card-highlight {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.service-card-highlight::before {
+  background: linear-gradient(90deg, #d4a574 0%, #f59e0b 100%);
+}
+
+.service-card-highlight .service-icon-modern {
+  background: white !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.service-card-highlight:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(30, 58, 138, 0.4);
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .service-card-modern {
+    margin-bottom: 1.5rem;
+  }
+
+  .service-icon-modern {
+    width: 70px;
+    height: 70px;
+  }
+
+  .service-icon-modern i {
+    font-size: 1.75rem;
+  }
+
+  .service-number {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .service-badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 1.2rem;
+  }
+
+  .service-icon-modern {
+    width: 60px;
+    height: 60px;
+  }
+
+  .service-icon-modern i {
+    font-size: 1.5rem;
+  }
+
+  .service-number {
+    width: 40px;
+    height: 40px;
+    font-size: 0.875rem;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .service-card-modern {
+    padding: 1.5rem !important;
+  }
+}
+
+/* ===============================================
+   END SERVICES SECTION
+   =============================================== */
 
 /* Services Page Elegant Styling */
 .services-hero {
@@ -2043,4 +2286,101 @@ p {
 .about-hero-image:hover img,
 .team-image-container:hover img {
   transform: scale(1.05);
+}
+
+/* Navbar Dropdown Enhancements */
+.navbar .dropdown {
+  position: relative;
+  z-index: 9999;
+}
+
+.navbar .dropdown-toggle {
+  position: relative;
+  z-index: 1;
+}
+
+.navbar .dropdown-menu {
+  border: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 0.75rem;
+  margin-top: 0;
+  min-width: 250px;
+  background: white;
+  z-index: 9999;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.navbar .dropdown-menu.show {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.navbar .dropdown-item {
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.navbar .dropdown-item:last-child {
+  margin-bottom: 0;
+}
+
+.navbar .dropdown-item:hover {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  color: var(--primary-color);
+}
+
+.navbar .dropdown-item.active {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #4f46e5 100%);
+  color: white;
+}
+
+.navbar .dropdown-item.active:hover {
+  background: linear-gradient(135deg, #1e40af 0%, var(--primary-color) 100%);
+  color: white;
+}
+
+.navbar .dropdown-item i {
+  font-size: 0.9rem;
+  width: 22px;
+}
+
+.navbar .dropdown-divider {
+  margin: 0.5rem 0;
+  opacity: 0.15;
+}
+
+/* Mobile dropdown fixes */
+@media (max-width: 991px) {
+  .navbar .dropdown-menu {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin-top: 0.25rem;
+  }
+
+  .navbar .dropdown-item {
+    padding: 0.65rem 1rem;
+  }
+
+  .navbar .dropdown-item:hover {
+    background: #f3f4f6;
+  }
+
+  .navbar .dropdown-item.active {
+    background: var(--primary-color);
+    color: white;
+  }
 }

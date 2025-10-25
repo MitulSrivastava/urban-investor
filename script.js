@@ -91,7 +91,8 @@ class ScrollAnimations {
  */
 function initializeWebsite() {
   // Generate dynamic content
-  generatePropertyCards();
+  // Property cards are now static in HTML, no need to generate dynamically
+  // generatePropertyCards();
 
   // Setup interactive features
   setupNavigation();
@@ -458,17 +459,53 @@ window.openPropertyWhatsApp = openPropertyWhatsApp;
 window.schedulePropertySiteVisit = schedulePropertySiteVisit;
 
 // DOM Content Loaded Event
+// DOM Content Loaded Event - Single initialization point
 document.addEventListener("DOMContentLoaded", function () {
-  // Initialize website immediately without loading screen
+  console.log("DOM Loaded - Starting initialization...");
+
+  // Debug: Check if Bootstrap is loaded
+  if (typeof bootstrap !== "undefined") {
+    console.log("Bootstrap is loaded");
+  } else {
+    console.error("Bootstrap is NOT loaded!");
+  }
+
+  // Debug: Check dropdown elements
+  const dropdowns = document.querySelectorAll(".dropdown");
+  console.log("Found dropdowns:", dropdowns.length);
+
+  dropdowns.forEach((dropdown, index) => {
+    console.log(`Dropdown ${index}:`, dropdown);
+    const toggle = dropdown.querySelector(".dropdown-toggle");
+    if (toggle) {
+      console.log(`Dropdown ${index} toggle:`, toggle);
+    }
+  });
+
+  // Bootstrap dropdowns work automatically with data-bs-toggle="dropdown"
+  // No manual initialization needed - see memory: Bootstrap Dropdown Usage Guidance
+
+  // Initialize website features
   initializeWebsite();
   initializeServicesPage();
 
-  // Initialize subtle features
-  new ScrollAnimations();
-  new EnhancedNavbar();
-  new ElegantInteractions();
+  // Initialize subtle features - only if classes are defined
+  if (typeof ScrollAnimations !== "undefined") {
+    new ScrollAnimations();
+  }
+  if (typeof EnhancedNavbar !== "undefined") {
+    new EnhancedNavbar();
+  }
+  if (typeof ElegantInteractions !== "undefined") {
+    new ElegantInteractions();
+  }
   setupPropertyFinderAnimations();
 });
+
+/**
+ * Note: Bootstrap dropdowns are handled automatically via data-bs-toggle="dropdown"
+ * Manual initialization has been removed per Bootstrap best practices
+ */
 
 /**
  * Enhanced navbar
@@ -828,8 +865,19 @@ function setupNavigation() {
 
   // Enhanced smooth scrolling for all hash links (including hero button)
   hashLinks.forEach((link) => {
+    // Debug: Log all hash links
+    console.log("Found hash link:", link.href, link.classList);
+
     link.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
+
+      // Skip dropdown toggles
+      if (this.classList.contains("dropdown-toggle")) {
+        console.log("Skipping dropdown toggle:", this.textContent);
+        return;
+      }
+
+      console.log("Processing hash link:", href);
 
       if (href.startsWith("#") && href !== "#") {
         e.preventDefault();
