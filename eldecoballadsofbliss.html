@@ -96,7 +96,15 @@
     />
 
     <!-- Custom CSS -->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="../styles.css" rel="stylesheet" />
+    <style>
+      .text-bright-blue {
+        color: #3b82f6 !important;
+      }
+      .text-bright-blue:hover {
+        color: #60a5fa !important;
+      }
+    </style>
   </head>
 
   <body class="property-page">
@@ -1259,7 +1267,9 @@
               <form id="contactForm" novalidate>
                 <div class="row g-3">
                   <div class="col-md-6">
-                    <label for="firstName" class="form-label text-dark"
+                    <label
+                      for="firstName"
+                      class="form-label text-dark fw-semibold"
                       >First Name</label
                     >
                     <input
@@ -1273,7 +1283,9 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <label for="lastName" class="form-label text-dark"
+                    <label
+                      for="lastName"
+                      class="form-label text-dark fw-semibold"
                       >Last Name</label
                     >
                     <input
@@ -1287,7 +1299,7 @@
                     </div>
                   </div>
                   <div class="col-12">
-                    <label for="email" class="form-label text-dark"
+                    <label for="email" class="form-label text-dark fw-semibold"
                       >Email</label
                     >
                     <input
@@ -1301,7 +1313,7 @@
                     </div>
                   </div>
                   <div class="col-12">
-                    <label for="phone" class="form-label text-dark"
+                    <label for="phone" class="form-label text-dark fw-semibold"
                       >Phone</label
                     >
                     <input
@@ -1315,7 +1327,9 @@
                     </div>
                   </div>
                   <div class="col-12">
-                    <label for="subject" class="form-label text-dark"
+                    <label
+                      for="subject"
+                      class="form-label text-dark fw-semibold"
                       >Subject</label
                     >
                     <select class="form-select" id="subject" required>
@@ -1331,7 +1345,9 @@
                     <div class="invalid-feedback">Please select a subject.</div>
                   </div>
                   <div class="col-12">
-                    <label for="message" class="form-label text-dark"
+                    <label
+                      for="message"
+                      class="form-label text-dark fw-semibold"
                       >Message</label
                     >
                     <textarea
@@ -1352,7 +1368,10 @@
                         id="privacy"
                         required
                       />
-                      <label class="form-check-label text-dark" for="privacy">
+                      <label
+                        class="form-check-label text-dark fw-semibold"
+                        for="privacy"
+                      >
                         I agree to the
                         <a href="#" class="text-primary">Privacy Policy</a> and
                         <a href="#" class="text-primary">Terms of Service</a>
@@ -1520,7 +1539,7 @@
         <div class="row align-items-center">
           <div class="col-md-6">
             <p class="text-white-75 mb-0">
-              &copy; 2024 Urban Investors. All rights reserved.
+              &copy; 2025 Urban Investors. All rights reserved.
             </p>
           </div>
           <div class="col-md-6 text-md-end">
@@ -1644,7 +1663,7 @@
             <div class="text-center mb-4">
               <i class="fas fa-download fa-3x text-primary mb-3"></i>
               <h6>Get Detailed Project Information</h6>
-              <p class="text-muted small">
+              <p class="text-dark small">
                 Download our comprehensive brochure with floor plans, pricing,
                 and specifications.
               </p>

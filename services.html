@@ -34,6 +34,14 @@
 
     <!-- Custom CSS -->
     <link href="styles.css" rel="stylesheet" />
+    <style>
+      .text-bright-blue {
+        color: #3b82f6 !important;
+      }
+      .text-bright-blue:hover {
+        color: #60a5fa !important;
+      }
+    </style>
   </head>
 
   <body>
@@ -97,47 +105,48 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="services-hero py-5">
-      <div class="container py-5">
-        <div class="row align-items-center min-vh-100">
-          <div class="col-lg-6">
-            <div class="hero-content text-start">
-              <span
-                class="badge bg-primary-light text-primary mb-3 animate-fade-in-up"
+    <section class="hero-section bg-light py-5 mt-5">
+      <div class="container pt-4">
+        <div class="row mb-5">
+          <div class="col-lg-8">
+            <div class="hero-content">
+              <span class="badge bg-primary-light text-primary mb-3"
                 >Premium Real Estate Services</span
               >
-              <h1
-                class="display-4 fw-bold mb-4 text-white animate-fade-in-up animate-delay-1"
-              >
+              <h1 class="display-4 fw-bold mb-4 hero-title text-white">
                 Comprehensive Solutions<br />
                 for Luxury Real Estate<br />
                 <span class="text-accent">Excellence</span>
               </h1>
-              <div class="mb-5 animate-fade-in-up animate-delay-2">
-                <h3 class="text-accent mb-3">What We Deliver</h3>
-                <p class="lead text-white-75 mb-0">
-                  Experience white-glove real estate services tailored for
-                  discerning clients. From property acquisition to investment
-                  management, we provide comprehensive solutions that exceed
-                  expectations.
-                </p>
-              </div>
-              <div class="animate-fade-in-up animate-delay-3">
+              <p class="lead text-white mb-5 hero-subtitle">
+                Experience white-glove real estate services tailored for
+                discerning clients. From property acquisition to investment
+                management, we provide comprehensive solutions that exceed
+                expectations.
+              </p>
+              <div class="hero-buttons">
                 <a href="#contact" class="btn btn-accent btn-lg px-5 py-3">
                   <i class="fas fa-phone me-2"></i>Schedule Consultation
                 </a>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="col-lg-6">
-            <div class="services-grid animate-fade-in-right">
-              <h2 class="text-white mb-4 text-start section-title">
+    <!-- Services Content -->
+    <section class="py-5 bg-white">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="services-grid">
+              <h2 class="text-dark mb-4 text-start section-title">
                 Our Signature Services
               </h2>
               <div class="row g-4">
                 <!-- Buy a New Home -->
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-3">
                   <div class="service-card h-100">
                     <div class="service-content">
                       <h5 class="service-title">Premium Home Acquisition</h5>
@@ -156,7 +165,7 @@
                 </div>
 
                 <!-- Take a Property on Rent -->
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-3">
                   <div class="service-card h-100">
                     <div class="service-content">
                       <h5 class="service-title">Luxury Rental Solutions</h5>
@@ -177,7 +186,7 @@
                 </div>
 
                 <!-- Sell or Rent your property -->
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-3">
                   <div class="service-card h-100">
                     <div class="service-content">
                       <h5 class="service-title">Property Marketing</h5>
@@ -196,7 +205,7 @@
                 </div>
 
                 <!-- Buy Resale Properties -->
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-3">
                   <div class="service-card h-100">
                     <div class="service-content">
                       <h5 class="service-title">Investment Opportunities</h5>
@@ -553,7 +562,11 @@
               <form id="servicesContactForm" novalidate>
                 <div class="row g-3">
                   <div class="col-md-6">
-                    <label for="firstName" class="form-label">First Name</label>
+                    <label
+                      for="firstName"
+                      class="form-label text-dark fw-semibold"
+                      >First Name</label
+                    >
                     <input
                       type="text"
                       class="form-control"
@@ -565,7 +578,11 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <label for="lastName" class="form-label">Last Name</label>
+                    <label
+                      for="lastName"
+                      class="form-label text-dark fw-semibold"
+                      >Last Name</label
+                    >
                     <input
                       type="text"
                       class="form-control"
@@ -577,7 +594,9 @@
                     </div>
                   </div>
                   <div class="col-12">
-                    <label for="email" class="form-label">Email Address</label>
+                    <label for="email" class="form-label text-dark fw-semibold"
+                      >Email Address</label
+                    >
                     <input
                       type="email"
                       class="form-control"
@@ -589,7 +608,9 @@
                     </div>
                   </div>
                   <div class="col-12">
-                    <label for="service" class="form-label"
+                    <label
+                      for="service"
+                      class="form-label text-dark fw-semibold"
                       >Service Interested In</label
                     >
                     <select class="form-select" id="service" required>
@@ -602,7 +623,11 @@
                     <div class="invalid-feedback">Please select a service.</div>
                   </div>
                   <div class="col-12">
-                    <label for="message" class="form-label">Message</label>
+                    <label
+                      for="message"
+                      class="form-label text-dark fw-semibold"
+                      >Message</label
+                    >
                     <textarea
                       class="form-control"
                       id="message"
@@ -630,34 +655,49 @@
     <footer class="bg-dark text-white py-5">
       <div class="container">
         <div class="row g-4">
-          <div class="col-lg-4 col-md-6">
-            <h5 class="fw-bold mb-4 brand-logo">
-              <span class="text-primary brand-urban">Urban</span
-              ><span class="text-primary brand-investors"> Investors</span>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="fw-bold mb-4">
+              <span class="text-bright-blue">Urban</span>Investors
             </h5>
             <p class="text-white-50 mb-4">
               Redefining luxury real estate investment through expertise,
               exclusivity, and exceptional service for discerning clients
               worldwide.
             </p>
-            <div class="social-links">
-              <a href="#" class="text-primary me-3" aria-label="Facebook"
-                ><i class="fab fa-facebook-f"></i
+            <div class="social-links d-flex">
+              <a
+                href="#"
+                class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
+                style="width: 40px; height: 40px"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f text-white"></i
               ></a>
-              <a href="#" class="text-primary me-3" aria-label="Twitter"
-                ><i class="fab fa-twitter"></i
+              <a
+                href="#"
+                class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
+                style="width: 40px; height: 40px"
+                aria-label="Twitter"
+                ><i class="fab fa-twitter text-white"></i
               ></a>
-              <a href="#" class="text-primary me-3" aria-label="LinkedIn"
-                ><i class="fab fa-linkedin-in"></i
+              <a
+                href="#"
+                class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
+                style="width: 40px; height: 40px"
+                aria-label="LinkedIn"
+                ><i class="fab fa-linkedin-in text-white"></i
               ></a>
-              <a href="#" class="text-primary" aria-label="Instagram"
-                ><i class="fab fa-instagram"></i
+              <a
+                href="#"
+                class="bg-primary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram text-white"></i
               ></a>
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6">
-            <h6 class="fw-bold mb-4">Quick Links</h6>
+          <div class="col-lg-3 col-md-6">
+            <h6 class="fw-bold mb-4 text-bright-blue">Quick Links</h6>
             <ul class="list-unstyled">
               <li class="mb-2">
                 <a href="index.html" class="text-white-50 text-decoration-none"
@@ -694,7 +734,7 @@
           </div>
 
           <div class="col-lg-3 col-md-6">
-            <h6 class="fw-bold mb-4">Services</h6>
+            <h6 class="fw-bold mb-4 text-bright-blue">Services</h6>
             <ul class="list-unstyled">
               <li class="mb-2">
                 <a
@@ -735,46 +775,61 @@
           </div>
 
           <div class="col-lg-3 col-md-6">
-            <h6 class="fw-bold mb-4">Newsletter</h6>
-            <p class="text-white-50 mb-3">
-              Stay updated with exclusive property listings and market insights.
-            </p>
-            <form class="newsletter-form">
-              <div class="input-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Your email address"
-                  aria-label="Email address"
-                />
-                <button
-                  class="btn btn-primary"
-                  type="submit"
-                  aria-label="Subscribe"
+            <h6 class="fw-bold mb-4 text-bright-blue">Our Properties</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a
+                  href="eldecoballadsofbliss.html"
+                  class="text-white-50 text-decoration-none"
+                  >Eldeco Ballads Of Bliss</a
                 >
-                  <i class="fas fa-paper-plane"></i>
-                </button>
-              </div>
-            </form>
+              </li>
+              <li class="mb-2">
+                <a href="dasnac.html" class="text-white-50 text-decoration-none"
+                  >Dasnac Yuva</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="palmvillage.html"
+                  class="text-white-50 text-decoration-none"
+                  >Palm Village</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="migsunnehru.html"
+                  class="text-white-50 text-decoration-none"
+                  >Migsun Nehru Place</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="properties.html"
+                  class="text-white-50 text-decoration-none"
+                  >View All Properties</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
 
         <hr class="my-4 border-secondary" />
 
-        <div class="row align-items-center">
+        <div class="row align-items-center g-4">
           <div class="col-md-6">
             <p class="text-white-75 mb-0">
-              &copy; 2024 Urban Investors. All rights reserved.
+              &copy; 2025 Urban Investors. All rights reserved.
             </p>
           </div>
           <div class="col-md-6 text-md-end">
-            <a href="#" class="text-primary text-decoration-none me-3"
+            <a href="#" class="text-bright-blue text-decoration-none me-4"
               >Privacy Policy</a
             >
-            <a href="#" class="text-primary text-decoration-none me-3"
+            <a href="#" class="text-bright-blue text-decoration-none me-4"
               >Terms of Service</a
             >
-            <a href="#" class="text-primary text-decoration-none"
+            <a href="#" class="text-bright-blue text-decoration-none"
               >Cookie Policy</a
             >
           </div>

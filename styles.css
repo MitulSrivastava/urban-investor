@@ -406,50 +406,6 @@ p {
   }
 }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 /* Hero Section with Building Images */
 .hero-section {
   min-height: 100vh;
@@ -661,29 +617,6 @@ p {
 
 .property-card:hover .property-image img {
   transform: scale(1.05);
-}
-
-.property-badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  z-index: 2;
-}
-
-.property-overlay {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  right: 15px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all var(--transition-medium);
-  z-index: 2;
-}
-
-.property-card:hover .property-overlay {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .property-price {
@@ -1764,20 +1697,6 @@ p {
   color: var(--text-dark);
 }
 
-/* Premium Page Transitions */
-.page-enter {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: pageEnter 0.6s ease-out forwards;
-}
-
-@keyframes pageEnter {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Enhanced Card Shadows */
 .card,
 .property-card,
@@ -2095,178 +2014,39 @@ p {
   transform: translateY(0);
 }
 
-/* ===== ANIMATION CLASSES ===== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
+/* Fade In Animations */
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-fade-in-up.animated {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .animate-fade-in-right {
-  animation: fadeInRight 0.8s ease-out;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.animate-fade-in-left {
-  animation: fadeInLeft 0.8s ease-out;
+.animate-fade-in-right.animated {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-/* Animation Delays */
 .animate-delay-1 {
-  animation-delay: 0.2s;
-  animation-fill-mode: both;
+  transition-delay: 0.1s;
 }
+
 .animate-delay-2 {
-  animation-delay: 0.4s;
-  animation-fill-mode: both;
+  transition-delay: 0.2s;
 }
+
 .animate-delay-3 {
-  animation-delay: 0.6s;
-  animation-fill-mode: both;
-}
-.animate-delay-4 {
-  animation-delay: 0.8s;
-  animation-fill-mode: both;
-}
-.animate-delay-5 {
-  animation-delay: 1s;
-  animation-fill-mode: both;
-}
-
-/* Hero Button Enhancement */
-.services-hero .btn-accent {
-  box-shadow: 0 8px 30px rgba(212, 165, 116, 0.3);
-  transform: translateY(0);
-  transition: all 0.3s ease;
-}
-
-.services-hero .btn-accent:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(212, 165, 116, 0.5);
-}
-
-/* Enhanced Interactive States */
-.interactive-element {
-  transition: all var(--transition-medium);
-  cursor: pointer;
-}
-
-.interactive-element:hover {
-  transform: translateY(-2px);
-}
-
-.interactive-element:active {
-  transform: translateY(0);
-}
-
-/* Print Styles */
-@media print {
-  .navbar,
-  .footer,
-  .btn {
-    display: none !important;
-  }
-
-  body {
-    font-size: 12pt;
-    line-height: 1.4;
-  }
-
-  .container {
-    max-width: none;
-    padding: 0;
-  }
-}
-
-/* Achievement Cards Styles */
-.achievement-card {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.achievement-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
-}
-
-.achievement-card .achievement-icon {
-  transition: all 0.4s ease;
-}
-
-.achievement-card:hover .achievement-icon {
-  transform: scale(1.1) rotate(5deg);
-}
-
-.achievement-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: left 0.6s ease;
-}
-
-.achievement-card:hover::before {
-  left: 100%;
-}
-
-/* Stats Animation */
-.stat-item {
-  position: relative;
-}
-
-.stat-item::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 3px;
-  background: white;
-  transition: width 0.3s ease;
-}
-
-.stat-item:hover::after {
-  width: 60px;
+  transition-delay: 0.3s;
 }
 
 /* About Page Specific Styles */
@@ -2286,101 +2066,4 @@ p {
 .about-hero-image:hover img,
 .team-image-container:hover img {
   transform: scale(1.05);
-}
-
-/* Navbar Dropdown Enhancements */
-.navbar .dropdown {
-  position: relative;
-  z-index: 9999;
-}
-
-.navbar .dropdown-toggle {
-  position: relative;
-  z-index: 1;
-}
-
-.navbar .dropdown-menu {
-  border: none;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  padding: 0.75rem;
-  margin-top: 0;
-  min-width: 250px;
-  background: white;
-  z-index: 9999;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-}
-
-.navbar .dropdown-menu.show {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-}
-
-.navbar .dropdown-item {
-  padding: 0.85rem 1rem;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: #374151;
-  margin-bottom: 0.25rem;
-}
-
-.navbar .dropdown-item:last-child {
-  margin-bottom: 0;
-}
-
-.navbar .dropdown-item:hover {
-  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
-  color: var(--primary-color);
-}
-
-.navbar .dropdown-item.active {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #4f46e5 100%);
-  color: white;
-}
-
-.navbar .dropdown-item.active:hover {
-  background: linear-gradient(135deg, #1e40af 0%, var(--primary-color) 100%);
-  color: white;
-}
-
-.navbar .dropdown-item i {
-  font-size: 0.9rem;
-  width: 22px;
-}
-
-.navbar .dropdown-divider {
-  margin: 0.5rem 0;
-  opacity: 0.15;
-}
-
-/* Mobile dropdown fixes */
-@media (max-width: 991px) {
-  .navbar .dropdown-menu {
-    border: none;
-    box-shadow: none;
-    background: transparent;
-    padding: 0.5rem 0 0.5rem 1rem;
-    margin-top: 0.25rem;
-  }
-
-  .navbar .dropdown-item {
-    padding: 0.65rem 1rem;
-  }
-
-  .navbar .dropdown-item:hover {
-    background: #f3f4f6;
-  }
-
-  .navbar .dropdown-item.active {
-    background: var(--primary-color);
-    color: white;
-  }
 }

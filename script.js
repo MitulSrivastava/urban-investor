@@ -90,10 +90,6 @@ class ScrollAnimations {
  * Main website initialization function
  */
 function initializeWebsite() {
-  // Generate dynamic content
-  // Property cards are now static in HTML, no need to generate dynamically
-  // generatePropertyCards();
-
   // Setup interactive features
   setupNavigation();
   setupContactForm();
@@ -118,8 +114,6 @@ function initializePropertyPage() {
     setupPropertyCarousel();
     setupPropertyModalForms();
     setupPropertyUnitEnquiry();
-    setupPropertyCallbackRequests();
-    setupPropertyAnimations();
   }
 }
 
@@ -220,7 +214,11 @@ function setupPropertyModalForms() {
         if (form) {
           form.addEventListener("submit", function (e) {
             e.preventDefault();
-            handlePropertyEnquiry(this);
+            // handlePropertyEnquiry(this); - Removed as function doesn't exist
+            showNotification(
+              "Thank you for your enquiry. Our team will contact you shortly.",
+              "success"
+            );
           });
         }
       }
@@ -234,213 +232,10 @@ function setupPropertyModalForms() {
 function setupPropertyUnitEnquiry() {
   window.enquireUnit = function (unitType) {
     showNotification(
-      `Thank you for your interest in ${unitType} units at Dasnac. Our team will contact you with detailed information within 24 hours.`,
+      `Thank you for your interest in ${unitType} units. Our team will contact you with detailed information within 24 hours.`,
       "success"
     );
-
-    // Track the enquiry
-    trackPropertyLead("unit_enquiry", {
-      unitType: unitType,
-      project: "Dasnac",
-      timestamp: new Date().toISOString(),
-    });
   };
-}
-
-/**
- * Setup property callback requests
- */
-function setupPropertyCallbackRequests() {
-  window.requestPropertyCallback = function () {
-    showNotification(
-      "Callback request received! Our team will call you within 30 minutes during business hours.",
-      "success"
-    );
-
-    // Track callback request
-    trackPropertyLead("callback_request", {
-      project: "Dasnac",
-      timestamp: new Date().toISOString(),
-    });
-  };
-}
-
-/**
- * Property form validation
- */
-function validatePropertyForm(data) {
-  const requiredFields = ["name", "phone", "email"];
-
-  for (let field of requiredFields) {
-    if (!data[field] || data[field].trim() === "") {
-      return false;
-    }
-  }
-
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(data.email)) {
-    return false;
-  }
-
-  // Phone validation (basic)
-  const phoneRegex = /^[6-9]\d{9}$/;
-  if (!phoneRegex.test(data.phone.replace(/\D/g, "").slice(-10))) {
-    return false;
-  }
-
-  return true;
-}
-
-/**
- * Submit property contact form
- */
-function submitPropertyContactForm(data) {
-  const submitBtn = document.querySelector(
-    '#propertyContactForm button[type="submit"]'
-  );
-
-  if (!submitBtn) return;
-
-  const originalText = submitBtn.innerHTML;
-
-  // Show loading state
-  submitBtn.classList.add("loading");
-  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-  submitBtn.disabled = true;
-
-  // Simulate API call
-  setTimeout(() => {
-    // Reset button
-    submitBtn.classList.remove("loading");
-    submitBtn.innerHTML = originalText;
-    submitBtn.disabled = false;
-
-    // Show success message
-    showNotification(
-      "Thank you! Your request has been submitted. Our team will contact you within 24 hours with the brochure and detailed information.",
-      "success"
-    );
-
-    // Reset form
-    const form = document.getElementById("propertyContactForm");
-    if (form) form.reset();
-
-    // Track conversion
-    trackPropertyLead("brochure_download", data);
-  }, 2000);
-}
-
-/**
- * Handle property enquiry
- */
-function handlePropertyEnquiry(form) {
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
-
-  // Add project info
-  data.project = "Dasnac";
-  data.timestamp = new Date().toISOString();
-
-  showNotification(
-    "Thank you for your enquiry! We will contact you shortly with detailed information.",
-    "success"
-  );
-
-  // Reset form
-  form.reset();
-
-  // Close modal if it exists
-  const modal = form.closest(".modal");
-  if (modal) {
-    const modalInstance = bootstrap.Modal.getInstance(modal);
-    if (modalInstance) modalInstance.hide();
-  }
-
-  // Track lead
-  trackPropertyLead("enquiry", data);
-}
-
-/**
- * Track property leads for analytics
- */
-function trackPropertyLead(type, data) {
-  console.log(`Property Lead tracked: ${type}`, data);
-
-  // Google Analytics integration
-  if (typeof gtag !== "undefined") {
-    gtag("event", "lead_generation", {
-      lead_type: type,
-      project_name: "Dasnac",
-      user_phone: data.phone || "",
-      user_email: data.email || "",
-    });
-  }
-
-  // Facebook Pixel integration
-  if (typeof fbq !== "undefined") {
-    fbq("track", "Lead", {
-      content_name: "Dasnac",
-      content_category: "Real Estate",
-      value: 1,
-      currency: "INR",
-    });
-  }
-}
-
-/**
- * Setup property animations
- */
-function setupPropertyAnimations() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("animate-on-scroll");
-      }
-    });
-  }, observerOptions);
-
-  // Observe elements for animations
-  const animateElements = document.querySelectorAll(
-    ".feature-card, .amenity-card, .location-card, .stat-card"
-  );
-  animateElements.forEach((el) => {
-    observer.observe(el);
-  });
-}
-
-/**
- * WhatsApp integration for property
- */
-function openPropertyWhatsApp(message = "") {
-  const defaultMessage =
-    message ||
-    "Hi, I'm interested in Dasnac project. Please share more details about the LEED Platinum certified sustainable development.";
-  const phoneNumber = "919876543210"; // Replace with actual WhatsApp business number
-  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    defaultMessage
-  )}`;
-  window.open(url, "_blank");
-}
-
-/**
- * Schedule property site visit
- */
-function schedulePropertySiteVisit() {
-  showNotification(
-    "Site visit request noted! Our team will contact you to schedule a convenient time for your visit to Dasnac.",
-    "success"
-  );
-
-  trackPropertyLead("site_visit_request", {
-    project: "Dasnac",
-    timestamp: new Date().toISOString(),
-  });
 }
 
 // Initialize property page functions when DOM is loaded
@@ -453,12 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Export property functions for global access
 window.enquireUnit = window.enquireUnit || function () {};
-window.requestPropertyCallback =
-  window.requestPropertyCallback || function () {};
-window.openPropertyWhatsApp = openPropertyWhatsApp;
-window.schedulePropertySiteVisit = schedulePropertySiteVisit;
 
-// DOM Content Loaded Event
 // DOM Content Loaded Event - Single initialization point
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM Loaded - Starting initialization...");
@@ -469,21 +259,6 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.error("Bootstrap is NOT loaded!");
   }
-
-  // Debug: Check dropdown elements
-  const dropdowns = document.querySelectorAll(".dropdown");
-  console.log("Found dropdowns:", dropdowns.length);
-
-  dropdowns.forEach((dropdown, index) => {
-    console.log(`Dropdown ${index}:`, dropdown);
-    const toggle = dropdown.querySelector(".dropdown-toggle");
-    if (toggle) {
-      console.log(`Dropdown ${index} toggle:`, toggle);
-    }
-  });
-
-  // Bootstrap dropdowns work automatically with data-bs-toggle="dropdown"
-  // No manual initialization needed - see memory: Bootstrap Dropdown Usage Guidance
 
   // Initialize website features
   initializeWebsite();
@@ -496,16 +271,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (typeof EnhancedNavbar !== "undefined") {
     new EnhancedNavbar();
   }
-  if (typeof ElegantInteractions !== "undefined") {
-    new ElegantInteractions();
-  }
   setupPropertyFinderAnimations();
 });
-
-/**
- * Note: Bootstrap dropdowns are handled automatically via data-bs-toggle="dropdown"
- * Manual initialization has been removed per Bootstrap best practices
- */
 
 /**
  * Enhanced navbar
@@ -933,109 +700,9 @@ function updateActiveNavLink() {
 }
 
 /**
- * Generate dynamic property cards
+ * Setup property scroll effects
  */
-function generatePropertyCards() {
-  const propertiesGrid = document.getElementById("properties-grid");
-
-  if (!propertiesGrid) {
-    console.warn("Properties grid element not found");
-    return;
-  }
-
-  const properties = [
-    {
-      id: 1,
-      title: "Manhattan Penthouse",
-      location: "Upper East Side, New York",
-      price: "$12,500,000",
-      type: "Luxury Residence",
-      bedrooms: 4,
-      bathrooms: 5,
-      area: "4,200 sq ft",
-      image:
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["City Views", "Private Terrace", "Concierge Service"],
-    },
-    {
-      id: 2,
-      title: "Beverly Hills Estate",
-      location: "Beverly Hills, California",
-      price: "$18,750,000",
-      type: "Luxury Estate",
-      bedrooms: 7,
-      bathrooms: 9,
-      area: "12,000 sq ft",
-      image:
-        "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["Pool & Spa", "Wine Cellar", "Home Theater"],
-    },
-    {
-      id: 3,
-      title: "Miami Waterfront Condo",
-      location: "South Beach, Miami",
-      price: "$8,900,000",
-      type: "Waterfront Residence",
-      bedrooms: 3,
-      bathrooms: 4,
-      area: "3,500 sq ft",
-      image:
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["Ocean Views", "Private Beach", "Boat Dock"],
-    },
-    {
-      id: 4,
-      title: "Aspen Mountain Lodge",
-      location: "Aspen, Colorado",
-      price: "$15,200,000",
-      type: "Mountain Estate",
-      bedrooms: 6,
-      bathrooms: 7,
-      area: "8,500 sq ft",
-      image:
-        "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["Ski Access", "Mountain Views", "Fireplace"],
-    },
-    {
-      id: 5,
-      title: "Hamptons Estate",
-      location: "East Hampton, New York",
-      price: "$22,500,000",
-      type: "Coastal Estate",
-      bedrooms: 8,
-      bathrooms: 10,
-      area: "15,000 sq ft",
-      image:
-        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["Beach Access", "Tennis Court", "Guest House"],
-    },
-    {
-      id: 6,
-      title: "Downtown Loft",
-      location: "SoHo, New York",
-      price: "$6,750,000",
-      type: "Urban Loft",
-      bedrooms: 2,
-      bathrooms: 3,
-      area: "2,800 sq ft",
-      image:
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["High Ceilings", "Exposed Brick", "Rooftop Access"],
-    },
-  ];
-
-  properties.forEach((property) => {
-    const propertyCard = createPropertyCard(property);
-    propertiesGrid.appendChild(propertyCard);
-  });
-
-  observePropertyCards();
-}
-
-/**
- * Create individual property card
- */
-function createPropertyCard(property) {
+function setupPropertyScrollEffects() {
   const cardDiv = document.createElement("div");
   cardDiv.className = "col-lg-4 col-md-6 mb-4";
 
@@ -1503,7 +1170,7 @@ class ElegantInteractions {
 
   setupPageTransitions() {
     // Smooth page transitions
-    document.body.classList.add("page-enter");
+    // document.body.classList.add("page-enter"); - Removed as unused
 
     // Enhanced link transitions
     const internalLinks = document.querySelectorAll('a[href^="#"]');
