@@ -279,6 +279,7 @@
                               Under Construction
                             </option>
                             <option value="new-launch">New Launch</option>
+                            <option value="featured">Featured</option>
                           </select>
                         </div>
                         <div class="col-md-3">
@@ -315,6 +316,7 @@
                             <option value="gym">Gymnasium</option>
                             <option value="club">Clubhouse</option>
                             <option value="security">24/7 Security</option>
+                            <option value="solar">Solar Power</option>
                           </select>
                         </div>
                       </div>
@@ -521,6 +523,29 @@
                       <span class="text-primary fw-bold h6"
                         >₹ 1.25 Cr to 5.50 Cr</span
                       >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Project 8 - One FNG -->
+                <div
+                  class="project-card animate-on-scroll"
+                  data-animation="fadeInUp"
+                  data-delay="0.8s"
+                >
+                  <div class="project-number">8</div>
+                  <div class="project-image-container">
+                    <img
+                      src="images/OneFNG/placeholder.jpg"
+                      alt="One FNG"
+                      class="project-image"
+                    />
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2">One FNG</h5>
+                    <p class="text-muted mb-3">Noida</p>
+                    <div class="project-price">
+                      <span class="text-primary fw-bold h6">₹ On Request</span>
                     </div>
                   </div>
                 </div>
@@ -1456,117 +1481,122 @@
               <h4 class="text-dark mb-4">Schedule Your Consultation</h4>
               <form id="contactForm" novalidate>
                 <div class="row g-3">
-                  <div class="col-md-6">
-                    <label
-                      for="firstName"
-                      class="form-label text-dark fw-semibold"
-                      >First Name</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="firstName"
-                      required
-                    />
-                    <div class="invalid-feedback">
-                      Please provide your first name.
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <label
-                      for="lastName"
-                      class="form-label text-dark fw-semibold"
-                      >Last Name</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="lastName"
-                      required
-                    />
-                    <div class="invalid-feedback">
-                      Please provide your last name.
-                    </div>
-                  </div>
+                  <!-- Full Name -->
                   <div class="col-12">
-                    <label for="email" class="form-label text-dark fw-semibold"
-                      >Email Address</label
+                    <label
+                      for="fullName"
+                      class="form-label text-dark fw-semibold"
                     >
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="fullName"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please provide your full name.
+                    </div>
+                  </div>
+
+                  <!-- Email Address -->
+                  <div class="col-12">
+                    <label
+                      for="emailAddress"
+                      class="form-label text-dark fw-semibold"
+                    >
+                      Email Address
+                    </label>
                     <input
                       type="email"
                       class="form-control"
-                      id="email"
+                      id="emailAddress"
                       required
                     />
                     <div class="invalid-feedback">
                       Please provide a valid email address.
                     </div>
                   </div>
+
+                  <!-- Phone Number -->
                   <div class="col-12">
-                    <label for="phone" class="form-label text-dark fw-semibold"
-                      >Phone Number</label
+                    <label
+                      for="phoneNumber"
+                      class="form-label text-dark fw-semibold"
                     >
+                      Phone Number
+                    </label>
                     <input
                       type="tel"
                       class="form-control"
-                      id="phone"
+                      id="phoneNumber"
                       required
                     />
                     <div class="invalid-feedback">
                       Please provide your phone number.
                     </div>
                   </div>
+
+                  <!-- Investment Range -->
                   <div class="col-12">
                     <label
                       for="investmentRange"
                       class="form-label text-dark fw-semibold"
-                      >Investment Range</label
                     >
-                    <select class="form-select" id="investmentRange" required>
+                      Investment Range
+                    </label>
+                    <select
+                      class="form-select"
+                      id="investmentRange"
+                      name="investment_range"
+                      required
+                    >
                       <option value="">Select investment range</option>
-                      <option value="500k-1m">$500K - $1M</option>
-                      <option value="1m-5m">$1M - $5M</option>
-                      <option value="5m-10m">$5M - $10M</option>
-                      <option value="10m+">$10M+</option>
+                      <option value="₹50 Lakhs - ₹1 Crore">
+                        ₹50 Lakhs - ₹1 Crore
+                      </option>
+                      <option value="₹1 Crore - ₹5 Crore">
+                        ₹1 Crore - ₹5 Crore
+                      </option>
+                      <option value="₹5 Crore - ₹10 Crore">
+                        ₹5 Crore - ₹10 Crore
+                      </option>
+                      <option value="₹10 Crore+">₹10 Crore+</option>
                     </select>
                     <div class="invalid-feedback">
                       Please select your investment range.
                     </div>
                   </div>
+
+                  <!-- Message -->
                   <div class="col-12">
                     <label
                       for="message"
                       class="form-label text-dark fw-semibold"
-                      >Message</label
                     >
+                      Message
+                    </label>
                     <textarea
                       class="form-control"
                       id="message"
                       rows="4"
                       placeholder="Tell us about your investment goals..."
+                      required
                     ></textarea>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="privacy"
-                        required
-                      />
-                      <label
-                        class="form-check-label text-dark fw-semibold"
-                        for="privacy"
-                      >
-                        I agree to the
-                        <a href="#" class="text-primary">Privacy Policy</a> and
-                        <a href="#" class="text-primary">Terms of Service</a>
-                      </label>
-                      <div class="invalid-feedback">
-                        You must agree to the terms.
-                      </div>
+                    <div class="invalid-feedback">
+                      Please provide a message.
                     </div>
                   </div>
+
+                  <!-- Hidden Token Field -->
+                  <input
+                    type="hidden"
+                    name="token"
+                    value="myFrontendToken123"
+                  />
+
+                  <!-- Submit Button -->
                   <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-lg w-100">
                       <span class="btn-text">Send Message</span>
@@ -1767,11 +1797,90 @@
         </div>
       </div>
     </footer>
-
+   
     <!-- Bootstrap 5 JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
+     <!-- sheets db script -->
+       <script>
+    (function () {
+      // === CONFIGURE THESE ===
+      const scriptURL = "https://script.google.com/macros/s/AKfycbyE9dlJ8JAJnJndXgSPw_k8yNDnU-L9f4cwJ2cDbJaBASshEC80PKl2Tj6EohgCcdSevQ/exec"; 
+      const FRONTEND_TOKEN = "myFrontendToken123"; // <-- must match EXPECTED_TOKEN in Apps Script
+
+      // === UTILS ===
+      const isEmail = s => /\S+@\S+\.\S+/.test(s);
+      const isPhone = s => /^\+?\d[\d\s-]{6,20}$/.test((s||"").trim());
+
+      // === ELEMENTS ===
+      const form = document.getElementById('investorForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const status = document.getElementById('status');
+
+      if (!form) {
+        console.error('Form element not found.');
+      } else {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          status.textContent = '';
+          // Read values
+          const fullName = (form.full_name.value || "").trim();
+          const email = (form.email.value || "").trim();
+          const phone = (form.phone.value || "").trim();
+          const subject = (form.subject.value || "").trim();
+          const investmentRange = (form.investment_range.value || "").trim();
+          const message = (form.message.value || "").trim();
+
+          // Client-side validation
+          if (!fullName) { alert('Please enter your full name'); return; }
+          if (!email || !isEmail(email)) { alert('Please enter a valid email'); return; }
+          if (!phone || !isPhone(phone)) { alert('Please enter a valid phone number'); return; }
+          if (!subject) { alert('Please select a subject'); return; }
+
+          // Build FormData
+          const fd = new FormData();
+          fd.append('full_name', fullName);
+          fd.append('email', email);
+          fd.append('phone', phone);
+          fd.append('subject', subject);
+          fd.append('investment_range', investmentRange);
+          fd.append('message', message);
+          fd.append('token', FRONTEND_TOKEN);
+
+          // UI: disable submit
+          submitBtn.disabled = true;
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = 'Sending...';
+          status.textContent = 'Sending, please wait...';
+
+          try {
+            const res = await fetch(scriptURL, { method: 'POST', body: fd });
+            const text = await res.text();
+            let data = {};
+            try { data = JSON.parse(text || '{}'); } catch (err) { data = { success: res.ok }; }
+
+            if (res.ok && (data.success === true || data.success === undefined)) {
+              status.textContent = 'Submitted successfully — thank you!';
+              form.reset();
+            } else {
+              const errMsg = data.error || 'Server rejected the submission';
+              status.textContent = 'Submission failed: ' + errMsg;
+              console.error('Submission failed:', data);
+            }
+          } catch (err) {
+            console.error('Network error:', err);
+            status.textContent = 'Network error — please try again later.';
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
   </body>
 </html>

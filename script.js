@@ -263,6 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize website features
   initializeWebsite();
   initializeServicesPage();
+  setupPropertyFiltering();
 
   // Initialize subtle features - only if classes are defined
   if (typeof ScrollAnimations !== "undefined") {
@@ -1266,6 +1267,411 @@ function setupInvestmentTracking() {
     });
   }
 }
+
+/**
+ * Property filtering functionality
+ */
+function setupPropertyFiltering() {
+  const searchForm = document.getElementById("propertySearchForm");
+  const propertyCards = document.querySelectorAll("#properties-grid .col-lg-6");
+
+  if (!searchForm) return;
+
+  // Add event listener to the form
+  searchForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    filterProperties();
+  });
+
+  // Also filter when form inputs change
+  const formInputs = searchForm.querySelectorAll("input, select");
+  formInputs.forEach((input) => {
+    input.addEventListener("change", filterProperties);
+  });
+}
+
+/**
+ * Filter properties based on form inputs
+ */
+function filterProperties() {
+  const propertyType = document.getElementById("propertyType")?.value;
+  const budget = document.getElementById("budget")?.value;
+  const bhk = document.getElementById("bhk")?.value;
+  const location = document.getElementById("location")?.value.toLowerCase();
+  const possession = document.getElementById("possession")?.value;
+  const amenities = document.getElementById("amenities")?.value;
+
+  const propertyCards = document.querySelectorAll("#properties-grid .col-lg-6");
+  let visibleCount = 0;
+
+  propertyCards.forEach((card) => {
+    let showProperty = true;
+
+    // Filter by property type
+    if (propertyType && showProperty) {
+      const cardPropertyType = card.dataset.propertyType;
+      if (cardPropertyType && !cardPropertyType.includes(propertyType)) {
+        showProperty = false;
+      }
+    }
+
+    // Filter by budget
+    if (budget && showProperty) {
+      const cardPriceRange = card.dataset.priceRange;
+      if (cardPriceRange) {
+        const budgetMatch = checkBudgetMatch(budget, cardPriceRange);
+        if (!budgetMatch) {
+          showProperty = false;
+        }
+      }
+    }
+
+    // Filter by BHK
+    if (bhk && showProperty) {
+      const cardBhk = card.dataset.bhk;
+      if (cardBhk) {
+        const bhkMatch = checkBhkMatch(bhk, cardBhk);
+        if (!bhkMatch) {
+          showProperty = false;
+        }
+      }
+    }
+
+    // Filter by location
+    if (location && showProperty) {
+      const cardLocation = card
+        .querySelector(".text-muted")
+        ?.textContent.toLowerCase();
+      if (cardLocation && !cardLocation.includes(location)) {
+        showProperty = false;
+      }
+    }
+
+    // Filter by possession status
+    if (possession && showProperty) {
+      const cardStatus = card.dataset.status;
+      if (cardStatus && cardStatus !== possession) {
+        showProperty = false;
+      }
+    }
+
+    // Filter by amenities
+    if (amenities && showProperty) {
+      const cardAmenities = card.dataset.amenities;
+      if (cardAmenities) {
+        const amenitiesMatch = checkAmenitiesMatch(amenities, cardAmenities);
+        if (!amenitiesMatch) {
+          showProperty = false;
+        }
+      }
+    }
+
+    // Show or hide the property card
+    card.style.display = showProperty ? "block" : "none";
+    if (showProperty) visibleCount++;
+  });
+
+  // Update filter results info
+  updateFilterResultsInfo(visibleCount);
+}
+
+/**
+ * Update filter results information
+ */
+function updateFilterResultsInfo(visibleCount) {
+  const resultsInfo = document.getElementById("filter-results-info");
+  const resultsCount = document.getElementById("results-count");
+  const activeFilters = document.getElementById("active-filters");
+  const clearFiltersBtn = document.getElementById("clear-filters");
+
+  if (resultsInfo && resultsCount) {
+    resultsCount.textContent = visibleCount;
+    resultsInfo.classList.remove("d-none");
+
+    // Show/hide clear filters button
+    if (clearFiltersBtn) {
+      const hasActiveFilters = hasFiltersApplied();
+      clearFiltersBtn.classList.toggle("d-none", !hasActiveFilters);
+    }
+
+    // Update active filters text
+    if (activeFilters) {
+      const filters = getActiveFilters();
+      if (filters.length > 0) {
+        activeFilters.textContent = `(${filters.join(", ")})`;
+      } else {
+        activeFilters.textContent = "";
+      }
+    }
+  }
+}
+
+/**
+ * Check if any filters are currently applied
+ */
+function hasFiltersApplied() {
+  const propertyType = document.getElementById("propertyType")?.value;
+  const budget = document.getElementById("budget")?.value;
+  const bhk = document.getElementById("bhk")?.value;
+  const location = document.getElementById("location")?.value;
+  const possession = document.getElementById("possession")?.value;
+  const amenities = document.getElementById("amenities")?.value;
+
+  return !!(
+    propertyType ||
+    budget ||
+    bhk ||
+    location ||
+    possession ||
+    amenities
+  );
+}
+
+/**
+ * Get list of active filters for display
+ */
+function getActiveFilters() {
+  const filters = [];
+
+  const propertyType = document.getElementById("propertyType")?.value;
+  const budget = document.getElementById("budget")?.value;
+  const bhk = document.getElementById("bhk")?.value;
+  const location = document.getElementById("location")?.value;
+  const possession = document.getElementById("possession")?.value;
+  const amenities = document.getElementById("amenities")?.value;
+
+  if (propertyType) filters.push(`Type: ${propertyType}`);
+  if (budget) filters.push(`Budget: ${getBudgetLabel(budget)}`);
+  if (bhk) filters.push(`BHK: ${bhk}`);
+  if (location) filters.push(`Location: ${location}`);
+  if (possession) filters.push(`Status: ${possession}`);
+  if (amenities) filters.push(`Amenities: ${getAmenityLabel(amenities)}`);
+
+  return filters;
+}
+
+/**
+ * Get budget label for display
+ */
+function getBudgetLabel(budgetValue) {
+  const budgetLabels = {
+    "50-100": "₹50L - ₹1Cr",
+    "100-250": "₹1Cr - ₹2.5Cr",
+    "250-500": "₹2.5Cr - ₹5Cr",
+    "500-1000": "₹5Cr - ₹10Cr",
+    "1000+": "₹10Cr+",
+  };
+
+  return budgetLabels[budgetValue] || budgetValue;
+}
+
+/**
+ * Get amenity label for display
+ */
+function getAmenityLabel(amenityValue) {
+  const amenityLabels = {
+    pool: "Swimming Pool",
+    gym: "Gymnasium",
+    club: "Clubhouse",
+    security: "24/7 Security",
+    solar: "Solar Power",
+  };
+
+  return amenityLabels[amenityValue] || amenityValue;
+}
+
+// Add event listener for clear filters button
+document.addEventListener("DOMContentLoaded", function () {
+  const clearFiltersBtn = document.getElementById("clear-filters");
+  if (clearFiltersBtn) {
+    clearFiltersBtn.addEventListener("click", clearAllFilters);
+  }
+});
+
+/**
+ * Clear all filters
+ */
+function clearAllFilters() {
+  // Reset all form inputs
+  const formInputs = document.querySelectorAll(
+    "#propertySearchForm input, #propertySearchForm select"
+  );
+  formInputs.forEach((input) => {
+    if (input.type === "select-one") {
+      input.selectedIndex = 0;
+    } else {
+      input.value = "";
+    }
+  });
+
+  // Trigger filter update
+  filterProperties();
+}
+
+/**
+ * Check if budget matches property price range
+ */
+function checkBudgetMatch(budget, priceRange) {
+  // Convert budget value to price range format for comparison
+  switch (budget) {
+    case "50-100":
+      return priceRange === "50l" || priceRange === "1cr";
+    case "100-250":
+      return priceRange === "1cr" || priceRange === "2.5cr";
+    case "250-500":
+      return priceRange === "2.5cr" || priceRange === "5cr";
+    case "500-1000":
+      return priceRange === "5cr" || priceRange === "10cr";
+    case "1000+":
+      return priceRange === "10cr" || priceRange === "on-request";
+    default:
+      return true;
+  }
+}
+
+/**
+ * Check if BHK matches property BHK options
+ */
+function checkBhkMatch(bhk, cardBhk) {
+  if (!cardBhk) return true;
+
+  // Split cardBhk into individual options
+  const bhkOptions = cardBhk.split(",");
+
+  // Handle special cases
+  if (bhk === "5+") {
+    // Check if any BHK option is 5 or higher
+    return bhkOptions.some((option) => {
+      const num = parseInt(option);
+      return !isNaN(num) && num >= 5;
+    });
+  }
+
+  // Check if the selected BHK is in the options
+  return bhkOptions.includes(bhk);
+}
+
+/**
+ * Check if amenities match property amenities
+ */
+function checkAmenitiesMatch(amenity, cardAmenities) {
+  if (!cardAmenities) return true;
+
+  // Split cardAmenities into individual options
+  const amenityOptions = cardAmenities.split(",");
+
+  // Map form values to data attributes
+  const amenityMap = {
+    pool: "pool",
+    gym: "gym",
+    club: "club",
+    security: "security",
+    solar: "solar",
+  };
+
+  const mappedAmenity = amenityMap[amenity] || amenity;
+
+  return amenityOptions.includes(mappedAmenity);
+}
+
+/**
+ * Redirect to properties page with applied filters
+ */
+function redirectToFilteredProperties() {
+  const propertyType = document.getElementById("propertyType")?.value;
+  const budget = document.getElementById("budget")?.value;
+  const bhk = document.getElementById("bhk")?.value;
+  const location = document.getElementById("location")?.value;
+  const possession = document.getElementById("possession")?.value;
+  const amenities = document.getElementById("amenities")?.value;
+
+  // Build query string
+  const params = new URLSearchParams();
+  if (propertyType) params.append("type", propertyType);
+  if (budget) params.append("budget", budget);
+  if (bhk) params.append("bhk", bhk);
+  if (location) params.append("location", location);
+  if (possession) params.append("status", possession);
+  if (amenities) params.append("amenities", amenities);
+
+  // Redirect to properties page with filters
+  window.location.href = `properties.html?${params.toString()}`;
+}
+
+// Add property filtering to index page
+document.addEventListener("DOMContentLoaded", function () {
+  // Check if we're on the index page
+  if (document.querySelector(".property-finder-section")) {
+    const searchForm = document.getElementById("propertySearchForm");
+
+    if (searchForm) {
+      // Add event listener to the form
+      searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // For index page, redirect to properties page with filters
+        redirectToFilteredProperties();
+      });
+    }
+  }
+
+  // Check if we're on the properties page and apply any filters from URL
+  if (window.location.pathname.includes("properties.html")) {
+    applyUrlFilters();
+  }
+});
+
+/**
+ * Apply filters from URL parameters
+ */
+function applyUrlFilters() {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // Get filter values from URL
+  const propertyType = urlParams.get("type");
+  const budget = urlParams.get("budget");
+  const bhk = urlParams.get("bhk");
+  const location = urlParams.get("location");
+  const possession = urlParams.get("status");
+  const amenities = urlParams.get("amenities");
+
+  // Set form values
+  if (propertyType)
+    document.getElementById("propertyType").value = propertyType;
+  if (budget) document.getElementById("budget").value = budget;
+  if (bhk) document.getElementById("bhk").value = bhk;
+  if (location) document.getElementById("location").value = location;
+  if (possession) document.getElementById("possession").value = possession;
+  if (amenities) document.getElementById("amenities").value = amenities;
+
+  // Apply filters
+  setTimeout(filterProperties, 100);
+}
+
+// Add to the DOMContentLoaded event
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOM Loaded - Starting initialization...");
+
+  // Debug: Check if Bootstrap is loaded
+  if (typeof bootstrap !== "undefined") {
+    console.log("Bootstrap is loaded");
+  } else {
+    console.error("Bootstrap is NOT loaded!");
+  }
+
+  // Initialize website features
+  initializeWebsite();
+  initializeServicesPage();
+  setupPropertyFiltering();
+
+  // Initialize subtle features - only if classes are defined
+  if (typeof ScrollAnimations !== "undefined") {
+    new ScrollAnimations();
+  }
+  if (typeof EnhancedNavbar !== "undefined") {
+    new EnhancedNavbar();
+  }
+  setupPropertyFinderAnimations();
+});
 
 // Add CSS animations
 function addAnimationStyles() {

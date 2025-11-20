@@ -90,6 +90,16 @@
               "description": "Premium residential development in Delhi's prime commercial hub",
               "url": "https://urbaninvestors.com/property/migsun-nehruplace"
             }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "ApartmentComplex",
+              "name": "One FNG",
+              "description": "Premium residential development with world-class amenities and sustainable features",
+              "url": "https://urbaninvestors.com/property/one-fng"
+            }
           }
         ]
       }
@@ -240,7 +250,7 @@
 
               <!-- Search Form -->
               <div class="property-search-content">
-                <form class="property-search-form">
+                <form class="property-search-form" id="propertySearchForm">
                   <div class="row g-3">
                     <!-- Location Search -->
                     <div class="col-lg-3 col-md-6">
@@ -272,7 +282,6 @@
                           <option value="">All Types</option>
                           <option value="apartment">Apartment</option>
                           <option value="villa">Villa</option>
-                          <option value="penthouse">Penthouse</option>
                           <option value="townhouse">Townhouse</option>
                           <option value="plot">Plot/Land</option>
                         </select>
@@ -326,6 +335,82 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- Advanced Filters Toggle -->
+                  <div class="row mt-3">
+                    <div class="col-12 text-center">
+                      <button
+                        type="button"
+                        class="btn btn-link text-primary p-0 advanced-filters-toggle"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#advancedFilters"
+                        aria-expanded="false"
+                        aria-controls="advancedFilters"
+                      >
+                        <i class="fas fa-sliders-h me-2"></i>Advanced Filters
+                        <i class="fas fa-chevron-down ms-2 toggle-icon"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Advanced Filters -->
+                  <div class="collapse" id="advancedFilters">
+                    <div class="advanced-filters-content mt-4 pt-4 border-top">
+                      <div class="row g-3">
+                        <div class="col-md-3">
+                          <label for="possession" class="form-label fw-medium"
+                            >Possession Status</label
+                          >
+                          <select class="form-select" id="possession">
+                            <option value="">Any</option>
+                            <option value="ready">Ready to Move</option>
+                            <option value="construction">
+                              Under Construction
+                            </option>
+                            <option value="new-launch">New Launch</option>
+                            <option value="featured">Featured</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <label for="furnishing" class="form-label fw-medium"
+                            >Furnishing</label
+                          >
+                          <select class="form-select" id="furnishing">
+                            <option value="">Any</option>
+                            <option value="furnished">Fully Furnished</option>
+                            <option value="semi-furnished">
+                              Semi Furnished
+                            </option>
+                            <option value="unfurnished">Unfurnished</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <label for="parking" class="form-label fw-medium"
+                            >Parking</label
+                          >
+                          <select class="form-select" id="parking">
+                            <option value="">Any</option>
+                            <option value="1">1 Parking</option>
+                            <option value="2">2 Parking</option>
+                            <option value="3+">3+ Parking</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <label for="amenities" class="form-label fw-medium"
+                            >Key Amenities</label
+                          >
+                          <select class="form-select" id="amenities">
+                            <option value="">Any</option>
+                            <option value="pool">Swimming Pool</option>
+                            <option value="gym">Gymnasium</option>
+                            <option value="club">Clubhouse</option>
+                            <option value="security">24/7 Security</option>
+                            <option value="solar">Solar Power</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
@@ -333,9 +418,29 @@
         </div>
 
         <!-- Properties Grid -->
+        <div id="filter-results-info" class="filter-results-info d-none">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span id="results-count">0</span> properties found
+              <span id="active-filters" class="ms-2"></span>
+            </div>
+            <button id="clear-filters" class="clear-filters-btn d-none">
+              <i class="fas fa-times me-1"></i>Clear Filters
+            </button>
+          </div>
+        </div>
+
         <div class="row g-4" id="properties-grid">
           <!-- Eldeco Ballads Of Bliss Property Card -->
-          <div class="col-lg-6 col-md-6">
+          <div
+            class="col-lg-6 col-md-6"
+            data-property-type="apartment"
+            data-location="noida"
+            data-price-range="2.5cr"
+            data-bhk="2,3"
+            data-status="new-launch"
+            data-amenities="gym,pool,club"
+          >
             <div
               class="property-card h-100 bg-white rounded shadow-sm overflow-hidden"
             >
@@ -397,7 +502,15 @@
           </div>
 
           <!-- Dasnac Yuva Property Card -->
-          <div class="col-lg-6 col-md-6">
+          <div
+            class="col-lg-6 col-md-6"
+            data-property-type="apartment"
+            data-location="noida"
+            data-price-range="50l"
+            data-bhk="2,3"
+            data-status="featured"
+            data-amenities="gym,security,solar"
+          >
             <div
               class="property-card h-100 bg-white rounded shadow-sm overflow-hidden"
             >
@@ -460,7 +573,15 @@
           </div>
 
           <!-- Palm Village Property Card -->
-          <div class="col-lg-6 col-md-6">
+          <div
+            class="col-lg-6 col-md-6"
+            data-property-type="villa,townhouse"
+            data-location="yamuna-expressway"
+            data-price-range="35l"
+            data-bhk="2,3,4"
+            data-status="featured"
+            data-amenities="gym,security,club"
+          >
             <div
               class="property-card h-100 bg-white rounded shadow-sm overflow-hidden"
             >
@@ -523,7 +644,15 @@
           </div>
 
           <!-- Migsun Nehru Place Property Card -->
-          <div class="col-lg-6 col-md-6">
+          <div
+            class="col-lg-6 col-md-6"
+            data-property-type="apartment"
+            data-location="delhi"
+            data-price-range="on-request"
+            data-bhk="2,3,4"
+            data-status="new-launch"
+            data-amenities="gym,security,club"
+          >
             <div
               class="property-card h-100 bg-white rounded shadow-sm overflow-hidden"
             >
@@ -586,7 +715,15 @@
           </div>
 
           <!-- Ace Acreville Property Card -->
-          <div class="col-lg-6 col-md-6">
+          <div
+            class="col-lg-6 col-md-6"
+            data-property-type="plot"
+            data-location="yamuna-expressway"
+            data-price-range="1.25cr"
+            data-bhk="residential-plots"
+            data-status="new-launch"
+            data-amenities="security,club"
+          >
             <div
               class="property-card h-100 bg-white rounded shadow-sm overflow-hidden"
             >
@@ -642,6 +779,75 @@
                 </p>
                 <div class="d-grid">
                   <a href="aceacreville.html" class="btn btn-primary">
+                    <i class="fas fa-arrow-right me-2"></i>View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- One FNG Property Card -->
+          <div
+            class="col-lg-6 col-md-6"
+            data-property-type="apartment"
+            data-location="noida"
+            data-price-range="on-request"
+            data-bhk="2,3,4"
+            data-status="new-launch"
+            data-amenities="gym,security"
+          >
+            <div
+              class="property-card h-100 bg-white rounded shadow-sm overflow-hidden"
+            >
+              <div class="property-image position-relative">
+                <img
+                  src="images/OneFNG/placeholder.jpg"
+                  alt="One FNG"
+                  class="w-100"
+                  style="height: 300px; object-fit: cover"
+                />
+                <div class="position-absolute top-0 start-0 m-3">
+                  <span class="badge bg-success">Premium</span>
+                </div>
+                <div class="position-absolute top-0 end-0 m-3">
+                  <span class="badge bg-primary">New Launch</span>
+                </div>
+              </div>
+              <div class="property-content p-4">
+                <div
+                  class="d-flex justify-content-between align-items-start mb-3"
+                >
+                  <div>
+                    <h4 class="fw-bold mb-1">One FNG</h4>
+                    <p class="text-muted mb-0">
+                      <i class="fas fa-map-marker-alt me-1"></i>Noida
+                    </p>
+                  </div>
+                  <div class="text-end">
+                    <div class="text-primary fw-bold h5 mb-0">₹On Request</div>
+                    <small class="text-muted">Starting Price</small>
+                  </div>
+                </div>
+                <div class="property-features mb-3">
+                  <div class="row g-2">
+                    <div class="col-6">
+                      <small class="text-muted">
+                        <i class="fas fa-bed me-1"></i>2, 3, 4 BHK
+                      </small>
+                    </div>
+                    <div class="col-6">
+                      <small class="text-muted">
+                        <i class="fas fa-vector-square me-1"></i>1200-2500 sq.ft
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-muted small mb-3">
+                  Premium residential development with world-class amenities and
+                  sustainable features. Luxury living in the heart of Noida.
+                </p>
+                <div class="d-grid">
+                  <a href="onefng.html" class="btn btn-primary">
                     <i class="fas fa-arrow-right me-2"></i>View Details
                   </a>
                 </div>
@@ -897,5 +1103,44 @@
 
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
+
+    <!-- Apply filters on page load -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Apply any filters from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const hasFilters = Array.from(urlParams.keys()).length > 0;
+
+        if (hasFilters) {
+          // Set form values from URL parameters
+          const propertyType = urlParams.get("type");
+          const budget = urlParams.get("budget");
+          const bhk = urlParams.get("bhk");
+          const location = urlParams.get("location");
+          const possession = urlParams.get("status");
+          const amenities = urlParams.get("amenities");
+
+          if (propertyType)
+            document.getElementById("propertyType").value = propertyType;
+          if (budget) document.getElementById("budget").value = budget;
+          if (bhk) document.getElementById("bhk").value = bhk;
+          if (location) document.getElementById("location").value = location;
+          if (possession)
+            document.getElementById("possession").value = possession;
+          if (amenities) document.getElementById("amenities").value = amenities;
+
+          // Apply filters after a short delay to ensure DOM is ready
+          setTimeout(function () {
+            filterProperties();
+          }, 100);
+        }
+
+        // Add event listener for clear filters button
+        const clearFiltersBtn = document.getElementById("clear-filters");
+        if (clearFiltersBtn) {
+          clearFiltersBtn.addEventListener("click", clearAllFilters);
+        }
+      });
+    </script>
   </body>
 </html>

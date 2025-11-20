@@ -561,73 +561,98 @@
               <h4 class="mb-4">Get in Touch</h4>
               <form id="servicesContactForm" novalidate>
                 <div class="row g-3">
-                  <div class="col-md-6">
-                    <label
-                      for="firstName"
-                      class="form-label text-dark fw-semibold"
-                      >First Name</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="firstName"
-                      required
-                    />
-                    <div class="invalid-feedback">
-                      Please provide your first name.
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <label
-                      for="lastName"
-                      class="form-label text-dark fw-semibold"
-                      >Last Name</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="lastName"
-                      required
-                    />
-                    <div class="invalid-feedback">
-                      Please provide your last name.
-                    </div>
-                  </div>
+                  <!-- Full Name -->
                   <div class="col-12">
-                    <label for="email" class="form-label text-dark fw-semibold"
-                      >Email Address</label
+                    <label
+                      for="fullName"
+                      class="form-label text-dark fw-semibold"
                     >
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="fullName"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please provide your full name.
+                    </div>
+                  </div>
+
+                  <!-- Email Address -->
+                  <div class="col-12">
+                    <label
+                      for="emailAddress"
+                      class="form-label text-dark fw-semibold"
+                    >
+                      Email Address
+                    </label>
                     <input
                       type="email"
                       class="form-control"
-                      id="email"
+                      id="emailAddress"
                       required
                     />
                     <div class="invalid-feedback">
                       Please provide a valid email address.
                     </div>
                   </div>
+
+                  <!-- Phone Number -->
                   <div class="col-12">
                     <label
-                      for="service"
+                      for="phoneNumber"
                       class="form-label text-dark fw-semibold"
-                      >Service Interested In</label
                     >
-                    <select class="form-select" id="service" required>
-                      <option value="">Select a service...</option>
-                      <option value="buy-new">Buy a New Home</option>
-                      <option value="rent">Take a Property on Rent</option>
-                      <option value="sell-rent">Sell or Rent Property</option>
-                      <option value="resale">Buy Resale Properties</option>
-                    </select>
-                    <div class="invalid-feedback">Please select a service.</div>
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="phoneNumber"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please provide your phone number.
+                    </div>
                   </div>
+
+                  <!-- Investment Range -->
+                  <div class="col-12">
+                    <label
+                      for="investmentRange"
+                      class="form-label text-dark fw-semibold"
+                    >
+                      Investment Range
+                    </label>
+                    <select
+                      class="form-select"
+                      id="investmentRange"
+                      name="investment_range"
+                    >
+                      <option value="">Select investment range</option>
+                      <option value="₹50 Lakhs - ₹1 Crore">
+                        ₹50 Lakhs - ₹1 Crore
+                      </option>
+                      <option value="₹1 Crore - ₹5 Crore">
+                        ₹1 Crore - ₹5 Crore
+                      </option>
+                      <option value="₹5 Crore - ₹10 Crore">
+                        ₹5 Crore - ₹10 Crore
+                      </option>
+                      <option value="₹10 Crore+">₹10 Crore+</option>
+                    </select>
+                  </div>
+
+                  <!-- Message -->
                   <div class="col-12">
                     <label
                       for="message"
                       class="form-label text-dark fw-semibold"
-                      >Message</label
                     >
+                      Message
+                    </label>
                     <textarea
                       class="form-control"
                       id="message"
@@ -638,6 +663,8 @@
                       Please provide a message.
                     </div>
                   </div>
+
+                  <!-- Submit Button -->
                   <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-lg w-100">
                       Send Message

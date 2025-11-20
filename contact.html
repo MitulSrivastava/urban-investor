@@ -162,7 +162,7 @@
                 "
               >
                 <i
-                  class="fa-solid fa-phone text-primary"
+                  class="fa-solid fa-phone text-white"
                   style="font-size: 2rem"
                 ></i>
               </div>
@@ -271,75 +271,55 @@
             <div class="bg-white rounded-4 shadow-lg p-5">
               <form id="contactForm" class="needs-validation" novalidate>
                 <div class="row g-4">
-                  <!-- Name -->
+                  <!-- Full Name -->
                   <div class="col-md-6">
-                    <label for="name" class="form-label fw-semibold">
+                    <label for="fullName" class="form-label fw-semibold">
                       Full Name <span class="text-danger">*</span>
                     </label>
                     <input
                       type="text"
                       class="form-control form-control-lg"
-                      id="name"
+                      id="fullName"
                       required
                       placeholder="John Doe"
                     />
-                    <div class="invalid-feedback">Please enter your name.</div>
+                    <div class="invalid-feedback">
+                      Please enter your full name.
+                    </div>
                   </div>
 
-                  <!-- Email -->
+                  <!-- Email Address -->
                   <div class="col-md-6">
-                    <label for="email" class="form-label fw-semibold">
+                    <label for="emailAddress" class="form-label fw-semibold">
                       Email Address <span class="text-danger">*</span>
                     </label>
                     <input
                       type="email"
                       class="form-control form-control-lg"
-                      id="email"
+                      id="emailAddress"
                       required
                       placeholder="john@example.com"
                     />
                     <div class="invalid-feedback">
-                      Please enter a valid email.
+                      Please enter a valid email address.
                     </div>
                   </div>
 
-                  <!-- Phone -->
+                  <!-- Phone Number -->
                   <div class="col-md-6">
-                    <label for="phone" class="form-label fw-semibold">
+                    <label for="phoneNumber" class="form-label fw-semibold">
                       Phone Number <span class="text-danger">*</span>
                     </label>
                     <input
                       type="tel"
                       class="form-control form-control-lg"
-                      id="phone"
+                      id="phoneNumber"
                       required
                       placeholder="+91 98765 43210"
                     />
                     <div class="invalid-feedback">
                       Please enter your phone number.
                     </div>
-                  </div>
-
-                  <!-- Subject -->
-                  <div class="col-md-6">
-                    <label for="subject" class="form-label fw-semibold">
-                      Subject <span class="text-danger">*</span>
-                    </label>
-                    <select
-                      class="form-select form-select-lg"
-                      id="subject"
-                      required
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="property-inquiry">Property Inquiry</option>
-                      <option value="investment">
-                        Investment Consultation
-                      </option>
-                      <option value="viewing">Schedule Viewing</option>
-                      <option value="general">General Question</option>
-                      <option value="other">Other</option>
-                    </select>
-                    <div class="invalid-feedback">Please select a subject.</div>
                   </div>
 
                   <!-- Investment Range -->
@@ -350,12 +330,19 @@
                     <select
                       class="form-select form-select-lg"
                       id="investmentRange"
+                      name="investment_range"
                     >
                       <option value="">Select investment range</option>
-                      <option value="50l-1cr">₹50 Lakhs - ₹1 Crore</option>
-                      <option value="1cr-5cr">₹1 Crore - ₹5 Crore</option>
-                      <option value="5cr-10cr">₹5 Crore - ₹10 Crore</option>
-                      <option value="10cr+">₹10 Crore+</option>
+                      <option value="₹50 Lakhs - ₹1 Crore">
+                        ₹50 Lakhs - ₹1 Crore
+                      </option>
+                      <option value="₹1 Crore - ₹5 Crore">
+                        ₹1 Crore - ₹5 Crore
+                      </option>
+                      <option value="₹5 Crore - ₹10 Crore">
+                        ₹5 Crore - ₹10 Crore
+                      </option>
+                      <option value="₹10 Crore+">₹10 Crore+</option>
                     </select>
                   </div>
 

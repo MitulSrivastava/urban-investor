@@ -1970,6 +1970,11 @@ p {
   font-weight: 600;
 }
 
+/* Ensure icons have proper visibility on primary backgrounds */
+i[class*="fa"] {
+  color: inherit;
+}
+
 /* Enhanced Spacing Utilities */
 .spacer-xs {
   height: 1rem;
@@ -2066,4 +2071,65 @@ p {
 .about-hero-image:hover img,
 .team-image-container:hover img {
   transform: scale(1.05);
+}
+
+/* Property Filtering Enhancements */
+.property-card.filtered-out {
+  display: none !important;
+}
+
+.filter-results-info {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: rgba(30, 58, 138, 0.05);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(30, 58, 138, 0.1);
+}
+
+.clear-filters-btn {
+  background-color: var(--accent-color);
+  border: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-fast);
+}
+
+.clear-filters-btn:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+/* Advanced Filters Toggle */
+.advanced-filters-toggle {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.advanced-filters-toggle:hover {
+  text-decoration: none;
+}
+
+.toggle-icon {
+  transition: transform var(--transition-fast);
+}
+
+.advanced-filters-toggle[aria-expanded="true"] .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* Responsive adjustments for filters */
+@media (max-width: 768px) {
+  .property-finder-card {
+    padding: 1.5rem !important;
+  }
+
+  .search-field {
+    margin-bottom: 1rem;
+  }
+
+  .advanced-filters-content {
+    padding-top: 1.5rem !important;
+  }
 }
