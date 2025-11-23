@@ -363,6 +363,13 @@
                     </div>
                   </div>
 
+                  <!-- Hidden Token Field -->
+                  <input
+                    type="hidden"
+                    name="token"
+                    value="myFrontendToken123"
+                  />
+
                   <!-- Submit Button -->
                   <div class="col-12">
                     <button
@@ -725,5 +732,141 @@
 
     <!-- Custom JS -->
     <script src="script.js"></script>
+
+    <!-- Google Sheets Integration Script -->
+    <script>
+      (function () {
+        // ---- CONFIG ----
+        const scriptURL =
+          "https://script.google.com/macros/s/AKfycbyE9dlJ8JAJnJndXgSPw_k8yNDnU-L9f4cwJ2cDbJaBASshEC80PKl2Tj6EohgCcdSevQ/exec";
+        const FRONTEND_TOKEN = "myFrontendToken123"; // must match Apps Script EXPECTED_TOKEN
+
+        // ---- HELPERS ----
+        const isEmail = (s) => /\S+@\S+\.\S+/.test(s);
+        const isPhone = (s) => /^\+?\d[\d\s-]{6,20}$/.test((s || "").trim());
+
+        // ---- ELEMENTS (match your HTML) ----
+        const form = document.getElementById("contactForm"); // your form id
+        const submitButton = form
+          ? form.querySelector('button[type="submit"]')
+          : null;
+        // optional status area - your markup didn't include #status; we'll reuse a small inline status under the form if needed
+        let status = document.getElementById("status");
+        if (!status && form) {
+          status = document.createElement("div");
+          status.id = "status";
+          status.className = "small text-muted mt-3";
+          // insert after the submit button
+          const wrapper = submitButton ? submitButton.parentNode : form;
+          if (wrapper) wrapper.appendChild(status);
+        }
+
+        if (!form) {
+          console.error(
+            "contactForm not found. Ensure the form has id='contactForm'"
+          );
+          return;
+        }
+        if (!submitButton) {
+          console.error("Submit button not found in contactForm.");
+        }
+
+        function setButtonLoading(loading) {
+          if (!submitButton) return;
+          const textEl = submitButton.querySelector(".btn-text");
+          const loadEl = submitButton.querySelector(".btn-loading");
+          if (loading) {
+            submitButton.disabled = true;
+            if (textEl) textEl.classList.add("d-none");
+            if (loadEl) loadEl.classList.remove("d-none");
+          } else {
+            submitButton.disabled = false;
+            if (textEl) textEl.classList.remove("d-none");
+            if (loadEl) loadEl.classList.add("d-none");
+          }
+        }
+
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          status.textContent = "";
+          // read values using your input ids
+          const fullName = (
+            document.getElementById("fullName")?.value || ""
+          ).trim();
+          const email = (
+            document.getElementById("emailAddress")?.value || ""
+          ).trim();
+          const phone = (
+            document.getElementById("phoneNumber")?.value || ""
+          ).trim();
+          const subject =
+            (document.getElementById("subject")?.value || "").trim() ||
+            "General enquiry from Contact Page";
+          const investmentRange = (
+            document.getElementById("investmentRange")?.value || ""
+          ).trim();
+          const message = (
+            document.getElementById("message")?.value || ""
+          ).trim();
+          // token hidden input (exists in your form)
+          // keep using FRONTEND_TOKEN to overwrite whatever is in DOM to ensure match
+          // client-side validation
+          if (!fullName) {
+            alert("Please enter your full name");
+            return;
+          }
+          if (!email || !isEmail(email)) {
+            alert("Please enter a valid email");
+            return;
+          }
+          if (!phone || !isPhone(phone)) {
+            alert("Please enter a valid phone number");
+            return;
+          }
+
+          // build FormData using the keys your Apps Script expects
+          const fd = new FormData();
+          fd.append("full_name", fullName);
+          fd.append("email", email);
+          fd.append("phone", phone);
+          fd.append("subject", subject);
+          fd.append("investment_range", investmentRange);
+          fd.append("message", message);
+          fd.append("token", FRONTEND_TOKEN);
+
+          setButtonLoading(true);
+          status.textContent = "Sending, please wait...";
+
+          try {
+            const res = await fetch(scriptURL, { method: "POST", body: fd });
+            const text = await res.text();
+            let data = {};
+            try {
+              data = JSON.parse(text || "{}");
+            } catch (err) {
+              data = { success: res.ok };
+            }
+
+            if (
+              res.ok &&
+              (data.success === true || data.success === undefined)
+            ) {
+              status.textContent = "Submitted successfully — thank you!";
+              // close modal or show toast as desired
+              form.reset();
+            } else {
+              const errMsg = data.error || "Server rejected the submission";
+              status.textContent = "Submission failed: " + errMsg;
+              console.error("Submission failed:", data);
+            }
+          } catch (err) {
+            console.error("Network error:", err);
+            status.textContent = "Network error — please try again later.";
+          } finally {
+            setButtonLoading(false);
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
