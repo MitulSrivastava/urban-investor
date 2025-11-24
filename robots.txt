@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://urbaninvestors.com/sitemap.xml
+
+# Directories
+Disallow: /cgi-bin/
+
+# Files
+Disallow: *.pdf$
