@@ -232,7 +232,7 @@
                   class="text-success fw-semibold bg-dark px-2 py-1 rounded"
                 >
                   <i class="fas fa-shield-alt me-1"></i>RERA:
-                  <span class="text-warning">UPRERAPRJXXXXXX</span>
+                  <span class="text-warning">UPRERAPRJ921261/05/2025</span>
                 </span>
               </div>
             </div>
@@ -242,14 +242,16 @@
               class="d-flex gap-3 justify-content-lg-end justify-content-start mt-3 mt-lg-0"
             >
               <button
+                id="shortlistBtn"
                 class="btn btn-outline-secondary d-flex align-items-center px-4 py-2"
               >
                 <i class="fas fa-heart me-2"></i>Shortlist
               </button>
               <button
+                id="shareBtn"
                 class="btn btn-outline-secondary d-flex align-items-center px-4 py-2"
               >
-                <i class="fas fa-share-alt me-2"></i>Share
+                <img src="images/logo/IMG-20251123-WA00103.jpg" alt="Share" class="me-2" style="height: 20px; width: auto;">Share
               </button>
             </div>
           </div>
@@ -416,7 +418,7 @@
                     <div
                       class="bg-primary bg-opacity-10 rounded-circle p-3 me-3"
                     >
-                      <i class="fas fa-rupee-sign text-dark fs-4"></i>
+                      <i class="fas fa-rupee-sign text-white fs-4"></i>
                     </div>
                     <div>
                       <h3 class="fw-bold mb-1 text-dark">₹2.5 Cr - 5.2 Cr</h3>
@@ -483,7 +485,7 @@
                       class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                       style="width: 60px; height: 60px"
                     >
-                      <i class="fas fa-home text-dark fs-4"></i>
+                      <i class="fas fa-home text-white fs-4"></i>
                     </div>
                     <h6 class="fw-bold mb-1 text-dark">Unit Config</h6>
                     <p class="text-dark mb-0 fw-semibold">2, 3 BHK Flats</p>
@@ -1517,7 +1519,7 @@
                 <a
                   href="palmvillage.html"
                   class="text-white-50 text-decoration-none"
-                  >Gaur Butterfly</a
+                  >Gaur Chrysalis</a
                 >
               </li>
               <li class="mb-2">
@@ -1541,9 +1543,9 @@
               </li>
               <li class="mb-2">
                 <a
-                  href="gaurbutterfly2.html"
+                  href="gaurchrysalis.html"
                   class="text-white-50 text-decoration-none"
-                  >Gaur Butterfly</a
+                  >Gaur Chrysalis</a
                 >
               </li>
               <li class="mb-2">
@@ -1775,128 +1777,185 @@
         const isEmail = (s) => /\S+@\S+\.\S+/.test(s);
         const isPhone = (s) => /^\+?\d[\d\s-]{6,20}$/.test((s || "").trim());
 
-        // ---- ELEMENTS (match your HTML) ----
-        const form = document.getElementById("contactForm"); // your form id
-        const submitButton = form
-          ? form.querySelector('button[type="submit"]')
-          : null;
-        // optional status area - your markup didn't include #status; we'll reuse a small inline status under the form if needed
-        let status = document.getElementById("status");
-        if (!status && form) {
-          status = document.createElement("div");
-          status.id = "status";
-          status.className = "small text-muted mt-3";
-          // insert after the submit button
-          const wrapper = submitButton ? submitButton.parentNode : form;
-          if (wrapper) wrapper.appendChild(status);
-        }
-
-        if (!form) {
-          console.error(
-            "contactForm not found. Ensure the form has id='contactForm'"
-          );
-          return;
-        }
-        if (!submitButton) {
-          console.error("Submit button not found in contactForm.");
-        }
-
-        function setButtonLoading(loading) {
-          if (!submitButton) return;
-          const textEl = submitButton.querySelector(".btn-text");
-          const loadEl = submitButton.querySelector(".btn-loading");
-          if (loading) {
-            submitButton.disabled = true;
-            if (textEl) textEl.classList.add("d-none");
-            if (loadEl) loadEl.classList.remove("d-none");
-          } else {
-            submitButton.disabled = false;
-            if (textEl) textEl.classList.remove("d-none");
-            if (loadEl) loadEl.classList.add("d-none");
-          }
-        }
-
-        form.addEventListener("submit", async function (e) {
+        // ---- GENERIC FORM HANDLER ----
+        async function handleFormSubmit(e, formId, statusId = null) {
           e.preventDefault();
+          const form = document.getElementById(formId);
+          if (!form) return;
+
+          // Find status element or create one
+          let status = statusId ? document.getElementById(statusId) : null;
+          const submitButton = form.querySelector('button[type="submit"]');
+
+          if (!status) {
+            // Check if status element already exists next to button
+            const wrapper = submitButton ? submitButton.parentNode : form;
+            status = wrapper.querySelector('.submission-status');
+            
+            if (!status) {
+              status = document.createElement("div");
+              status.className = "small text-muted mt-3 submission-status";
+              if (wrapper) wrapper.appendChild(status);
+            }
+          }
+          
           status.textContent = "";
-          // read values using your input ids
-          const fullName = (
-            document.getElementById("fullName")?.value || ""
-          ).trim();
-          const email = (
-            document.getElementById("emailAddress")?.value || ""
-          ).trim();
-          const phone = (
-            document.getElementById("phoneNumber")?.value || ""
-          ).trim();
-          const subject =
-            (document.getElementById("subject")?.value || "").trim() ||
-            "General enquiry from Eldeco Ballads Of Bliss Page";
-          const investmentRange = (
-            document.getElementById("investmentRange")?.value || ""
-          ).trim();
-          const message = (
-            document.getElementById("message")?.value || ""
-          ).trim();
-          // token hidden input (exists in your form)
-          // keep using FRONTEND_TOKEN to overwrite whatever is in DOM to ensure match
-          // client-side validation
-          if (!fullName) {
-            alert("Please enter your full name");
-            return;
-          }
-          if (!email || !isEmail(email)) {
-            alert("Please enter a valid email");
-            return;
-          }
-          if (!phone || !isPhone(phone)) {
-            alert("Please enter a valid phone number");
-            return;
+
+          // Common fields
+          const nameVal = (document.getElementById(formId === 'contactForm' ? 'fullName' : 'brochureName')?.value || "").trim();
+          const emailVal = (document.getElementById(formId === 'contactForm' ? 'emailAddress' : 'brochureEmail')?.value || "").trim();
+          const phoneVal = (document.getElementById(formId === 'contactForm' ? 'phoneNumber' : 'brochurePhone')?.value || "").trim();
+          
+          // Validation
+          if (!nameVal) { alert("Please enter your full name"); return; }
+          if (!emailVal || !isEmail(emailVal)) { alert("Please enter a valid email"); return; }
+          if (!phoneVal || !isPhone(phoneVal)) { alert("Please enter a valid phone number"); return; }
+
+          // Prepare FormData
+          // STRATEGY: Send BOTH the old keys (snake_case) and the new keys (camelCase).
+          // 1. Old keys (full_name, email, phone) likely satisfy the Script's internal validation check.
+          // 2. New keys (fullName, emailAddress, phoneNumber) match the Google Sheet Headers so the data maps correctly.
+          const submitData = new FormData();
+          
+          // 1. Validation Keys (Old Format) to pass "Missing required fields" check
+          submitData.append("full_name", nameVal);
+          submitData.append("email", emailVal);
+          submitData.append("phone", phoneVal);
+          submitData.append("token", FRONTEND_TOKEN); 
+          
+          // 2. Storage Keys (New Format) to match Sheet Headers
+          submitData.append("fullName", nameVal);
+          submitData.append("emailAddress", emailVal);
+          submitData.append("phoneNumber", phoneVal);
+          submitData.append("Token", FRONTEND_TOKEN);
+
+          // Specific fields - Sending both formats to be safe
+          if (formId === 'contactForm') {
+             const investmentRange = (document.getElementById("investmentRange")?.value || "").trim();
+             const message = (document.getElementById("message")?.value || "").trim();
+             const subject = (document.getElementById("subject")?.value || "").trim() || "General enquiry from Eldeco Ballads Of Bliss Page";
+             
+             // Old keys
+             submitData.append("investment_range", investmentRange);
+             submitData.append("message", message);
+             submitData.append("subject", subject);
+
+             // New keys
+             submitData.append("investmentRange", investmentRange);
+             // message is same for both
+          } else if (formId === 'brochureForm') {
+             const subject = "Brochure Download Request";
+             const msg = "User requested brochure download";
+             
+             submitData.append("investment_range", "Brochure Download Request"); 
+             submitData.append("subject", subject);
+             submitData.append("message", msg);
+             
+             submitData.append("investmentRange", "Brochure Download Request");
           }
 
-          // build FormData using the keys your Apps Script expects
-          const fd = new FormData();
-          fd.append("full_name", fullName);
-          fd.append("email", email);
-          fd.append("phone", phone);
-          fd.append("subject", subject);
-          fd.append("investment_range", investmentRange);
-          fd.append("message", message);
-          fd.append("token", FRONTEND_TOKEN);
-
-          setButtonLoading(true);
+          // UI Loading State
+          const originalBtnText = submitButton ? submitButton.innerHTML : "";
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Sending...';
+          }
           status.textContent = "Sending, please wait...";
 
           try {
-            const res = await fetch(scriptURL, { method: "POST", body: fd });
+            const res = await fetch(scriptURL, { method: "POST", body: submitData });
             const text = await res.text();
             let data = {};
-            try {
-              data = JSON.parse(text || "{}");
-            } catch (err) {
-              data = { success: res.ok };
-            }
+            try { data = JSON.parse(text || "{}"); } catch (err) { data = { success: res.ok }; }
 
-            if (
-              res.ok &&
-              (data.success === true || data.success === undefined)
-            ) {
+            if (res.ok && (data.success === true || data.success === undefined)) {
               status.textContent = "Submitted successfully — thank you!";
-              // close modal or show toast as desired
               form.reset();
+              
+              if (formId === 'brochureForm') {
+                 setTimeout(() => {
+                   const modalEl = document.getElementById('brochureModal');
+                   const modal = bootstrap.Modal.getInstance(modalEl);
+                   if (modal) modal.hide();
+                   status.textContent = "";
+                 }, 2000);
+              }
             } else {
-              const errMsg = data.error || "Server rejected the submission";
-              status.textContent = "Submission failed: " + errMsg;
-              console.error("Submission failed:", data);
+              status.textContent = "Submission failed: " + (data.error || "Server rejected submission");
             }
           } catch (err) {
-            console.error("Network error:", err);
+            console.error(err);
             status.textContent = "Network error — please try again later.";
           } finally {
-            setButtonLoading(false);
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.innerHTML = originalBtnText;
+            }
+          }
+        }
+
+        // Attach listeners
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", (e) => handleFormSubmit(e, "contactForm"));
+        }
+
+        const brochureForm = document.getElementById("brochureForm");
+        if (brochureForm) {
+          brochureForm.addEventListener("submit", (e) => handleFormSubmit(e, "brochureForm"));
+        }
+      })();
+    </script>
+    <script>
+      // Shortlist Button Toggle
+      const shortlistBtn = document.getElementById("shortlistBtn");
+      if (shortlistBtn) {
+        shortlistBtn.addEventListener("click", function () {
+          this.classList.toggle("btn-outline-secondary");
+          this.classList.toggle("btn-danger");
+          
+          // Optional: Change text or icon if needed
+          const icon = this.querySelector("i");
+          if (this.classList.contains("btn-danger")) {
+             // active state
+             this.classList.add("text-white");
+          } else {
+             // inactive state
+             this.classList.remove("text-white");
           }
         });
-      })();
+      }
+    </script>
+    <script>
+      // Share Button Logic
+      const shareBtn = document.getElementById("shareBtn");
+      if (shareBtn) {
+        shareBtn.addEventListener("click", async () => {
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: document.title,
+                url: window.location.href,
+              });
+            } catch (err) {
+              // User cancelled or share failed
+              console.log('Share failed:', err);
+            }
+          } else {
+            // Fallback to clipboard
+            try {
+              await navigator.clipboard.writeText(window.location.href);
+              const originalText = shareBtn.innerHTML;
+              shareBtn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+              setTimeout(() => {
+                shareBtn.innerHTML = originalText;
+              }, 2000);
+            } catch (err) {
+              console.error('Failed to copy:', err);
+            }
+          }
+        });
+      }
     </script>
   </body>
 </html>
