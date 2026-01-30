@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://urbaninvestors.com/sitemap.xml
+Sitemap: https://www.urbaninvestors.in/sitemap.xml
 
 # Directories
 Disallow: /cgi-bin/
