@@ -41,6 +41,16 @@ class ScrollAnimations {
   init() {
     this.observeElements();
     this.setupIntersectionObserver();
+    
+    // Safety fallback: Ensure visibility after load
+    setTimeout(() => {
+        document.querySelectorAll(".animate-on-scroll, [data-animation]").forEach(el => {
+            if (getComputedStyle(el).opacity === "0" || el.style.opacity === "0") {
+                el.style.opacity = "1";
+                el.style.transform = "translateY(0)";
+            }
+        });
+    }, 1500);
   }
 
   observeElements() {
@@ -251,15 +261,6 @@ window.enquireUnit = window.enquireUnit || function () {};
 
 // DOM Content Loaded Event - Single initialization point
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("DOM Loaded - Starting initialization...");
-
-  // Debug: Check if Bootstrap is loaded
-  if (typeof bootstrap !== "undefined") {
-    console.log("Bootstrap is loaded");
-  } else {
-    console.error("Bootstrap is NOT loaded!");
-  }
-
   // Initialize website features
   initializeWebsite();
   initializeServicesPage();

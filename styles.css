@@ -706,11 +706,15 @@ p {
   transition: all var(--transition-medium);
   position: relative;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(30, 58, 138, 0.15);
+  color: inherit;
 }
 
 .project-number {
