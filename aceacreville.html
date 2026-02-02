@@ -96,6 +96,67 @@
       .text-bright-blue:hover {
         color: #60a5fa !important;
       }
+
+      /* Responsive Image Heights */
+      @media (max-width: 768px) {
+        .main-project-image {
+          height: 300px !important;
+        }
+        .gallery-image {
+          height: 300px !important;
+        }
+        #projectGallery {
+            height: 300px !important;
+        }
+
+        /* Responsive Table for Mobile */
+        .price-table thead {
+          display: none;
+        }
+        .price-table tbody, .price-table tr, .price-table td {
+          display: block;
+          width: 100%;
+        }
+        .price-table tr {
+          margin-bottom: 20px;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+        .price-table td {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          text-align: right;
+          padding: 12px 16px;
+          border-bottom: 1px solid #f3f4f6;
+        }
+        .price-table td:last-child {
+          border-bottom: none;
+          justify-content: center;
+          padding-top: 16px;
+          padding-bottom: 16px;
+        }
+        .price-table td:last-child::before {
+          display: none;
+        }
+        .price-table td::before {
+          content: attr(data-label);
+          font-weight: 600;
+          color: #4b5563;
+          text-align: left;
+        }
+        /* Special handling for the first cell containing the Unit Type */
+        .price-table td:first-child {
+          background-color: #f9fafb;
+          font-weight: bold;
+          justify-content: center;
+        }
+        .price-table td:first-child::before {
+          display: none;
+        }
+      }
     </style>
 
     <!-- Lucky Orange Analytics -->
@@ -193,7 +254,7 @@
                 >
                 <span class="mx-2 text-white">|</span>
                 <a
-                  href="#"
+                  href="https://maps.app.goo.gl/JLc42ES2W1ihgpKS6" target="_blank"
                   class="text-warning text-decoration-none fw-semibold"
                 >
                   <i class="fas fa-external-link-alt me-1"></i>See on Map
@@ -787,10 +848,10 @@
                         <span class="fw-semibold">Type A</span>
                       </div>
                     </td>
-                    <td>30x40 ft</td>
-                    <td>120 sq. yd</td>
-                    <td><span class="badge bg-success">Available</span></td>
-                    <td>
+                    <td data-label="Dimensions">30x40 ft</td>
+                    <td data-label="Area">120 sq. yd</td>
+                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
+                    <td data-label="Action">
                       <button
                         class="btn btn-outline-primary btn-sm"
                         onclick="enquireUnit('Type A')"
@@ -806,10 +867,10 @@
                         <span class="fw-semibold">Type B</span>
                       </div>
                     </td>
-                    <td>40x50 ft</td>
-                    <td>200 sq. yd</td>
-                    <td><span class="badge bg-success">Available</span></td>
-                    <td>
+                    <td data-label="Dimensions">40x50 ft</td>
+                    <td data-label="Area">200 sq. yd</td>
+                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
+                    <td data-label="Action">
                       <button
                         class="btn btn-outline-primary btn-sm"
                         onclick="enquireUnit('Type B')"
@@ -825,10 +886,10 @@
                         <span class="fw-semibold">Type C</span>
                       </div>
                     </td>
-                    <td>50x60 ft</td>
-                    <td>333 sq. yd</td>
-                    <td><span class="badge bg-warning">Limited</span></td>
-                    <td>
+                    <td data-label="Dimensions">50x60 ft</td>
+                    <td data-label="Area">333 sq. yd</td>
+                    <td data-label="Availability"><span class="badge bg-warning">Limited</span></td>
+                    <td data-label="Action">
                       <button
                         class="btn btn-outline-primary btn-sm"
                         onclick="enquireUnit('Type C')"
