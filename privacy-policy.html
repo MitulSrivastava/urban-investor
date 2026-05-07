@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Urban Investors Privacy Policy - Learn how we collect, use, and protect your personal information when you use our real estate advisory services." />
+    <meta name="robots" content="index, follow" />
+    <title>Privacy Policy | Urban Investors</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=4" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png?v=4" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png?v=4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png?v=4" />
+    <link rel="manifest" href="/images/favicon/site.webmanifest?v=4" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://urbaninvestors.in/privacy-policy.html" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet" />
+    <style>
+      .text-bright-blue { color: #3b82f6 !important; }
+      .text-bright-blue:hover { color: #60a5fa !important; }
+
+      /* Privacy Policy Page Styles */
+      .privacy-hero {
+        background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(31, 41, 55, 0.9) 100%);
+        padding: 6rem 0 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .privacy-hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+        border-radius: 50%;
+      }
+      .privacy-hero::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: -10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+      }
+
+      .privacy-content {
+        padding: 4rem 0 5rem;
+        background: var(--light-bg);
+      }
+
+      .privacy-card {
+        background: #ffffff;
+        border-radius: var(--border-radius-lg);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        padding: 3rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(30, 58, 138, 0.06);
+        transition: all var(--transition-medium);
+      }
+      .privacy-card:hover {
+        box-shadow: 0 12px 40px rgba(30, 58, 138, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .section-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: var(--gradient-primary);
+        color: white;
+        border-radius: 50%;
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-right: 1rem;
+        flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(30, 58, 138, 0.25);
+      }
+
+      .privacy-card h3 {
+        font-family: var(--font-primary);
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 1.25rem;
+      }
+
+      .privacy-card p,
+      .privacy-card li {
+        color: var(--text-muted);
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+
+      .privacy-card ul {
+        padding-left: 0;
+        list-style: none;
+      }
+      .privacy-card ul li {
+        position: relative;
+        padding-left: 1.75rem;
+        margin-bottom: 0.6rem;
+      }
+      .privacy-card ul li::before {
+        content: '\f054';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        font-size: 0.65rem;
+        color: var(--accent-color);
+      }
+
+      .privacy-card .sub-heading {
+        font-family: var(--font-accent);
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: var(--text-dark);
+        margin-top: 1.25rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .privacy-toc {
+        background: #ffffff;
+        border-radius: var(--border-radius-lg);
+        padding: 2rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(30, 58, 138, 0.06);
+        position: sticky;
+        top: 120px;
+      }
+      .privacy-toc h5 {
+        font-family: var(--font-primary);
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 1.25rem;
+        font-size: 1.15rem;
+      }
+      .privacy-toc a {
+        display: block;
+        padding: 0.5rem 0.75rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        transition: all var(--transition-fast);
+        font-weight: 500;
+      }
+      .privacy-toc a:hover {
+        color: var(--primary-color);
+        background: rgba(30, 58, 138, 0.05);
+        padding-left: 1rem;
+      }
+
+      .contact-highlight {
+        background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(212, 165, 116, 0.08) 100%);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        border-left: 4px solid var(--accent-color);
+      }
+      .contact-highlight a {
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .contact-highlight a:hover {
+        text-decoration: underline;
+      }
+
+      .effective-date-badge {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        padding: 0.5rem 1.25rem;
+        backdrop-filter: blur(10px);
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      @media (max-width: 991px) {
+        .privacy-toc { position: static; margin-bottom: 2rem; }
+        .privacy-card { padding: 2rem; }
+      }
+      @media (max-width: 576px) {
+        .privacy-card { padding: 1.5rem; }
+        .privacy-hero { padding: 5rem 0 3rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-lg navbar-modern" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a class="navbar-brand fw-bold brand-logo d-flex align-items-center" href="index.html" aria-label="Urban Investors Home">
+          <img src="images/logo/IMG-20251123-WA00103.jpg" alt="Urban Investors Logo" class="img-fluid me-2" style="height: 50px; width: auto" loading="eager" />
+          <span class="text-primary brand-urban">Urban</span>
+          <span class="text-primary brand-investors"> Investors</span>
+        </a>
+        <button class="navbar-toggler border-0 custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="properties.html">Properties</a></li>
+            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item">
+              <a class="btn btn-primary ms-3 px-4 py-2 btn-cta" href="contact.html">
+                <i class="fas fa-arrow-right me-2"></i>Get Started
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="privacy-hero">
+      <div class="container position-relative" style="z-index: 2;">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8">
+            <div class="effective-date-badge mb-4 mx-auto" style="width: fit-content;">
+              <i class="fas fa-calendar-alt me-2"></i>Effective Date: May 4, 2026
+            </div>
+            <h1 class="display-4 fw-bold text-white mb-3">Privacy Policy</h1>
+            <p class="lead text-white-75 mb-0">
+              Your privacy matters to us. Learn how Urban Investors collects, uses, and safeguards your personal information.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="privacy-content">
+      <div class="container">
+        <div class="row">
+          <!-- Table of Contents Sidebar -->
+          <div class="col-lg-3">
+            <div class="privacy-toc">
+              <h5><i class="fas fa-list-ul me-2"></i>Contents</h5>
+              <a href="#introduction">1. Introduction</a>
+              <a href="#information-collect">2. Information We Collect</a>
+              <a href="#how-we-use">3. How We Use Your Information</a>
+              <a href="#consent">4. Consent for Communication</a>
+              <a href="#sharing">5. Sharing of Information</a>
+              <a href="#cookies">6. Cookies & Tracking</a>
+              <a href="#security">7. Data Security</a>
+              <a href="#third-party">8. Third-Party Links</a>
+              <a href="#retention">9. Data Retention</a>
+              <a href="#rights">10. Your Rights</a>
+            </div>
+          </div>
+
+          <!-- Policy Content -->
+          <div class="col-lg-9">
+
+            <!-- 1. Introduction -->
+            <div class="privacy-card" id="introduction">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">1</span>
+                <h3 class="mb-0">Introduction</h3>
+              </div>
+              <p>Welcome to Urban Investors ("Company," "we," "our," or "us"). We are a real estate advisory and consulting platform specializing in premium residential and commercial properties in Noida, Yamuna Expressway, and NCR.</p>
+              <p>We are committed to protecting your personal information and ensuring transparency in how we collect and use your data.</p>
+              <p class="mb-0">By accessing or using our website (<a href="https://urbaninvestors.in" class="text-primary fw-600" target="_blank" rel="noopener noreferrer">https://urbaninvestors.in</a>), you agree to this Privacy Policy.</p>
+            </div>
+
+            <!-- 2. Information We Collect -->
+            <div class="privacy-card" id="information-collect">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">2</span>
+                <h3 class="mb-0">Information We Collect</h3>
+              </div>
+
+              <p class="sub-heading"><i class="fas fa-user me-2 text-accent"></i>a. Personal Information</p>
+              <p>When you interact with our website (inquiry forms, contact forms, callbacks), we may collect:</p>
+              <ul>
+                <li>Full Name</li>
+                <li>Phone Number</li>
+                <li>Email Address</li>
+                <li>Preferred Location</li>
+                <li>Budget & investment preferences</li>
+              </ul>
+
+              <p class="sub-heading"><i class="fas fa-building me-2 text-accent"></i>b. Property & Inquiry Data</p>
+              <ul>
+                <li>Property/project you are interested in</li>
+                <li>Type (Residential / Commercial / Investment)</li>
+                <li>Site visit requests</li>
+                <li>Communication preferences</li>
+              </ul>
+
+              <p class="sub-heading"><i class="fas fa-laptop me-2 text-accent"></i>c. Technical Data</p>
+              <ul>
+                <li>IP address</li>
+                <li>Browser type and version</li>
+                <li>Device type</li>
+                <li>Pages visited and time spent on website</li>
+              </ul>
+            </div>
+
+            <!-- 3. How We Use Your Information -->
+            <div class="privacy-card" id="how-we-use">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">3</span>
+                <h3 class="mb-0">How We Use Your Information</h3>
+              </div>
+              <p>We use your data to:</p>
+              <ul>
+                <li>Respond to your property inquiries</li>
+                <li>Provide suitable property recommendations</li>
+                <li>Arrange site visits and consultations</li>
+                <li>Connect you with developers and project representatives</li>
+                <li>Share project updates, offers, and investment opportunities</li>
+                <li>Improve our website and services</li>
+              </ul>
+              <p>We may contact you via:</p>
+              <ul>
+                <li>Phone calls</li>
+                <li>SMS</li>
+                <li>WhatsApp</li>
+                <li>Email</li>
+              </ul>
+            </div>
+
+            <!-- 4. Consent for Communication -->
+            <div class="privacy-card" id="consent">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">4</span>
+                <h3 class="mb-0">Consent for Communication</h3>
+              </div>
+              <p>By submitting your details on our website, you:</p>
+              <ul>
+                <li>Authorize Urban Investors to contact you via call, SMS, WhatsApp, or email</li>
+                <li>Agree to receive property-related updates and promotional communication</li>
+                <li>Acknowledge that communication may occur even if your number is registered under DND/NCPR</li>
+              </ul>
+            </div>
+
+            <!-- 5. Sharing of Information -->
+            <div class="privacy-card" id="sharing">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">5</span>
+                <h3 class="mb-0">Sharing of Information</h3>
+              </div>
+              <p><strong>We do not sell your personal data.</strong></p>
+              <p>We may share your information with:</p>
+              <ul>
+                <li>Real estate developers and builder partners</li>
+                <li>Channel partners and sales teams</li>
+                <li>CRM and marketing automation tools</li>
+                <li>Legal or regulatory authorities (if required)</li>
+              </ul>
+              <p class="mb-0">This is strictly for fulfilling your inquiry and providing services.</p>
+            </div>
+
+            <!-- 6. Cookies & Tracking -->
+            <div class="privacy-card" id="cookies">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">6</span>
+                <h3 class="mb-0">Cookies & Tracking</h3>
+              </div>
+              <p>We use cookies and similar technologies to:</p>
+              <ul>
+                <li>Enhance your browsing experience</li>
+                <li>Analyze website performance</li>
+                <li>Understand user behavior</li>
+              </ul>
+              <p class="mb-0">You can disable cookies via browser settings.</p>
+            </div>
+
+            <!-- 7. Data Security -->
+            <div class="privacy-card" id="security">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">7</span>
+                <h3 class="mb-0">Data Security</h3>
+              </div>
+              <p>We implement reasonable security measures to protect your data. However, no online platform can guarantee complete security.</p>
+            </div>
+
+            <!-- 8. Third-Party Links -->
+            <div class="privacy-card" id="third-party">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">8</span>
+                <h3 class="mb-0">Third-Party Links</h3>
+              </div>
+              <p class="mb-0">Our website may contain links to third-party websites (developers, property listings, etc.). We are not responsible for their privacy practices or content.</p>
+            </div>
+
+            <!-- 9. Data Retention -->
+            <div class="privacy-card" id="retention">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">9</span>
+                <h3 class="mb-0">Data Retention</h3>
+              </div>
+              <p>We retain your information:</p>
+              <ul>
+                <li>As long as required to fulfill your inquiry</li>
+                <li>For internal record-keeping</li>
+                <li>To comply with legal obligations</li>
+              </ul>
+            </div>
+
+            <!-- 10. Your Rights -->
+            <div class="privacy-card" id="rights">
+              <div class="d-flex align-items-center mb-3">
+                <span class="section-number">10</span>
+                <h3 class="mb-0">Your Rights</h3>
+              </div>
+              <p>You may:</p>
+              <ul>
+                <li>Request access to your personal data</li>
+                <li>Request correction or deletion</li>
+                <li>Opt out of marketing communications</li>
+              </ul>
+              <p>To exercise any of your rights, contact us at:</p>
+              <div class="contact-highlight">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-envelope me-3 text-primary fa-lg"></i>
+                  <div>
+                    <small class="text-muted d-block">Email Us</small>
+                    <a href="mailto:info@urbaninvestors.in">info@urbaninvestors.in</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6 text-center text-md-start">
+            <h5 class="fw-bold mb-4">
+              <span class="text-bright-blue">Urban</span>Investors
+            </h5>
+            <p class="text-white-50 mb-4">
+              Your trusted guide for premium residential and commercial property
+              in Delhi NCR and Yamuna Expressway. We simplify property
+              investment with honest consultation and verified project options.
+            </p>
+            <div class="social-links d-flex justify-content-center justify-content-md-start">
+              <a href="https://www.facebook.com/profile.php?id=61586093812318" class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f text-white"></i></a>
+              <a href="https://www.linkedin.com/company/urban-investors/?originalSubdomain=in" class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in text-white"></i></a>
+              <a href="https://wa.me/917705015689" class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp text-white"></i></a>
+              <a href="https://www.instagram.com/investors_urban/?igsh=MXhxNnUxemxzNDM4cA%3D%3D#" class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram text-white"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center text-md-start">
+            <h6 class="fw-bold mb-4 text-bright-blue">Quick Links</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+              <li class="mb-2"><a href="about.html" class="text-white-50 text-decoration-none">About</a></li>
+              <li class="mb-2"><a href="properties.html" class="text-white-50 text-decoration-none">Properties</a></li>
+              <li class="mb-2"><a href="services.html" class="text-white-50 text-decoration-none">Services</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center text-md-start">
+            <h6 class="fw-bold mb-4 text-bright-blue">Our Properties</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="eldecoballadsofbliss.html" class="text-white-50 text-decoration-none">Eldeco Ballads Of Bliss</a></li>
+              <li class="mb-2"><a href="dasnac.html" class="text-white-50 text-decoration-none">Dasnac Yuva</a></li>
+              <li class="mb-2"><a href="palmvillage.html" class="text-white-50 text-decoration-none">Gaur Chrysalis</a></li>
+              <li class="mb-2"><a href="migsunnehru.html" class="text-white-50 text-decoration-none">Migsun Nehru Place</a></li>
+              <li class="mb-2"><a href="properties.html" class="text-white-50 text-decoration-none">View All Properties</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center text-md-start">
+            <h6 class="fw-bold mb-4 text-bright-blue">Contact Info</h6>
+            <ul class="list-unstyled">
+              <li class="mb-3">
+                <div class="d-flex align-items-start justify-content-center justify-content-md-start">
+                  <i class="fas fa-envelope me-3 mt-1 text-white-50"></i>
+                  <span class="text-white-50">info@urbaninvestors.in</span>
+                </div>
+              </li>
+              <li class="mb-3">
+                <div class="d-flex align-items-start justify-content-center justify-content-md-start">
+                  <i class="fas fa-phone me-3 mt-1 text-white-50"></i>
+                  <span class="text-white-50">7705015689</span>
+                </div>
+              </li>
+              <li class="mb-3">
+                <div class="d-flex align-items-start justify-content-center justify-content-md-start">
+                  <i class="fas fa-map-marker-alt me-3 mt-1 text-white-50"></i>
+                  <span class="text-white-50">Corporate Park Sector 142, Noida, Uttar Pradesh 201304</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4 border-secondary" />
+        <div class="row align-items-center g-4">
+          <div class="col-md-6">
+            <p class="text-white-75 mb-0 text-center text-md-start">
+              &copy; 2026 Urban Investors. All rights reserved.
+            </p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <a href="privacy-policy.html" class="text-bright-blue text-decoration-none me-4">Privacy Policy</a>
+            <a href="terms-and-conditions.html" class="text-bright-blue text-decoration-none me-4"
+              >Terms of Service</a
+            >
+            <a href="cookie-policy.html" class="text-bright-blue text-decoration-none"
+              >Cookie Policy</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

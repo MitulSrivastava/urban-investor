@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Check if we're on a property page and initialize accordingly
   if (document.querySelector(".hero-section")) {
     initializePropertyPage();
-  }
+  }k
 });
 
 // Export property functions for global access
