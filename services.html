@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYY9YSKPZY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EYY9YSKPZY');
+    </script>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -8,11 +17,15 @@
     />
     <meta
       name="description"
-      content="Urban Investors Services - Comprehensive real estate services for luxury property investment. Buy, sell, rent properties with professional expertise."
+      content="Urban Investors Services - Expert real estate advisory for luxury property buyers and investors. We offer end-to-end support: property search, legal documentation, home loans, and investment consultation across Delhi NCR and Yamuna Expressway."
     />
-    <title>
-      Our Services - Urban Investors | Luxury Real Estate Excellence
-    </title>
+    <meta
+      name="keywords"
+      content="real estate services, property advisory Delhi NCR, luxury property consultation, home loan assistance, property documentation, Yamuna Expressway investment, urban investors services"
+    />
+    <meta name="author" content="Urban Investors" />
+    <meta name="robots" content="index, follow" />
+    <title>Our Services | Urban Investors - Luxury Real Estate Advisory Delhi NCR</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=4" />
@@ -29,6 +42,10 @@
     <meta property="og:image" content="https://urbaninvestors.in/images/preview.png?v=4" />
     <meta property="og:url" content="https://urbaninvestors.in/services.html" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Urban Investors" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://urbaninvestors.in/services.html" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -36,23 +53,22 @@
     <meta name="twitter:description" content="Experience end-to-end real estate excellence. We offer investment advisory, portfolio management, and exclusive access to off-market properties." />
     <meta name="twitter:image" content="https://urbaninvestors.in/images/preview.png?v=4" />
 
+    <!-- Performance: Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+
     <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Font Awesome Icons -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
+    <!-- Font Awesome Icons (async) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" /></noscript>
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Google Fonts (async) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
 
     <!-- Custom CSS -->
     <link href="styles.css" rel="stylesheet" />
@@ -64,9 +80,9 @@
         color: #60a5fa !important;
       }
     </style>
-
-    <!-- Lucky Orange Analytics -->
-    <script async defer src="https://tools.luckyorange.com/core/lo.js?site-id=ee9ad665"></script>
+  
+    <!-- Lead Magnet Components -->
+    <link href="lead-magnet.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -81,7 +97,7 @@
           aria-label="Urban Investors Home"
         >
           <img
-            src="images/logo/IMG-20251123-WA00103.jpg"
+            src="images/logo/IMG-20251123-WA00103.webp"
             alt="Urban Investors Logo"
             class="img-fluid me-2"
             style="height: 50px; width: auto"
@@ -119,14 +135,8 @@
               <a class="nav-link active" href="services.html">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="btn btn-primary ms-3 px-4 py-2 btn-cta"
-                href="contact.html"
-              >
-                <i class="fas fa-arrow-right me-2"></i>Get Started
+              <a class="btn btn-primary ms-3 px-4 py-2 btn-cta" href="contact.html">
+                Contact
               </a>
             </li>
           </ul>
@@ -303,9 +313,10 @@
           <div class="col-lg-6">
             <div class="service-image">
               <img
-                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Luxury home exterior"
-                class="img-fluid rounded shadow-lg"
+                src="images/services/luxury_buy_home.webp"
+                alt="Luxury Modern Residential Villa Exterior"
+                class="img-fluid rounded shadow-lg w-100"
+                style="height: 450px; object-fit: cover;"
               />
             </div>
           </div>
@@ -724,9 +735,9 @@
               <span class="text-bright-blue">Urban</span>Investors
             </h5>
             <p class="text-white-50 mb-4">
-              Redefining luxury real estate investment through expertise,
-              exclusivity, and exceptional service for discerning clients
-              worldwide.
+              Your trusted guide for premium residential and commercial property
+              in Delhi NCR and Yamuna Expressway. We simplify property
+              investment with honest consultation and verified project options.
             </p>
             <div class="social-links d-flex justify-content-center justify-content-md-start">
               <a
@@ -773,7 +784,7 @@
             <h6 class="fw-bold mb-4 text-bright-blue">Quick Links</h6>
             <ul class="list-unstyled">
               <li class="mb-2">
-                <a href="index.html" class="text-white-50 text-decoration-none"
+                <a href="#home" class="text-white-50 text-decoration-none"
                   >Home</a
                 >
               </li>
@@ -783,9 +794,7 @@
                 >
               </li>
               <li class="mb-2">
-                <a
-                  href="index.html#properties"
-                  class="text-white-50 text-decoration-none"
+                <a href="#properties" class="text-white-50 text-decoration-none"
                   >Properties</a
                 >
               </li>
@@ -796,13 +805,7 @@
                   >Services</a
                 >
               </li>
-              <li class="mb-2">
-                <a
-                  href="contact.html"
-                  class="text-white-50 text-decoration-none"
-                  >Contact</a
-                >
-              </li>
+
             </ul>
           </div>
 
@@ -810,44 +813,22 @@
             <h6 class="fw-bold mb-4 text-bright-blue">Our Properties</h6>
             <ul class="list-unstyled">
               <li class="mb-2">
-                <a
-                  href="eldecoballadsofbliss.html"
-                  class="text-white-50 text-decoration-none"
-                  >Eldeco Ballads Of Bliss</a
-                >
+                <a href="eldecoballadsofbliss.html" class="text-white-50 text-decoration-none">Eldeco Ballads Of Bliss</a>
               </li>
               <li class="mb-2">
-                <a href="dasnac.html" class="text-white-50 text-decoration-none"
-                  >Dasnac Yuva</a
-                >
+                <a href="dasnac.html" class="text-white-50 text-decoration-none">Dasnac Yuva</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="palmvillage.html"
-                  class="text-white-50 text-decoration-none"
-                  >Gaur Chrysalis</a
-                >
+                <a href="palmvillage.html" class="text-white-50 text-decoration-none">Palm Village</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="migsunnehru.html"
-                  class="text-white-50 text-decoration-none"
-                  >Migsun Nehru Place</a
-                >
+                <a href="eldecoechoesofeden.html" class="text-white-50 text-decoration-none">Eldeco Echoes Of Eden</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="aceacreville.html"
-                  class="text-white-50 text-decoration-none"
-                  >Ace Acreville</a
-                >
+                <a href="sobharivana.html" class="text-white-50 text-decoration-none">Sobha Rivana</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="properties.html"
-                  class="text-white-50 text-decoration-none"
-                  >View All Properties</a
-                >
+                <a href="properties.html" class="text-white-50 text-decoration-none">View All Properties</a>
               </li>
             </ul>
           </div>
@@ -904,10 +885,10 @@
     </footer>
 
     <!-- Bootstrap 5 JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 
     <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
     <!-- Google Sheets Integration Script -->
     <script>
@@ -1044,5 +1025,8 @@
         });
       })();
     </script>
+  
+    <!-- Lead Magnet JS -->
+    <script src="lead-magnet.js" defer></script>
   </body>
 </html>

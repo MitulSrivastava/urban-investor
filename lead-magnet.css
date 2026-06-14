@@ -1,0 +1,233 @@
+/* ============================================
+   LEAD MAGNET COMPONENTS — Urban Investors
+   Floating WhatsApp (Desktop), Sticky CTA (Mobile), Exit-Intent
+   ============================================ */
+
+/* --- Floating WhatsApp Button (Desktop Only) --- */
+.ui-floating-wa {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9998;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  animation: ui-wa-pulse 2s infinite;
+}
+.ui-floating-wa:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+}
+.ui-floating-wa i {
+  font-size: 32px;
+  color: #fff;
+}
+
+@keyframes ui-wa-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70%  { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* --- Mobile Sticky CTA Bar (Mobile Only) --- */
+.ui-mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1040;
+  background: #ffffff;
+  padding: 8px 12px;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+}
+.ui-mobile-cta .ui-mcta-inner {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+.ui-mobile-cta .ui-mcta-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  letter-spacing: 0.5px;
+}
+.ui-mcta-call {
+  background: #ffffff;
+  color: #1e3a8a !important;
+  border: 1px solid #1e3a8a;
+}
+.ui-mcta-wa {
+  background: #1e3a8a;
+  color: #ffffff !important;
+  border: 1px solid #1e3a8a;
+}
+.ui-mcta-btn i {
+  font-size: 16px;
+}
+
+/* Responsive Rules */
+@media (max-width: 768px) {
+  .ui-floating-wa { display: none !important; } /* Hide WhatsApp bubble on mobile */
+  .ui-mobile-cta { display: block; } /* Show sticky bar on mobile */
+  body { padding-bottom: 56px !important; } /* Make room for sticky bar */
+}
+@media (min-width: 769px) {
+  .ui-mobile-cta { display: none !important; } /* Hide sticky bar on desktop */
+}
+
+/* --- Exit-Intent Popup --- */
+.ui-exit-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 10001;
+  align-items: center;
+  justify-content: center;
+  animation: ui-fadeIn 0.3s ease;
+}
+.ui-exit-overlay.ui-show {
+  display: flex;
+}
+
+.ui-exit-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 440px;
+  padding: 40px 32px;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  animation: ui-slideUp 0.4s ease;
+  text-align: center;
+}
+.ui-exit-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.ui-exit-close:hover { color: #333; }
+
+.ui-exit-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+.ui-exit-icon i { font-size: 30px; color: #fff; }
+
+.ui-exit-modal h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  font-family: 'Playfair Display', serif;
+}
+.ui-exit-modal p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.ui-exit-modal .ui-exit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ui-exit-modal .ui-exit-input {
+  padding: 14px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ui-exit-modal .ui-exit-input:focus {
+  border-color: #1e3a8a;
+}
+.ui-exit-modal .ui-exit-submit {
+  padding: 16px;
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ui-exit-modal .ui-exit-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+}
+.ui-exit-modal .ui-exit-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+.ui-exit-modal .ui-exit-trust i { color: #10b981; }
+
+.ui-exit-modal .ui-exit-success {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+.ui-exit-modal .ui-exit-success i {
+  font-size: 50px;
+  color: #10b981;
+  margin-bottom: 16px;
+}
+.ui-exit-modal .ui-exit-success h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+.ui-exit-modal .ui-exit-success p {
+  color: #6b7280;
+}
+
+/* --- Animations --- */
+@keyframes ui-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ui-slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}

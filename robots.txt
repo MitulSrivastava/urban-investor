@@ -1,10 +1,12 @@
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://urbaninvestors.in/sitemap.xml
 
-# Directories
+# Block access to server directories
 Disallow: /cgi-bin/
+Disallow: /.git/
 
-# Files
-Disallow: *.pdf$
+# Crawl-delay for responsible crawling
+Crawl-delay: 1

@@ -308,109 +308,71 @@ class EnhancedNavbar {
 }
 
 /**
- * Setup hot selling projects carousel
+ * Setup hot selling projects carousel with native horizontal scroll and buttons
  */
 function setupHotProjectsCarousel() {
-  const carousel = document.querySelector(".hot-projects-carousel");
+  const wrapper = document.querySelector(".hot-projects-wrapper");
+  if (!wrapper) return;
+
+  const carousel = wrapper.querySelector(".hot-projects-carousel");
   if (!carousel) return;
 
   const container = carousel.querySelector(".projects-container");
-  const prevBtn = carousel.querySelector(".carousel-prev");
-  const nextBtn = carousel.querySelector(".carousel-next");
+  const prevBtn = wrapper.querySelector(".carousel-prev");
+  const nextBtn = wrapper.querySelector(".carousel-next");
   const cards = container.querySelectorAll(".project-card");
 
   if (!container || !prevBtn || !nextBtn || cards.length === 0) return;
 
-  let currentIndex = 0;
-  const cardWidth = 320 + 16; // card width + gap
-
-  function getVisibleCards() {
-    const containerWidth = container.parentElement.offsetWidth;
-    const cardWidthWithGap = 320 + 16;
-    const visibleCards = Math.floor(containerWidth / cardWidthWithGap);
-    return Math.max(1, Math.min(visibleCards, cards.length));
+  function getScrollStep() {
+    const card = cards[0];
+    const style = window.getComputedStyle(container);
+    const gap = parseFloat(style.gap) || 16;
+    return card.offsetWidth + gap;
   }
 
-  function getMaxIndex() {
-    const visibleCards = getVisibleCards();
-    return Math.max(0, cards.length - visibleCards);
-  }
-
-  function updateCarousel() {
-    const translateX = -currentIndex * cardWidth;
-    container.style.transform = `translateX(${translateX}px)`;
-
-    const maxIndex = getMaxIndex();
-
-    prevBtn.style.opacity = currentIndex === 0 ? "0.5" : "1";
-    nextBtn.style.opacity = currentIndex >= maxIndex ? "0.5" : "1";
-    prevBtn.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
-    nextBtn.style.pointerEvents = currentIndex >= maxIndex ? "none" : "auto";
-  }
-
-  prevBtn.addEventListener("click", () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateCarousel();
-    }
-  });
-
-  nextBtn.addEventListener("click", () => {
-    const maxIndex = getMaxIndex();
-    if (currentIndex < maxIndex) {
-      currentIndex++;
-      updateCarousel();
-    }
-  });
-
-  // Touch/swipe support
-  let startX = 0;
-  let isDragging = false;
-
-  container.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-  });
-
-  container.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
+  prevBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
     e.preventDefault();
+    const step = getScrollStep();
+    carousel.scrollBy({ left: -step, behavior: "smooth" });
   });
 
-  container.addEventListener("touchend", (e) => {
-    if (!isDragging) return;
+  nextBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const step = getScrollStep();
+    carousel.scrollBy({ left: step, behavior: "smooth" });
+  });
 
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-    const maxIndex = getMaxIndex();
-
-    if (Math.abs(diff) > 50) {
-      if (diff > 0 && currentIndex < maxIndex) {
-        currentIndex++;
-      } else if (diff < 0 && currentIndex > 0) {
-        currentIndex--;
-      }
-      updateCarousel();
+  function updateArrowVisibility() {
+    const scrollLeft = carousel.scrollLeft;
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+    
+    // Fade left arrow if at start
+    if (scrollLeft <= 5) {
+      prevBtn.style.opacity = "0.4";
+      prevBtn.style.pointerEvents = "none";
+    } else {
+      prevBtn.style.opacity = "1";
+      prevBtn.style.pointerEvents = "auto";
     }
+    
+    // Fade right arrow if at end
+    if (scrollLeft >= maxScroll - 5) {
+      nextBtn.style.opacity = "0.4";
+      nextBtn.style.pointerEvents = "none";
+    } else {
+      nextBtn.style.opacity = "1";
+      nextBtn.style.pointerEvents = "auto";
+    }
+  }
 
-    isDragging = false;
-  });
-
-  updateCarousel();
-
-  const totalWidth = cards.length * cardWidth;
-  container.style.width = `${totalWidth}px`;
-
-  window.addEventListener(
-    "resize",
-    utils.debounce(() => {
-      const newMaxIndex = getMaxIndex();
-      if (currentIndex > newMaxIndex) {
-        currentIndex = newMaxIndex;
-      }
-      updateCarousel();
-    }, 250)
-  );
+  carousel.addEventListener("scroll", updateArrowVisibility);
+  window.addEventListener("resize", updateArrowVisibility);
+  
+  // Initial check
+  setTimeout(updateArrowVisibility, 100);
 }
 
 /**
@@ -1274,7 +1236,7 @@ function setupInvestmentTracking() {
  */
 function setupPropertyFiltering() {
   const searchForm = document.getElementById("propertySearchForm");
-  const propertyCards = document.querySelectorAll("#properties-grid .col-lg-6");
+  const propertyCards = document.querySelectorAll("#properties-grid > div");
 
   if (!searchForm) return;
 
@@ -1302,7 +1264,7 @@ function filterProperties() {
   const possession = document.getElementById("possession")?.value;
   const amenities = document.getElementById("amenities")?.value;
 
-  const propertyCards = document.querySelectorAll("#properties-grid .col-lg-6");
+  const propertyCards = document.querySelectorAll("#properties-grid > div");
   let visibleCount = 0;
 
   propertyCards.forEach((card) => {

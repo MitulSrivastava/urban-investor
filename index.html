@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYY9YSKPZY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EYY9YSKPZY');
+    </script>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -46,22 +55,6 @@
 
     <meta property="og:site_name" content="Urban Investors" />
 
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Urban Investors | Luxury Real Estate Excellence"
-    />
-    <meta
-      name="twitter:description"
-      content="Premium luxury real estate for high-net-worth clients. Discover exclusive properties and investment opportunities in Noida and Yamuna Expressway."
-    />
-    <meta
-      name="twitter:image"
-      content="https://urbaninvestors.in/images/logo/IMG-20251123-WA00103.jpg"
-    />
-    <meta name="twitter:site" content="@urbaninvestors" />
-
     <!-- Structured Data -->
     <script type="application/ld+json">
       {
@@ -89,37 +82,50 @@
       }
     </script>
 
+    <!-- Performance: Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+
+    <!-- Preload LCP resources: hero background & logo -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=75" />
+    <link rel="preload" as="image" href="images/logo/IMG-20251123-WA00103.webp" />
+
     <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Font Awesome Icons -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
+    <!-- Font Awesome Icons (async) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" /></noscript>
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Google Fonts (async) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+
+    <!-- Critical CSS inline for above-the-fold rendering -->
+    <style>
+      :root{--primary-color:#1e3a8a;--accent-color:#d4a574;--font-secondary:"Inter",sans-serif;--font-accent:"Poppins",sans-serif;--font-primary:"Playfair Display",serif;--transition-medium:0.3s cubic-bezier(0.4,0,0.2,1);--border-radius:12px;--shadow-medium:0 4px 6px rgba(0,0,0,0.1)}
+      *{margin:0;padding:0;box-sizing:border-box}
+      body{font-family:var(--font-secondary),sans-serif;font-weight:400;line-height:1.7;color:#1f2937;background:#fff;padding-top:100px;overflow-x:hidden}
+      .navbar-modern{padding:1.5rem 0;background:#fff;position:fixed;width:100%;top:0;z-index:1040;box-shadow:0 4px 6px rgba(0,0,0,0.1)}
+      .hero-section{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)}
+      .hero-background{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url("https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=75");background-size:cover;background-position:center;opacity:.8}
+      .hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(30,58,138,.85) 0%,rgba(31,41,55,.75) 50%,rgba(15,23,42,.9) 100%);z-index:2}
+      h1,h2,h3,h4,h5,h6{font-family:var(--font-primary),serif;font-weight:600;line-height:1.3}
+      .text-bright-blue{color:#3b82f6!important}
+      .text-bright-blue:hover{color:#60a5fa!important}
+      /* Prevent layout shift */
+      img{max-width:100%;height:auto}
+      .navbar-brand img{height:50px;width:auto}
+    </style>
 
     <!-- Custom CSS -->
     <link href="styles.css" rel="stylesheet" />
-    <style>
-      .text-bright-blue {
-        color: #3b82f6 !important;
-      }
-      .text-bright-blue:hover {
-        color: #60a5fa !important;
-      }
-    </style>
 
-    <!-- Lucky Orange Analytics -->
-    <script async defer src="https://tools.luckyorange.com/core/lo.js?site-id=ee9ad665"></script>
+    <!-- Lead Magnet Components -->
+    <link href="lead-magnet.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Skip Links for Accessibility -->
@@ -139,11 +145,14 @@
           aria-label="Urban Investors Home"
         >
           <img
-            src="images/logo/IMG-20251123-WA00103.jpg"
+            src="images/logo/IMG-20251123-WA00103.webp"
             alt="Urban Investors Logo"
             class="img-fluid me-2"
+            width="50"
+            height="50"
             style="height: 50px; width: auto"
             loading="eager"
+            fetchpriority="high"
           />
           <span class="text-primary brand-urban">Urban</span>
           <span class="text-primary brand-investors"> Investors</span>
@@ -178,14 +187,8 @@
               <a class="nav-link" href="services.html">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link smooth-scroll" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="btn btn-primary ms-3 px-4 py-2 btn-cta"
-                href="contact.html"
-              >
-                <i class="fas fa-arrow-right me-2"></i>Get Started
+              <a class="btn btn-primary ms-3 px-4 py-2 btn-cta" href="contact.html">
+                Contact
               </a>
             </li>
           </ul>
@@ -442,204 +445,212 @@
         <!-- Hot Projects Carousel -->
         <div class="row">
           <div class="col-12">
-            <div class="hot-projects-carousel position-relative">
-              <div class="projects-container">
-                <!-- Project 1 -->
-                <a href="experionsaatori.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.1s">
+            <div class="hot-projects-wrapper position-relative">
+              <div class="hot-projects-carousel">
+                <div class="projects-container">
+                <!-- Project 1 (Gaur Chrysalis 2) -->
+                <a href="gaurchrysalis2.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.0s">
                   <div class="project-number">1</div>
-                  <div class="project-image-container">
-                    <img
-                      src="images/experion/imgi_18_banner.jpg"
-                      alt="Experion Saatori"
-                      class="project-image"
-                    />
+                  <div class="project-image-container position-relative">
+                    <img src="images/chryslis-2/27.webp" alt="Gaur Chrysalis 2" class="project-image" />
+                    
                   </div>
                   <div class="project-details p-4">
-                    <h5 class="fw-bold mb-2">Experion Saatori</h5>
-                    <p class="text-muted mb-3">Sector 151, Noida Expressway</p>
-                    <div class="project-price">
-                      <span class="text-primary fw-bold h6"
-                        >₹ 3.6 Cr Onwards*</span
-                      >
+                    <h5 class="fw-bold mb-2 text-dark">Gaur Chrysalis 2</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Sector 22D, Yamuna Exp.</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>3, 4 BHK</small>
+
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹1.38 Cr+</span>
                     </div>
                   </div>
                 </a>
+                <!-- Project 1 -->
+                <a href="eldeco-7-peaks.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.0s">
+                  <div class="project-number">1</div>
+                  <div class="project-image-container position-relative">
+                    <img src="images/eldeco-7-peaks/hero.webp" alt="Eldeco 7 Peaks" class="project-image" />
+                    
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2 text-dark">Eldeco 7 Peaks</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Omicron 1A, Gr. Noida</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>3, 4 BHK & Penthouse</small>
 
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹2.34 Cr*</span>
+                    </div>
+                  </div>
+                </a>
                 <!-- Project 2 -->
-                <div
-                  class="project-card animate-on-scroll"
-                  data-animation="fadeInUp"
-                  data-delay="0.2s"
-                >
+                <a href="sobharivana.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.1s">
                   <div class="project-number">2</div>
-                  <div class="project-image-container">
-                    <img
-                      src="images/home/ace platinum.jpg"
-                      alt="Ace Platinum"
-                      class="project-image"
-                    />
+                  <div class="project-image-container position-relative">
+                    <img src="images/sobharivana/imgi_3_banner1.webp" alt="Sobha Rivana" class="project-image" />
+                    
                   </div>
                   <div class="project-details p-4">
-                    <h5 class="fw-bold mb-2">Ace Platinum</h5>
-                    <p class="text-muted mb-3">Sector 70A, Noida</p>
-                    <div class="project-price">
-                      <span class="text-primary fw-bold h6"
-                        >₹ 85 Lakh to 1.2 Cr</span
-                      >
+                    <h5 class="fw-bold mb-2 text-dark">Sobha Rivana</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Sec 1, Noida Ext.</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>3, 4 & 5 BHK</small>
+
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹2.00 Cr*</span>
                     </div>
                   </div>
-                </div>
-
+                </a>
                 <!-- Project 3 -->
-                <div
-                  class="project-card animate-on-scroll"
-                  data-animation="fadeInUp"
-                  data-delay="0.3s"
-                >
+                <a href="eldecoechoesofeden.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.2s">
                   <div class="project-number">3</div>
-                  <div class="project-image-container">
-                    <img
-                      src="images/home/Mahagun-Medalleo.webp"
-                      alt="Mahagun Medalleo"
-                      class="project-image"
-                    />
+                  <div class="project-image-container position-relative">
+                    <img src="images/eldecoechoesofeden/imgi_2_desktop.webp" alt="Eldeco Echoes Of Eden" class="project-image" />
+                    
                   </div>
                   <div class="project-details p-4">
-                    <h5 class="fw-bold mb-2">Mahagun Medalleo</h5>
-                    <p class="text-muted mb-3">Sector 107, Noida</p>
-                    <div class="project-price">
-                      <span class="text-primary fw-bold h6"
-                        >₹ 1.5 Cr to 2.8 Cr</span
-                      >
+                    <h5 class="fw-bold mb-2 text-dark">Eldeco Echoes Of Eden</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Sector 22D, Yamuna Exp.</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>3 BHK & Penthouse</small>
+
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹1.40 Cr*</span>
                     </div>
                   </div>
-                </div>
-
+                </a>
                 <!-- Project 4 -->
-                <div
-                  class="project-card animate-on-scroll"
-                  data-animation="fadeInUp"
-                  data-delay="0.4s"
-                >
+                <a href="max-105.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.3s">
                   <div class="project-number">4</div>
-                  <div class="project-image-container">
-                    <img
-                      src="images/home/godrejwoods.jpg"
-                      alt="Godrej Woods"
-                      class="project-image"
-                    />
+                  <div class="project-image-container position-relative">
+                    <img src="images/max105/imgi_16_banner.webp" alt="Max 105" class="project-image" />
+                    
                   </div>
                   <div class="project-details p-4">
-                    <h5 class="fw-bold mb-2">Godrej Woods</h5>
-                    <p class="text-muted mb-3">Sector 43, Noida</p>
-                    <div class="project-price">
-                      <span class="text-primary fw-bold h6"
-                        >₹ 2.2 Cr to 3.5 Cr</span
-                      >
+                    <h5 class="fw-bold mb-2 text-dark">Max 105</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Sector 105, Noida Exp.</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>4 BHK + Utility</small>
+
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹10.64 Cr*</span>
                     </div>
                   </div>
-                </div>
-
+                </a>
                 <!-- Project 5 -->
-                <div
-                  class="project-card animate-on-scroll"
-                  data-animation="fadeInUp"
-                  data-delay="0.5s"
-                >
+                <a href="experionsaatori.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.4s">
                   <div class="project-number">5</div>
-                  <div class="project-image-container">
-                    <img
-                      src="images/home/ats knightsbridge.jpg"
-                      alt="ATS Knightsbridge"
-                      class="project-image"
-                    />
+                  <div class="project-image-container position-relative">
+                    <img src="images/experion/imgi_18_banner.webp" alt="Experion Saatori" class="project-image" />
+                    
                   </div>
                   <div class="project-details p-4">
-                    <h5 class="fw-bold mb-2">ATS Knightsbridge</h5>
-                    <p class="text-muted mb-3">Sector 124, Noida</p>
-                    <div class="project-price">
-                      <span class="text-primary fw-bold h6"
-                        >₹ 1.8 Cr to 3.2 Cr</span
-                      >
+                    <h5 class="fw-bold mb-2 text-dark">Experion Saatori</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Sector 151, Noida Exp.</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>3, 4 BHK</small>
+
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹3.6 Cr*</span>
                     </div>
                   </div>
-                </div>
-
+                </a>
                 <!-- Project 6 -->
-                <div
-                  class="project-card animate-on-scroll"
-                  data-animation="fadeInUp"
-                  data-delay="0.6s"
-                >
+                <a href="gaurchrysalis.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.5s">
                   <div class="project-number">6</div>
-                  <div class="project-image-container">
-                    <img
-                      src="images/home/paras.jpg"
-                      alt="Paras Quartier"
-                      class="project-image"
-                    />
+                  <div class="project-image-container position-relative">
+                    <img src="images/GaurButterfly/heber-davis-JxuMsxmBo-A-unsplash.webp" alt="Gaur Chrysalis" class="project-image" />
+                    
                   </div>
                   <div class="project-details p-4">
-                    <h5 class="fw-bold mb-2">Paras Quartier</h5>
-                    <p class="text-muted mb-3">Sector 2, Gwal Pahari</p>
-                    <div class="project-price">
-                      <span class="text-primary fw-bold h6"
-                        >₹ 4.5 Cr to 8.5 Cr</span
-                      >
-                    </div>
-                  </div>
-                </div>
+                    <h5 class="fw-bold mb-2 text-dark">Gaur Chrysalis</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Sector 22D, Yamuna Exp.</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>3, 4 BHK</small>
 
-                <!-- Project 7 - Ace Acreville -->
-                <a href="aceacreville.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.7s">
-                  <div class="project-number">7</div>
-                  <div class="project-image-container">
-                    <img
-                      src="images/ACEAcreville/imgi_3_ACE-Acreville-01.png"
-                      alt="Ace Acreville"
-                      class="project-image"
-                    />
-                  </div>
-                  <div class="project-details p-4">
-                    <h5 class="fw-bold mb-2">Ace Acreville</h5>
-                    <p class="text-muted mb-3">Sector 22A, Yamuna Expressway</p>
-                    <div class="project-price">
-                      <span class="text-primary fw-bold h6"
-                        >₹ 1.25 Cr to 5.50 Cr</span
-                      >
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹2.5 Cr+</span>
                     </div>
                   </div>
                 </a>
 
-                <!-- Project 8 - One FNG -->
-                <a href="onefng.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.8s">
-                  <div class="project-number">8</div>
-                  <div class="project-image-container">
-                    <img
-                      src="images/OneFNG/bg-parallax.png"
-                      alt="One FNG"
-                      class="project-image"
-                    />
+                <!-- Project 7 -->
+                <a href="eldecoballadsofbliss.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.6s">
+                  <div class="project-number">7</div>
+                  <div class="project-image-container position-relative">
+                    <img src="images/Eldeco/imgi_2_banner_bg1.webp" alt="Eldeco Ballads Of Bliss" class="project-image" />
+                    
                   </div>
                   <div class="project-details p-4">
-                    <h5 class="fw-bold mb-2">One FNG</h5>
-                    <p class="text-muted mb-3">Noida</p>
-                    <div class="project-price">
-                      <span class="text-primary fw-bold h6">₹ On Request</span>
+                    <h5 class="fw-bold mb-2 text-dark">Eldeco Ballads Of Bliss</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Sector 135, Noida</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>2, 3 BHK</small>
+
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹2.5 Cr+</span>
+                    </div>
+                  </div>
+                </a>
+                <!-- Project 8 -->
+                <a href="palmvillage.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.7s">
+                  <div class="project-number">8</div>
+                  <div class="project-image-container position-relative">
+                    <img src="images/palm-village/imgi_3_nimbus-palm-village-banner-d.webp" alt="Palm Village" class="project-image" />
+                    
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2 text-dark">Palm Village</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Yamuna Exp.</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>2, 3 & 4 BHK</small>
+
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹35 Lakhs+</span>
+                    </div>
+                  </div>
+                </a>
+                <!-- Project 9 -->
+                <a href="migsunnehru.html" class="project-card animate-on-scroll text-decoration-none" data-animation="fadeInUp" data-delay="0.8s">
+                  <div class="project-number">9</div>
+                  <div class="project-image-container position-relative">
+                    <img src="images/migsun-nehru-place/Migsun-Nehru-Place-1-67b7141aaef02.webp" alt="Migsun Nehru Place" class="project-image" />
+                    
+                  </div>
+                  <div class="project-details p-4">
+                    <h5 class="fw-bold mb-2 text-dark">Migsun Nehru Place</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-1 text-primary"></i>Yamuna Exp., Gr. Noida</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <small class="text-secondary"><i class="fas fa-bed me-1"></i>2, 3 & 4 BHK</small>
+
+                    </div>
+                    <div class="project-price pt-2 border-top">
+                      <span class="text-primary fw-bold h6">₹On Request</span>
                     </div>
                   </div>
                 </a>
               </div>
+            </div>
 
               <!-- Navigation Arrows -->
               <button
-                class="carousel-nav carousel-prev"
+                class="carousel-nav carousel-prev d-none d-md-flex"
                 aria-label="Previous projects"
               >
                 <i class="fas fa-chevron-left"></i>
               </button>
               <button
-                class="carousel-nav carousel-next"
+                class="carousel-nav carousel-next d-none d-md-flex"
                 aria-label="Next projects"
               >
                 <i class="fas fa-chevron-right"></i>
@@ -722,124 +733,122 @@
         </div>
 
         <div class="row g-4" id="properties-grid">
-          <!-- Eldeco 7 Peaks Property Card -->
-          <div class="col-lg-6 col-md-6">
-            <div
-              class="property-card h-100 bg-white rounded shadow-sm overflow-hidden"
-            >
-              <div class="property-image position-relative">
+          <!-- Gaur Chrysalis 2 Property Card -->
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-property-type="apartment"
+            data-location="yamuna-expressway"
+            data-price-range="1.38cr"
+            data-bhk="3,4"
+            data-status="pre-launch"
+            data-amenities="gym,security,club"
+          >
+            <div class="property-card bg-white rounded-4 overflow-hidden shadow-sm h-100">
+              <div class="position-relative">
                 <img
-                  src="images/eldeco-7-peaks/hero.webp"
-                  alt="Eldeco 7 Peaks"
-                  class="w-100"
-                  style="height: 300px; object-fit: cover"
+                  src="images/chryslis-2/27.webp"
+                  alt="Gaur Chrysalis 2"
+                  class="img-fluid w-100 property-img"
+                  style="height: 200px; object-fit: cover"
+                  loading="lazy"
                 />
                 <div class="position-absolute top-0 start-0 m-3">
-                  <span class="badge bg-success">Ultra-Luxury</span>
-                </div>
-                <div class="position-absolute top-0 end-0 m-3">
-                  <span class="badge bg-primary">New Launch</span>
+                  <span class="badge bg-primary px-3 py-2 rounded-pill shadow-sm">Pre-Launch</span>
                 </div>
               </div>
-              <div class="property-content p-4">
-                <div
-                  class="d-flex justify-content-between align-items-start mb-3"
-                >
-                  <div>
-                    <h4 class="fw-bold mb-1">Eldeco 7 Peaks</h4>
-                    <p class="text-muted mb-0">
-                      <i class="fas fa-map-marker-alt me-1"></i>Omicron 1A,
-                      Greater Noida
-                    </p>
-                  </div>
-                  <div class="text-end">
-                    <div class="text-primary fw-bold h5 mb-0">₹2.34 Cr*</div>
-                    <small class="text-muted">Starting Price</small>
-                  </div>
+              <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="text-primary fw-bold fs-5">₹1.38 Cr+</span>
+                  <span class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Sector 22D, Yamuna Exp.</span>
                 </div>
-                <div class="property-features mb-3">
-                  <div class="row g-2">
-                    <div class="col-6">
-                      <small class="text-muted">
-                        <i class="fas fa-bed me-1"></i>3, 4 BHK & Penthouse
-                      </small>
-                    </div>
-                    <div class="col-6">
-                      <small class="text-muted">
-                        <i class="fas fa-vector-square me-1"></i>1800-5000 sq.ft
-                      </small>
-                    </div>
-                  </div>
+                <h3 class="h5 fw-bold mb-3 text-dark">Gaur Chrysalis 2</h3>
+                <div class="d-flex gap-3 mb-4 text-muted small">
+                  <span><i class="fas fa-bed me-2"></i>3, 4 BHK</span>
+                  <span><i class="fas fa-building me-2"></i>Apartment</span>
                 </div>
-                <p class="text-muted small mb-3">
-                  Ultra-luxury residences with oxy-rich living and green-centric design by Eldeco Group.
-                </p>
-                <div class="d-grid">
-                  <a href="eldeco-7-peaks.html" class="btn btn-primary">
-                    <i class="fas fa-arrow-right me-2"></i>View Details
-                  </a>
-                </div>
+                <a href="gaurchrysalis2.html" class="btn btn-outline-primary w-100 rounded-pill">
+                  View Details <i class="fas fa-arrow-right ms-2"></i>
+                </a>
               </div>
             </div>
           </div>
 
-          <!-- Max 105 Property Card -->
-          <div class="col-lg-6 col-md-6">
-            <div
-              class="property-card h-100 bg-white rounded shadow-sm overflow-hidden"
-            >
-              <div class="property-image position-relative">
+          <!-- Eldeco 7 Peaks Property Card -->
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-property-type="apartment"
+            data-location="greater-noida"
+            data-price-range="2.34cr"
+            data-bhk="3,4"
+            data-status="new-launch"
+            data-amenities="gym,pool,club,security"
+          >
+            <div class="property-card bg-white rounded-4 overflow-hidden shadow-sm h-100">
+              <div class="position-relative">
                 <img
-                  src="images/max105/imgi_16_banner.jpg"
-                  alt="Max 105"
-                  class="w-100"
-                  style="height: 300px; object-fit: cover"
+                  src="images/eldeco-7-peaks/hero.webp"
+                  alt="Eldeco 7 Peaks"
+                  class="img-fluid w-100 property-img"
+                  style="height: 200px; object-fit: cover"
+                  loading="lazy"
                 />
                 <div class="position-absolute top-0 start-0 m-3">
-                  <span class="badge bg-success">Ultra-Luxury</span>
-                </div>
-                <div class="position-absolute top-0 end-0 m-3">
-                  <span class="badge bg-primary">New Launch</span>
+                  <span class="badge bg-primary px-3 py-2 rounded-pill shadow-sm">New Launch</span>
                 </div>
               </div>
-              <div class="property-content p-4">
-                <div
-                  class="d-flex justify-content-between align-items-start mb-3"
-                >
-                  <div>
-                    <h4 class="fw-bold mb-1">Max 105</h4>
-                    <p class="text-muted mb-0">
-                      <i class="fas fa-map-marker-alt me-1"></i>Sector 105,
-                      Noida Expressway
-                    </p>
-                  </div>
-                  <div class="text-end">
-                    <div class="text-primary fw-bold h5 mb-0">₹10.64 Cr*</div>
-                    <small class="text-muted">Starting Price</small>
-                  </div>
+              <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="text-primary fw-bold fs-5">₹2.34 Cr*</span>
+                  <span class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Omicron 1A, Gr. Noida</span>
                 </div>
-                <div class="property-features mb-3">
-                  <div class="row g-2">
-                    <div class="col-6">
-                      <small class="text-muted">
-                        <i class="fas fa-bed me-1"></i>4 BHK + Utility
-                      </small>
-                    </div>
-                    <div class="col-6">
-                      <small class="text-muted">
-                        <i class="fas fa-vector-square me-1"></i>3800-4400 sq.ft
-                      </small>
-                    </div>
-                  </div>
+                <h3 class="h5 fw-bold mb-3 text-dark">Eldeco 7 Peaks</h3>
+                <div class="d-flex gap-3 mb-4 text-muted small">
+                  <span><i class="fas fa-bed me-2"></i>3, 4 BHK & Penthouse</span>
+                  <span><i class="fas fa-building me-2"></i>Apartment</span>
                 </div>
-                <p class="text-muted small mb-3">
-                  Ultra-luxury low density living by Max Estates with only 2 towers. Spacious 4 BHK apartments with panoramic views.
-                </p>
-                <div class="d-grid">
-                  <a href="max-105.html" class="btn btn-primary">
-                    <i class="fas fa-arrow-right me-2"></i>View Details
-                  </a>
+                <a href="eldeco-7-peaks.html" class="btn btn-outline-primary w-100 rounded-pill">
+                  View Details <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sobha Rivana Property Card -->
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-property-type="apartment"
+            data-location="noida-extension"
+            data-price-range="2cr"
+            data-bhk="3,4,5"
+            data-status="new-launch"
+            data-amenities="gym,pool,club,security"
+          >
+            <div class="property-card bg-white rounded-4 overflow-hidden shadow-sm h-100">
+              <div class="position-relative">
+                <img
+                  src="images/sobharivana/imgi_3_banner1.webp"
+                  alt="Sobha Rivana"
+                  class="img-fluid w-100 property-img"
+                  style="height: 200px; object-fit: cover"
+                  loading="lazy"
+                />
+                <div class="position-absolute top-0 start-0 m-3">
+                  <span class="badge bg-primary px-3 py-2 rounded-pill shadow-sm">New Launch</span>
                 </div>
+              </div>
+              <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="text-primary fw-bold fs-5">₹2.00 Cr*</span>
+                  <span class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Sec 1, Noida Ext.</span>
+                </div>
+                <h3 class="h5 fw-bold mb-3 text-dark">Sobha Rivana</h3>
+                <div class="d-flex gap-3 mb-4 text-muted small">
+                  <span><i class="fas fa-bed me-2"></i>3, 4 & 5 BHK</span>
+                  <span><i class="fas fa-building me-2"></i>Apartment</span>
+                </div>
+                <a href="sobharivana.html" class="btn btn-outline-primary w-100 rounded-pill">
+                  View Details <i class="fas fa-arrow-right ms-2"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -1122,13 +1131,14 @@
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="about-image-wrapper position-relative">
               <img
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Luxury real estate office interior"
-                class="img-fluid rounded shadow-lg"
+                src="images/about/luxury_highrise_bluesky.webp"
+                alt="Luxury High-Rise Residential Tower in Noida"
+                class="img-fluid rounded shadow-lg w-100"
+                style="height: 450px; object-fit: cover;"
               />
               <div class="about-badge position-absolute">
                 <span class="badge bg-primary fs-6 px-3 py-2"
-                  >25+ Years Excellence</span
+                  >9+ Years Excellence</span
                 >
               </div>
             </div>
@@ -1460,7 +1470,7 @@
               </blockquote>
               <div class="d-flex align-items-center">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                  src="images/testimonials/rajesh-kumar.webp"
                   alt="Client testimonial"
                   class="rounded-circle me-3"
                   width="50"
@@ -1488,7 +1498,7 @@
               </blockquote>
               <div class="d-flex align-items-center">
                 <img
-                  src="images/GaurButterfly/gaur-butterfly-main.jpg"
+                  src="images/testimonials/priya-sharma.webp"
                   alt="Client testimonial"
                   class="rounded-circle me-3"
                   width="50"
@@ -1517,7 +1527,7 @@
               </blockquote>
               <div class="d-flex align-items-center">
                 <img
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                  src="images/testimonials/amit-verma.webp"
                   alt="Client testimonial"
                   class="rounded-circle me-3"
                   width="50"
@@ -1803,37 +1813,22 @@
             <h6 class="fw-bold mb-4 text-bright-blue">Our Properties</h6>
             <ul class="list-unstyled">
               <li class="mb-2">
-                <a
-                  href="eldecoballadsofbliss.html"
-                  class="text-white-50 text-decoration-none"
-                  >Eldeco Ballads Of Bliss</a
-                >
+                <a href="eldecoballadsofbliss.html" class="text-white-50 text-decoration-none">Eldeco Ballads Of Bliss</a>
               </li>
               <li class="mb-2">
-                <a href="dasnac.html" class="text-white-50 text-decoration-none"
-                  >Dasnac Yuva</a
-                >
+                <a href="dasnac.html" class="text-white-50 text-decoration-none">Dasnac Yuva</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="palmvillage.html"
-                  class="text-white-50 text-decoration-none"
-                  >Gaur Chrysalis</a
-                >
+                <a href="palmvillage.html" class="text-white-50 text-decoration-none">Palm Village</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="migsunnehru.html"
-                  class="text-white-50 text-decoration-none"
-                  >Migsun Nehru Place</a
-                >
+                <a href="eldecoechoesofeden.html" class="text-white-50 text-decoration-none">Eldeco Echoes Of Eden</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="properties.html"
-                  class="text-white-50 text-decoration-none"
-                  >View All Properties</a
-                >
+                <a href="sobharivana.html" class="text-white-50 text-decoration-none">Sobha Rivana</a>
+              </li>
+              <li class="mb-2">
+                <a href="properties.html" class="text-white-50 text-decoration-none">View All Properties</a>
               </li>
             </ul>
           </div>
@@ -1890,10 +1885,10 @@
     </footer>
 
     <!-- Bootstrap 5 JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 
     <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <!-- sheets db script -->
     <script>
       (function () {
@@ -2033,5 +2028,8 @@
         });
       })();
     </script>
+  
+    <!-- Lead Magnet JS -->
+    <script src="lead-magnet.js" defer></script>
   </body>
 </html>
