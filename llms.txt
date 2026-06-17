@@ -1,0 +1,37 @@
+# Urban Investors
+
+> Urban Investors is a luxury real estate advisory based in Noida, India, serving high-net-worth clients across Delhi NCR and the Yamuna Expressway since 2017. We curate premium residential and commercial property investments with a focus on transparency, market research, and long-term ROI.
+
+Founder & Director of Sales: Mahendra Rai
+Location: Corporate Park, Sector 142, Noida, Uttar Pradesh 201304, India
+Contact: +91-7705015689 | info@urbaninvestors.in
+
+## Core Pages
+
+- [Home](https://urbaninvestors.in/): Overview of Urban Investors and featured luxury properties.
+- [About](https://urbaninvestors.in/about): Company history since 2017, mission, vision, and leadership.
+- [Properties](https://urbaninvestors.in/properties): Full portfolio of premium real estate projects in Noida and Yamuna Expressway.
+- [Services](https://urbaninvestors.in/services): Property search, investment advisory, legal documentation, home loan guidance, and portfolio management.
+- [Contact](https://urbaninvestors.in/contact): Office hours, consultation booking, and frequently asked questions.
+
+## Property Listings
+
+- [Experion Saatori (Experion 151)](https://urbaninvestors.in/experionsaatori): Ultra-luxury 3 & 4 BHK apartments in Sector 151, Noida, from ₹3.6 Cr.
+- [Eldeco Ballads of Bliss](https://urbaninvestors.in/eldecoballadsofbliss): Premium residences by Eldeco.
+- [Eldeco Echoes of Eden](https://urbaninvestors.in/eldecoechoesofeden): Premium apartment complex by Eldeco.
+- [Eldeco 7 Peaks](https://urbaninvestors.in/eldeco-7-peaks): Residential apartments by Eldeco.
+- [Dasnac](https://urbaninvestors.in/dasnac): Dasnac Yuva LEED Platinum development.
+- [Gaur Chrysalis](https://urbaninvestors.in/gaurchrysalis): Premium residences by Gaurs Group.
+- [Gaur Chrysalis (Phase 2)](https://urbaninvestors.in/gaurchrysalis2): Premium residences by Gaurs Group.
+- [Migsun Nehru Place](https://urbaninvestors.in/migsunnehru): Apartment complex by Migsun.
+- [One FNG](https://urbaninvestors.in/onefng): Commercial and residential development.
+- [Palm Village](https://urbaninvestors.in/palmvillage): Luxury independent floors.
+- [Ace Acreville](https://urbaninvestors.in/aceacreville): Residential development by ACE Group.
+- [Max 105](https://urbaninvestors.in/max-105): Premium apartment complex.
+- [Sobha Rivana](https://urbaninvestors.in/sobharivana): Luxury apartment complex by Sobha.
+
+## Legal
+
+- [Privacy Policy](https://urbaninvestors.in/privacy-policy)
+- [Terms and Conditions](https://urbaninvestors.in/terms-and-conditions)
+- [Cookie Policy](https://urbaninvestors.in/cookie-policy)

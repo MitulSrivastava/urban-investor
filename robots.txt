@@ -4,6 +4,9 @@ Allow: /
 # Sitemap
 Sitemap: https://urbaninvestors.in/sitemap.xml
 
+# AI / LLM guidance
+# See https://urbaninvestors.in/llms.txt
+
 # Block access to server directories
 Disallow: /cgi-bin/
 Disallow: /.git/
