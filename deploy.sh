@@ -18,6 +18,9 @@ zip -r -X "$OUT" . \
      ".gitignore" \
      ".vscode/*" \
      "google analyttics/*" \
+     "node_modules/*" \
+     "package.json" \
+     "package-lock.json" \
      "deploy.sh" \
      "urban-investors-hostinger.zip" \
      "$OUT" \
