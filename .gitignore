@@ -1,1 +1,15 @@
+# Deploy artifact
 urban-investors-deploy.zip
+urban-investors-hostinger.zip
+
+# Secrets / config (never commit)
+.env
+.env.local
+
+# Node dev dependencies (not used by the static site at runtime)
+node_modules/
+package.json
+package-lock.json
+
+# OS junk
+.DS_Store

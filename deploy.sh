@@ -21,6 +21,9 @@ zip -r -X "$OUT" . \
      "node_modules/*" \
      "package.json" \
      "package-lock.json" \
+     ".env" \
+     ".env.example" \
+     ".env.local" \
      "deploy.sh" \
      "urban-investors-hostinger.zip" \
      "$OUT" \
