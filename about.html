@@ -82,6 +82,68 @@
       .text-bright-blue:hover {
         color: #60a5fa !important;
       }
+
+      /* Premium "By the Numbers" stat cards */
+      .metrics-row > [class*="col-"] > div {
+        position: relative;
+        padding: 2.25rem 1rem !important;
+        background: linear-gradient(180deg, #ffffff 0%, #fdfbf7 100%) !important;
+        border: 1px solid rgba(212, 165, 116, 0.28) !important;
+        border-radius: 18px !important;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05) !important;
+        overflow: hidden;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.35s ease, border-color 0.35s ease;
+      }
+      .metrics-row > [class*="col-"] > div::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #d4a574, #b8854f);
+      }
+      .metrics-row > [class*="col-"] > div:hover {
+        transform: translateY(-6px);
+        border-color: rgba(212, 165, 116, 0.6) !important;
+        box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12) !important;
+      }
+      .metrics-row h3 {
+        font-family: "Playfair Display", serif !important;
+        font-weight: 700 !important;
+        color: #1e3a8a !important;
+        letter-spacing: -0.5px;
+        margin-bottom: 0 !important;
+      }
+      .metrics-row h3::after {
+        content: "";
+        display: block;
+        width: 34px;
+        height: 2px;
+        background: #d4a574;
+        margin: 0.7rem auto 0.65rem;
+        border-radius: 2px;
+      }
+      .metrics-row p {
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 0.68rem !important;
+        line-height: 1.5;
+        color: #6b7280 !important;
+      }
+
+      @media (max-width: 575.98px) {
+        .metrics-row > [class*="col-"] > div {
+          padding: 1.6rem 0.75rem !important;
+        }
+        .metrics-row h3 {
+          font-size: 1.7rem !important;
+        }
+        .metrics-row p {
+          font-size: 0.62rem !important;
+        }
+      }
     </style>
   
     <!-- Lead Magnet Components -->
@@ -226,32 +288,32 @@
           <span class="text-accent fw-bold text-uppercase tracking-wider d-block mb-1 font-accent" style="font-size: 0.85rem;">Performance Metrics</span>
           <h2 class="fw-bold font-luxury fs-3 mb-0 text-dark">By the Numbers</h2>
         </div>
-        <div class="row g-3 text-center justify-content-center">
-          <div class="col-lg col-md-4 col-sm-6">
+        <div class="row g-3 text-center justify-content-center metrics-row">
+          <div class="col-6 col-lg col-md-4 col-sm-6">
             <div class="p-4 bg-white rounded-4 shadow-soft border-top border-3 h-100 transition-all shadow-soft-hover" style="border-top-color: var(--accent-color) !important;">
               <h3 class="fw-bold text-primary mb-1 display-6">9+</h3>
               <p class="small text-muted mb-0 fw-semibold">Years of Industry Excellence</p>
             </div>
           </div>
-          <div class="col-lg col-md-4 col-sm-6">
+          <div class="col-6 col-lg col-md-4 col-sm-6">
             <div class="p-4 bg-white rounded-4 shadow-soft border-top border-3 h-100 transition-all shadow-soft-hover" style="border-top-color: var(--accent-color) !important;">
               <h3 class="fw-bold text-primary mb-1 display-6">₹500Cr+</h3>
               <p class="small text-muted mb-0 fw-semibold">Premium Properties Sold</p>
             </div>
           </div>
-          <div class="col-lg col-md-4 col-sm-6">
+          <div class="col-6 col-lg col-md-4 col-sm-6">
             <div class="p-4 bg-white rounded-4 shadow-soft border-top border-3 h-100 transition-all shadow-soft-hover" style="border-top-color: var(--accent-color) !important;">
               <h3 class="fw-bold text-primary mb-1 display-6">98%</h3>
               <p class="small text-muted mb-0 fw-semibold">Client Retention & Satisfaction</p>
             </div>
           </div>
-          <div class="col-lg col-md-4 col-sm-6">
+          <div class="col-6 col-lg col-md-4 col-sm-6">
             <div class="p-4 bg-white rounded-4 shadow-soft border-top border-3 h-100 transition-all shadow-soft-hover" style="border-top-color: var(--accent-color) !important;">
               <h3 class="fw-bold text-primary mb-1 display-6">1,000+</h3>
               <p class="small text-muted mb-0 fw-semibold">Happy Families in Dream Homes</p>
             </div>
           </div>
-          <div class="col-lg col-md-4 col-sm-6">
+          <div class="col-6 col-lg col-md-4 col-sm-6">
             <div class="p-4 bg-white rounded-4 shadow-soft border-top border-3 h-100 transition-all shadow-soft-hover" style="border-top-color: var(--accent-color) !important;">
               <h3 class="fw-bold text-primary mb-1 display-6">50+</h3>
               <p class="small text-muted mb-0 fw-semibold">Premium Projects Delivered</p>
@@ -676,7 +738,7 @@
                 ><i class="fab fa-linkedin-in text-white"></i
               ></a>
                 <a
-                href="https://wa.me/917705015689"
+                href="https://wa.me/911144739693"
                 class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
                 style="width: 40px; height: 40px"
                 aria-label="WhatsApp"
