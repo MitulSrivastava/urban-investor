@@ -177,6 +177,123 @@
   }
 
   // =============================================
+  // 4. "GET PRICE" LEAD MAGNET (Property pages only)
+  // =============================================
+  // Map of page slug -> project display name
+  const PROJECTS = {
+    experionsaatori: "Experion Saatori",
+    dasnac: "Dasnac Yuva",
+    eldecoballadsofbliss: "Eldeco Ballads of Bliss",
+    eldecoechoesofeden: "Eldeco Echoes of Eden",
+    "eldeco-7-peaks": "Eldeco 7 Peaks",
+    gaurchrysalis: "Gaur Chrysalis",
+    gaurchrysalis2: "Gaur Chrysalis",
+    migsunnehru: "Migsun Nehru Place",
+    onefng: "One FNG",
+    palmvillage: "Palm Village",
+    aceacreville: "Ace Acreville",
+    "max-105": "Max 105",
+    sobharivana: "Sobha Rivana",
+  };
+
+  function currentProject() {
+    var slug = window.location.pathname
+      .split("/")
+      .pop()
+      .replace(/\.html$/i, "")
+      .toLowerCase();
+    return PROJECTS[slug] || null;
+  }
+
+  function injectGetPrice(project) {
+    // Floating CTA button
+    var fab = document.createElement("button");
+    fab.type = "button";
+    fab.className = "ui-gp-fab";
+    fab.setAttribute("aria-label", "Get price for " + project);
+    fab.innerHTML = '<i class="fas fa-tag"></i><span>Get Price</span>';
+    document.body.appendChild(fab);
+
+    // Modal overlay
+    var overlay = document.createElement("div");
+    overlay.className = "ui-gp-overlay";
+    overlay.id = "uiGpOverlay";
+    overlay.innerHTML = `
+      <div class="ui-gp-modal">
+        <button class="ui-gp-close" id="uiGpClose" aria-label="Close">&times;</button>
+        <div id="uiGpFormView">
+          <div class="ui-gp-icon"><i class="fas fa-tag"></i></div>
+          <h3>Get the Exact Price</h3>
+          <p>Enter your details and we'll send the latest price &amp; payment plan for <strong>${project}</strong> on WhatsApp right away.</p>
+          <form class="ui-gp-form" id="uiGpForm">
+            <input type="text" class="ui-gp-input" placeholder="Your Name" id="uiGpName" required />
+            <input type="tel" class="ui-gp-input" placeholder="Your Phone Number" id="uiGpPhone" required />
+            <button type="submit" class="ui-gp-submit">
+              <i class="fab fa-whatsapp" style="margin-right:8px"></i>Get Price on WhatsApp
+            </button>
+          </form>
+          <div class="ui-gp-trust">
+            <i class="fas fa-lock"></i>
+            <span>100% Free &middot; No Spam &middot; RERA-registered projects</span>
+          </div>
+        </div>
+        <div class="ui-gp-success" id="uiGpSuccess">
+          <i class="fas fa-check-circle"></i>
+          <h4>Opening WhatsApp&hellip;</h4>
+          <p>If it doesn't open automatically, <a id="uiGpWaLink" href="#" target="_blank" rel="noopener">tap here to chat</a>.</p>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    function openGp() { overlay.classList.add("ui-show"); }
+    function closeGp() { overlay.classList.remove("ui-show"); }
+
+    fab.addEventListener("click", openGp);
+    document.getElementById("uiGpClose").addEventListener("click", closeGp);
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) closeGp();
+    });
+
+    document.getElementById("uiGpForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = document.getElementById("uiGpName").value.trim();
+      var phone = document.getElementById("uiGpPhone").value.trim();
+      if (!name || !phone) return;
+
+      // 1. Save the lead to Google Sheets
+      var fd = new FormData();
+      fd.append("full_name", name);
+      fd.append("email", "getprice@lead.com");
+      fd.append("phone", phone);
+      fd.append("subject", "Price Request - " + project);
+      fd.append("investment_range", "Get Price Request");
+      fd.append("message", "Price request for " + project + " (Page: " + window.location.pathname + ")");
+      fd.append("token", FRONTEND_TOKEN);
+      // New-format keys
+      fd.append("fullName", name);
+      fd.append("emailAddress", "getprice@lead.com");
+      fd.append("phoneNumber", phone);
+      fd.append("investmentRange", "Get Price Request");
+      fd.append("Token", FRONTEND_TOKEN);
+      fetch(SCRIPT_URL, { method: "POST", body: fd, mode: "no-cors" }).catch(function () {});
+
+      // 2. Hand off to WhatsApp (in the same user gesture so it isn't blocked)
+      var waMsg = encodeURIComponent(
+        "Hi Urban Investors, this is " + name + ". Please share the exact price & payment plan for " + project + "."
+      );
+      var waUrl = "https://wa.me/" + WA_NUMBER + "?text=" + waMsg;
+      var link = document.getElementById("uiGpWaLink");
+      if (link) link.href = waUrl;
+      window.open(waUrl, "_blank");
+
+      // 3. Show success state
+      document.getElementById("uiGpFormView").style.display = "none";
+      document.getElementById("uiGpSuccess").style.display = "block";
+    });
+  }
+
+  // =============================================
   // INIT
   // =============================================
   function init() {
@@ -188,6 +305,9 @@
     injectMobileCTA();
     injectExitPopup();
     setupExitIntent();
+
+    var project = currentProject();
+    if (project) injectGetPrice(project);
   }
 
   if (document.readyState === "loading") {

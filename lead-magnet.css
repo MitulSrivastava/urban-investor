@@ -231,3 +231,171 @@
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================
+   "GET PRICE" LEAD MAGNET (Property pages)
+   ============================================ */
+.ui-gp-fab {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  background: linear-gradient(135deg, #d4a574, #b8854f);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(184, 133, 79, 0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: ui-gp-pulse 2.4s ease-in-out infinite;
+}
+.ui-gp-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(184, 133, 79, 0.55);
+}
+.ui-gp-fab i { font-size: 17px; }
+
+@keyframes ui-gp-pulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(184, 133, 79, 0.45); }
+  50% { box-shadow: 0 8px 28px rgba(184, 133, 79, 0.75); }
+}
+
+/* On mobile, sit just above the sticky CTA bar, compact on the right */
+@media (max-width: 768px) {
+  .ui-gp-fab {
+    bottom: 76px;
+    left: auto;
+    right: 14px;
+    padding: 11px 18px;
+    font-size: 14px;
+  }
+}
+
+.ui-gp-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 10002;
+  align-items: center;
+  justify-content: center;
+  animation: ui-fadeIn 0.3s ease;
+}
+.ui-gp-overlay.ui-show { display: flex; }
+
+.ui-gp-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 440px;
+  padding: 40px 32px;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  animation: ui-slideUp 0.4s ease;
+  text-align: center;
+}
+.ui-gp-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.ui-gp-close:hover { color: #333; }
+
+.ui-gp-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4a574, #b8854f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+.ui-gp-icon i { font-size: 28px; color: #fff; }
+
+.ui-gp-modal h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  font-family: 'Playfair Display', serif;
+}
+.ui-gp-modal p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.ui-gp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ui-gp-input {
+  padding: 14px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.ui-gp-input:focus { border-color: #d4a574; }
+.ui-gp-submit {
+  padding: 16px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ui-gp-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(18, 140, 126, 0.4);
+}
+.ui-gp-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+.ui-gp-trust i { color: #10b981; }
+
+.ui-gp-success {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+.ui-gp-success i {
+  font-size: 50px;
+  color: #25D366;
+  margin-bottom: 16px;
+}
+.ui-gp-success h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+.ui-gp-success p { color: #6b7280; }
+.ui-gp-success a { color: #128C7E; font-weight: 600; }

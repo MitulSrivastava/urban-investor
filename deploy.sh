@@ -15,7 +15,7 @@ cd "$(dirname "$0")"
 # Files/dirs that must never be packaged or uploaded
 EXCLUDES=(
   ".git" ".gitignore" ".vscode" "google analyttics"
-  "node_modules" "package.json" "package-lock.json"
+  "node_modules" "package.json" "package-lock.json" ".claude"
   ".env" ".env.example" ".env.local"
   "deploy.sh" "update_links.py"
   "urban-investors-deploy.zip" "urban-investors-hostinger.zip"
@@ -50,14 +50,14 @@ deploy_ftp() {
 
   # Build exclude flags for lftp mirror
   local mirror_excludes=""
-  for e in "${EXCLUDES[@]}"; do mirror_excludes+=" --exclude-glob $e"; done
-  mirror_excludes+=" --exclude-glob *.DS_Store"
+  for e in "${EXCLUDES[@]}"; do mirror_excludes+=" -x \"^${e}/\" -x \"^${e}$\""; done
+  mirror_excludes+=" -X \*.DS_Store"
 
   echo "Deploying to ftp://$FTP_HOST$FTP_REMOTE_DIR ..."
   lftp -u "$FTP_USER","$FTP_PASS" -p "$FTP_PORT" "$FTP_HOST" <<LFTP
     set ssl:verify-certificate no
     set ftp:ssl-allow yes
-    mirror -R --verbose --only-newer --delete=false $mirror_excludes ./ $FTP_REMOTE_DIR
+    mirror -R --verbose --only-newer $mirror_excludes ./ $FTP_REMOTE_DIR
     bye
 LFTP
   echo "Done. Live at your domain."
