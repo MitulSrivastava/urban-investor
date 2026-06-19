@@ -360,12 +360,21 @@ p {
 
 /* Enhanced Hamburger Menu */
 .custom-toggler {
-  padding: 0.5rem;
+  padding: 0;
   border: none;
   background: none;
-  position: relative;
-  width: 30px;
-  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+}
+
+.custom-toggler:focus {
+  box-shadow: none;
+  outline: none;
 }
 
 .hamburger-line {
@@ -373,13 +382,12 @@ p {
   width: 25px;
   height: 3px;
   background-color: var(--primary-color);
-  margin: 5px 0;
   transition: all var(--transition-fast);
   border-radius: 2px;
 }
 
 .custom-toggler[aria-expanded="true"] .hamburger-line:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: translateY(8px) rotate(45deg);
 }
 
 .custom-toggler[aria-expanded="true"] .hamburger-line:nth-child(2) {
@@ -387,7 +395,7 @@ p {
 }
 
 .custom-toggler[aria-expanded="true"] .hamburger-line:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 .navbar-nav .nav-link {
@@ -924,8 +932,7 @@ p {
   }
 
   .navbar-nav .btn-cta {
-    margin: 1rem 0;
-    width: 100%;
+    margin: 1rem 0 !important;
     text-align: center;
   }
 
@@ -1067,6 +1074,14 @@ p {
 
 /* Extra Small Devices */
 @media (max-width: 400px) {
+  /* Keep brand + hamburger on one row on narrow phones */
+  .brand-logo {
+    font-size: 1.6rem;
+  }
+  .navbar-brand img {
+    height: 42px !important;
+  }
+
   .hero-title {
     font-size: clamp(1.5rem, 12vw, 2rem) !important;
   }
