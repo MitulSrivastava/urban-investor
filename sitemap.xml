@@ -34,25 +34,25 @@
 
   <!-- Property Listings -->
   <url>
-    <loc>https://urbaninvestors.in/aceacreville</loc>
+    <loc>https://urbaninvestors.in/ace-acreville</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://urbaninvestors.in/dasnac-yuva</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://urbaninvestors.in/dasnac</loc>
+    <loc>https://urbaninvestors.in/eldeco-ballads-of-bliss</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://urbaninvestors.in/eldecoballadsofbliss</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://urbaninvestors.in/eldecoechoesofeden</loc>
+    <loc>https://urbaninvestors.in/eldeco-echoes-of-eden</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -64,37 +64,37 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://urbaninvestors.in/gaurchrysalis</loc>
+    <loc>https://urbaninvestors.in/gaur-chrysalis</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://urbaninvestors.in/gaurchrysalis2</loc>
-    <lastmod>2026-06-14</lastmod>
+    <loc>https://urbaninvestors.in/gaur-chrysalis-2</loc>
+    <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://urbaninvestors.in/migsunnehru</loc>
+    <loc>https://urbaninvestors.in/migsun-nehru-place</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://urbaninvestors.in/onefng</loc>
+    <loc>https://urbaninvestors.in/one-fng</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://urbaninvestors.in/palmvillage</loc>
+    <loc>https://urbaninvestors.in/palm-village</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://urbaninvestors.in/experionsaatori</loc>
+    <loc>https://urbaninvestors.in/experion-saatori</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -106,9 +106,39 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://urbaninvestors.in/sobharivana</loc>
+    <loc>https://urbaninvestors.in/sobha-rivana</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://urbaninvestors.in/crown-residences-godrej-golf-links-greater-noida</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://urbaninvestors.in/eldeco-whispers-of-wonder</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://urbaninvestors.in/omaxe-prayagraj</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://urbaninvestors.in/fairfox-eon</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://urbaninvestors.in/onyx-by-splendor</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
@@ -130,5 +160,17 @@
     <lastmod>2026-06-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://urbaninvestors.in/ace-parkway</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://urbaninvestors.in/crc-the-flagship</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

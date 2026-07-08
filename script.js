@@ -1667,3 +1667,5 @@ document.addEventListener(
   },
   true
 );
+
+// Autoplay logic removed to allow videos to play with audio when clicked by user

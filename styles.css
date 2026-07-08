@@ -367,9 +367,11 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
   width: 44px;
   height: 44px;
+  -webkit-appearance: none;
+  appearance: none;
+  flex-shrink: 0;
 }
 
 .custom-toggler:focus {
@@ -384,6 +386,7 @@ p {
   background-color: var(--primary-color);
   transition: all var(--transition-fast);
   border-radius: 2px;
+  margin: 2.5px 0;
 }
 
 .custom-toggler[aria-expanded="true"] .hamburger-line:nth-child(1) {
@@ -934,6 +937,8 @@ p {
   .navbar-nav .btn-cta {
     margin: 1rem 0 !important;
     text-align: center;
+    width: 100%;
+    display: block;
   }
 
   .feature-card,
@@ -1835,6 +1840,14 @@ p {
   margin-top: 1rem;
 }
 
+.social-links a {
+  width: 40px !important;
+  height: 40px !important;
+  flex-shrink: 0;
+  text-decoration: none !important;
+  aspect-ratio: 1 / 1;
+}
+
 .social-link {
   width: 45px;
   height: 45px;
@@ -2427,9 +2440,10 @@ i[class*="fa"] {
 .filter-results-info {
   margin-bottom: 1rem;
   padding: 1rem;
-  background-color: rgba(30, 58, 138, 0.05);
+  background-color: rgba(255, 255, 255, 0.08);
   border-radius: var(--border-radius);
-  border: 1px solid rgba(30, 58, 138, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--white);
 }
 
 .clear-filters-btn {
@@ -3012,4 +3026,45 @@ i[class*="fa"] {
     top: 1rem !important;
     right: 1rem !important;
   }
+}
+
+/* Mobile property card centering */
+@media (max-width: 767.98px) {
+  #properties-grid {
+    justify-content: center !important;
+  }
+
+  #properties-grid > div[class*="col-"] {
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  #properties-grid .property-card {
+    max-width: 340px !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Reversed Primary Button for View More Analysis */
+.btn-reversed-primary {
+  background: var(--gradient-primary);
+  border: 2px solid var(--primary-color);
+  color: #ffffff !important;
+  font-family: var(--font-accent);
+  font-weight: 600;
+  padding: 0.875rem 2.25rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.875rem;
+}
+
+.btn-reversed-primary:hover {
+  background: #ffffff;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
 }

@@ -1,6 +1,21 @@
 # Enable URL Rewriting
 RewriteEngine On
 
+# 301 Redirects: Old slugs → New SEO-friendly slugs (added 2026-07-08)
+RewriteRule ^aceacreville$ /ace-acreville [R=301,L]
+RewriteRule ^aceparkway$ /ace-parkway [R=301,L]
+RewriteRule ^dasnac$ /dasnac-yuva [R=301,L]
+RewriteRule ^eldecoballadsofbliss$ /eldeco-ballads-of-bliss [R=301,L]
+RewriteRule ^eldecoechoesofeden$ /eldeco-echoes-of-eden [R=301,L]
+RewriteRule ^experionsaatori$ /experion-saatori [R=301,L]
+RewriteRule ^gaurchrysalis2$ /gaur-chrysalis-2 [R=301,L]
+RewriteRule ^gaurchrysalis$ /gaur-chrysalis [R=301,L]
+RewriteRule ^migsunnehru$ /migsun-nehru-place [R=301,L]
+RewriteRule ^onefng$ /one-fng [R=301,L]
+RewriteRule ^palmvillage$ /palm-village [R=301,L]
+RewriteRule ^sobharivana$ /sobha-rivana [R=301,L]
+RewriteRule ^omaxeprayagraj$ /omaxe-prayagraj [R=301,L]
+
 # Remove .html extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

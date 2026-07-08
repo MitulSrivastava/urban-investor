@@ -57,7 +57,7 @@ deploy_ftp() {
   lftp -u "$FTP_USER","$FTP_PASS" -p "$FTP_PORT" "$FTP_HOST" <<LFTP
     set ssl:verify-certificate no
     set ftp:ssl-allow yes
-    mirror -R --verbose --only-newer $mirror_excludes ./ $FTP_REMOTE_DIR
+    mirror -R --verbose --only-newer --no-perms $mirror_excludes ./ $FTP_REMOTE_DIR
     bye
 LFTP
   echo "Done. Live at your domain."
