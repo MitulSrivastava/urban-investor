@@ -3047,24 +3047,3 @@ i[class*="fa"] {
   }
 }
 
-/* Reversed Primary Button for View More Analysis */
-.btn-reversed-primary {
-  background: var(--gradient-primary);
-  border: 2px solid var(--primary-color);
-  color: #ffffff !important;
-  font-family: var(--font-accent);
-  font-weight: 600;
-  padding: 0.875rem 2.25rem;
-  border-radius: var(--border-radius);
-  transition: all var(--transition-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-size: 0.875rem;
-}
-
-.btn-reversed-primary:hover {
-  background: #ffffff;
-  color: var(--primary-color) !important;
-  border-color: var(--primary-color);
-  transform: translateY(-2px);
-}
