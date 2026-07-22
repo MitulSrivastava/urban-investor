@@ -4,7 +4,7 @@
 # Usage:
 #   ./deploy.sh           Build urban-investors-deploy.zip (upload manually
 #                         via Hostinger hPanel > File Manager > Extract)
-#   ./deploy.sh --ftp     Sync files straight to Hostinger over FTP using
+# ./deploy.sh --ftp       Sync files straight to Hostinger over FTP using
 #                         the FTP_* credentials in .env (no zip, no manual extract)
 #
 # Requires for --ftp: lftp  (install with: brew install lftp)
@@ -19,6 +19,7 @@ EXCLUDES=(
   ".env" ".env.example" ".env.local"
   "deploy.sh" "update_links.py"
   "urban-investors-deploy.zip" "urban-investors-hostinger.zip"
+  "images/unsplash" "unused_images_bin"
 )
 
 # Strip macOS junk first

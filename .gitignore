@@ -13,3 +13,6 @@ package-lock.json
 
 # OS junk
 .DS_Store
+
+# Temporary bin
+unused_images_bin/

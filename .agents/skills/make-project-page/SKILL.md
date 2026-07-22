@@ -122,6 +122,71 @@ every project-specific value. Walk through these spots (all present in the templ
 - Open Graph `og:title` / `og:description` / `og:url` and Twitter tags
 - Canonical link `<link rel="canonical" href="https://urbaninvestors.in/<slug>"/>`
 - Structured Data JSON-LD (`@type`, `name`, `description`, `address`, `developer`)
+
+**Structured Data Requirements:**
+Every project page MUST include these JSON-LD schemas in `<head>`:
+
+1. **ApartmentComplex / CommercialEvent / LandPlot schema** (main property info):
+   ```json
+   {
+     "@context": "https://schema.org",
+     "@type": "ApartmentComplex",
+     "name": "<Project Name>",
+     "description": "<Detailed description with price, location, key features>",
+     "address": {
+       "@type": "PostalAddress",
+       "streetAddress": "<Sector/Area>",
+       "addressLocality": "<City>",
+       "addressRegion": "Uttar Pradesh",
+       "postalCode": "<PIN if known>",
+       "addressCountry": "India"
+     },
+     "geo": { "@type": "GeoCoordinates", "latitude": "...", "longitude": "..." },
+     "developer": { "@type": "Organization", "name": "<Developer Name>" },
+     "image": "https://urbaninvestors.in/images/<project-folder>/<hero-image>.webp",
+     "numberOfBedrooms": "<BHK options>",
+     "floorSize": { "@type": "QuantitativeValue", "minValue": ..., "maxValue": ..., "unitText": "sq.ft" },
+     "priceRange": "<e.g. ₹2 Cr - ₹3 Cr>",
+     "amenityFeature": [
+       { "@type": "LocationFeatureSpecification", "name": "Clubhouse" },
+       { "@type": "LocationFeatureSpecification", "name": "Swimming Pool" },
+       ...
+     ]
+   }
+   ```
+
+2. **FAQPage schema** (for rich snippets):
+   ```json
+   {
+     "@context": "https://schema.org",
+     "@type": "FAQPage",
+     "mainEntity": [
+       { "@type": "Question", "name": "What is <Project Name>?", "acceptedAnswer": { "@type": "Answer", "text": "..." } },
+       { "@type": "Question", "name": "Where is <Project Name> located?", "acceptedAnswer": { "@type": "Answer", "text": "..." } },
+       { "@type": "Question", "name": "What configurations are available?", "acceptedAnswer": { "@type": "Answer", "text": "..." } },
+       { "@type": "Question", "name": "Is <Project Name> a good investment?", "acceptedAnswer": { "@type": "Answer", "text": "..." } },
+       { "@type": "Question", "name": "Why should I invest through Urban Investors?", "acceptedAnswer": { "@type": "Answer", "text": "Urban Investors offers verified project information, professional consultation, transparent pricing assistance, site visit support, and complete guidance throughout your investment journey." } }
+     ]
+   }
+   ```
+
+3. **VideoObject schema** (if YouTube video embedded on page):
+   ```json
+   {
+     "@context": "https://schema.org",
+     "@type": "VideoObject",
+     "name": "<Project Name> - Expert Property Analysis",
+     "description": "Complete review and expert analysis of <Project Name>...",
+     "thumbnailUrl": "https://img.youtube.com/vi/<VIDEO_ID>/maxresdefault.jpg",
+     "uploadDate": "<approx date>",
+     "duration": "PT10M",
+     "embedUrl": "https://www.youtube.com/embed/<VIDEO_ID>",
+     "contentUrl": "https://www.youtube.com/watch?v=<VIDEO_ID>"
+   }
+   ```
+   
+   > **CRITICAL SEO RULE:** When embedding the video in the HTML, the `iframe` must use the standard `src` attribute with `loading="lazy"`. **NEVER** use javascript-based lazy loading like `data-src="..."` for video iframes. If `src` is missing, Googlebot will fail to associate the `VideoObject` structured data with the page DOM.
+
 - BreadcrumbList JSON-LD (if present — position-3 name + item = this project)
 - Hero: badges, `<h1>` name + "BY <DEVELOPER>", location row, developer line
 - Price bar: price, subtitle, status badge
@@ -146,7 +211,23 @@ Keep phone numbers, emails, and office addresses exactly as in the template.
 Insert a new card at the **top** of the `<div ... id="properties-grid">` grid (newest
 first), matching the existing card markup exactly. Use ₹ currency in the price span.
 
-The `col-lg-4 col-md-6` wrapper has `data-*` attributes for the filter system — fill
+**Also update the properties.html JSON-LD structured data:**
+Add the new project to the `ItemList` schema's `itemListElement` array (increment position):
+```json
+{
+  "@type": "ListItem",
+  "position": <next number>,
+  "item": {
+    "@type": "ApartmentComplex",
+    "name": "<Project Name>",
+    "description": "<Brief description>",
+    "url": "https://urbaninvestors.in/<slug>",
+    "image": "images/<project-folder>/<thumbnail>.webp"
+  }
+}
+```
+
+The `data-*` attributes for the filter system — fill
 them accurately:
 
 ```html
@@ -224,11 +305,91 @@ Match the format of existing entries, e.g.:
 - [Sobha Rivana](https://urbaninvestors.in/sobharivana): Luxury apartment complex by Sobha.
 ```
 
+### 6. Add Deep Dive Investment Guide section
+
+Every project page MUST include a "Deep Dive Investment Guide" section positioned **ABOVE the Contact Section** (before "Schedule Your Consultation"). This placement ensures users read the investment rationale before seeing the contact form, improving conversion.
+
+**Insert position:** Place after all content sections, but BEFORE:
+```html
+<!-- Contact Section -->
+<section id="contact" class="py-5 bg-primary text-white">
+```
+
+**Structure:**
+```html
+<!-- Deep Dive Investment Guide -->
+<section class="py-5 mt-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-dark">Deep Dive Investment Guide</h2>
+      <p class="text-muted">Everything you need to know about <Project Name></p>
+    </div>
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="accordion accordion-flush shadow-sm rounded-4 border" id="deepDiveAccordion">
+          <!-- 6 accordion items - ALL COLLAPSED BY DEFAULT -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+**CRITICAL: All accordions must be collapsed by default:**
+- Button classes: `accordion-button collapsed fw-bold text-primary fs-5`
+- Button attribute: `aria-expanded="false"`
+- Accordion body: `class="accordion-collapse collapse"` (NO "show")
+- Remove `rounded-top-4` from first item button unless it's the only one
+
+**Example of correct collapsed state:**
+```html
+<!-- Item 1 -->
+<div class="accordion-item rounded-top-4">
+  <h2 class="accordion-header">
+    <button class="accordion-button collapsed fw-bold text-primary fs-5 rounded-top-4" 
+            type="button" data-bs-toggle="collapse" data-bs-target="#ddCollapse1" 
+            aria-expanded="false">
+      Why <Project Name>?
+    </button>
+  </h2>
+  <div id="ddCollapse1" class="accordion-collapse collapse" data-bs-parent="#deepDiveAccordion">
+    <div class="accordion-body text-muted lh-lg">
+      Content here...
+    </div>
+  </div>
+</div>
+```
+
+**6 content blocks (customize for each project):**
+
+1. **Why <Project Name>?** - Investment rationale, what makes this project special
+2. **About <Project Name>: <Tagline>** - Project overview, developer reputation, key differentiators
+3. **<Project Name> Highlights** - Bullet list of key advantages (pricing, location, amenities, developer)
+4. **Unit Configurations / Commercial Spaces** - Detailed breakdown of available units:
+   - Residential: BHK types, sizes, target demographics
+   - Commercial: Office sizes, ideal businesses, target industries
+   - Land/Plots: Size ranges, development potential
+5. **Location Advantages: <Area Name>** - Connectivity, infrastructure, future developments, proximity benefits
+6. **Investment Potential** - Capital appreciation, rental yields, market trends, ROI expectations
+
+**Content guidelines:**
+- Adapt tone to property type (residential = lifestyle-focused, commercial = ROI-focused)
+- Include specific details: sector numbers, expressway names, distances to key landmarks
+- Reference infrastructure developments (Jewar Airport, metro extensions, highways)
+- Highlight developer credibility with track record points
+- Always mention Urban Investors' role in Step 6
+
+**Example from grandthum-tower-c.html (lines 1560-1697):**
+- Commercial project emphasis on office ecosystem, rental yields
+- Reference to mixed-use development advantages
+- Specific ROI potential and target tenant industries
+
 ## Finish
 
 - Report the 4 files touched and the new page's path:
   1. `<slug>.html` (new)
-  2. `properties.html` (card added)
+  2. `properties.html` (card added + ItemList updated)
   3. `sitemap.xml` (URL added)
   4. `llms.txt` (entry added)
 - Quick sanity check:
@@ -238,4 +399,7 @@ Match the format of existing entries, e.g.:
   - No leftover template text from `sobharivana.html`
   - All image `src` paths end in `.webp` and point to the correct project folder
   - `data-*` filter attributes on the properties card are accurate
+  - JSON-LD schemas present: ApartmentComplex, FAQPage, VideoObject (if video)
+  - **Deep Dive Investment Guide section present before footer** (6 accordion items)
+- **Recommended:** Run `apply-seo` skill to verify all structured data is in place.
 - Do **not** commit or push unless the user asks.
