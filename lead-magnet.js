@@ -3,7 +3,7 @@
 const WA_NUMBER = "911144739693";
 const PHONE_NUMBER = "7705015689";
 const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbyE9dlJ8JAJnJndXgSPw_k8yNDnU-L9f4cwJ2cDbJaBASshEC80PKl2Tj6EohgCcdSevQ/exec";
+"https://script.google.com/macros/s/AKfycbyK3zQjXKO656ePVyK4rH9-gbYxUwvj2irfhp0Ss7hOUghxNaPqrYOlVbaihJj_s-AagA/exec";
 const FRONTEND_TOKEN = "myFrontendToken123";
 function injectFloatingWA() {
 const waMsg = encodeURIComponent(

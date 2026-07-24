@@ -163,6 +163,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
       }
     </script>
+  <!-- Centralized Analytics Module -->
+  <script type="module" src="analytics/main.js"></script>
 </head>
 
   <body>
@@ -643,119 +645,84 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-light">
-      <div class="container py-4">
+    <section class="py-5 bg-primary text-white" id="contact">
+      <div class="container py-5">
         <div class="row align-items-center">
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <h2 class="display-6 fw-bold mb-4">Ready to Get Started?</h2>
-            <p class="lead text-muted mb-4">
-              Connect with our real estate specialists to discuss your
-              requirements and discover how we can help you achieve your
-              property goals.
+            <span class="badge bg-white text-primary mb-3">Get In Touch</span>
+            <h2 class="display-5 fw-bold mb-4">
+              Ready for Clarity in Your Property Investment Journey?
+            </h2>
+            <p class="lead mb-4">
+              Let's help you make the right move—reach out now.
             </p>
-
             <div class="contact-info">
               <div class="d-flex align-items-center mb-3">
-                <i class="fas fa-phone-alt me-3 fa-lg text-primary"></i>
+                <i class="fas fa-phone-alt me-3 fa-lg"></i>
                 <div>
                   <h6 class="mb-0">Call Us</h6>
-                  <p class="mb-0 text-muted">7705015689</p>
+                  <p class="mb-0 text-white-50">7705015689</p>
                 </div>
               </div>
               <div class="d-flex align-items-center mb-3">
-                <i class="fas fa-envelope me-3 fa-lg text-primary"></i>
+                <i class="fas fa-envelope me-3 fa-lg"></i>
                 <div>
                   <h6 class="mb-0">Email</h6>
-                  <p class="mb-0 text-muted">info@urbaninvestors.in</p>
+                  <p class="mb-0 text-white-50">info@urbaninvestors.in</p>
                 </div>
               </div>
               <div class="d-flex align-items-center">
-                <i class="fas fa-map-marker-alt me-3 fa-lg text-primary"></i>
+                <i class="fas fa-map-marker-alt me-3 fa-lg"></i>
                 <div>
                   <h6 class="mb-0">Office</h6>
-                  <p class="mb-0 text-muted">
+                  <p class="mb-0 text-white-50">
                     Corporate Park Sector 142, Noida, Uttar Pradesh 201304
                   </p>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="col-lg-6">
-            <div class="contact-form bg-white rounded p-4 p-lg-5 shadow">
-              <h4 class="mb-4">Get in Touch</h4>
-              <form id="servicesContactForm" novalidate>
+            <div class="contact-form bg-white rounded p-4 p-lg-5">
+              <h4 class="text-dark mb-4">Schedule Your Consultation</h4>
+              <form id="contactForm" novalidate="">
                 <div class="row g-3">
                   <!-- Full Name -->
                   <div class="col-12">
-                    <label
-                      for="fullName"
-                      class="form-label text-dark fw-semibold"
-                    >
+                    <label class="form-label text-dark fw-semibold" for="fullName">
                       Full Name
                     </label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="fullName"
-                      required
-                    />
+                    <input class="form-control" id="fullName" required="" type="text"/>
                     <div class="invalid-feedback">
                       Please provide your full name.
                     </div>
                   </div>
-
                   <!-- Email Address -->
                   <div class="col-12">
-                    <label
-                      for="emailAddress"
-                      class="form-label text-dark fw-semibold"
-                    >
+                    <label class="form-label text-dark fw-semibold" for="emailAddress">
                       Email Address
                     </label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="emailAddress"
-                      required
-                    />
+                    <input class="form-control" id="emailAddress" required="" type="email"/>
                     <div class="invalid-feedback">
                       Please provide a valid email address.
                     </div>
                   </div>
-
                   <!-- Phone Number -->
                   <div class="col-12">
-                    <label
-                      for="phoneNumber"
-                      class="form-label text-dark fw-semibold"
-                    >
+                    <label class="form-label text-dark fw-semibold" for="phoneNumber">
                       Phone Number
                     </label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="phoneNumber"
-                      required
-                     pattern="[0-9]{10}" minlength="10" maxlength="10" title="Please enter a valid 10-digit phone number" />
+                    <input class="form-control" id="phoneNumber" required="" type="tel" pattern="[0-9]{10}" minlength="10" maxlength="10" title="Please enter a valid 10-digit phone number" />
                     <div class="invalid-feedback">
                       Please provide your phone number.
                     </div>
                   </div>
-
                   <!-- Investment Range -->
                   <div class="col-12">
-                    <label
-                      for="investmentRange"
-                      class="form-label text-dark fw-semibold"
-                    >
+                    <label class="form-label text-dark fw-semibold" for="investmentRange">
                       Investment Range
                     </label>
-                    <select
-                      class="form-select"
-                      id="investmentRange"
-                      name="investment_range"
-                    >
+                    <select class="form-select" id="investmentRange" name="investment_range" required="">
                       <option value="">Select investment range</option>
                       <option value="₹50 Lakhs - ₹1 Crore">
                         ₹50 Lakhs - ₹1 Crore
@@ -768,38 +735,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       </option>
                       <option value="₹10 Crore+">₹10 Crore+</option>
                     </select>
+                    <div class="invalid-feedback">
+                      Please select your investment range.
+                    </div>
                   </div>
-
                   <!-- Message -->
                   <div class="col-12">
-                    <label
-                      for="message"
-                      class="form-label text-dark fw-semibold"
-                    >
+                    <label class="form-label text-dark fw-semibold" for="message">
                       Message
                     </label>
-                    <textarea
-                      class="form-control"
-                      id="message"
-                      rows="4"
-                      required
-                    ></textarea>
+                    <textarea class="form-control" id="message" placeholder="Tell us about your investment goals..." required="" rows="4"></textarea>
                     <div class="invalid-feedback">
                       Please provide a message.
                     </div>
                   </div>
-
                   <!-- Hidden Token Field -->
-                  <input
-                    type="hidden"
-                    name="token"
-                    value="myFrontendToken123"
-                  />
-
+                  <input name="token" type="hidden" value="myFrontendToken123"/>
                   <!-- Submit Button -->
                   <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn-lg w-100">
-                      Send Message
+                    <button class="btn btn-primary btn-lg w-100" type="submit">
+                      <span class="btn-text">Send Message</span>
+                      <span class="btn-loading d-none">
+                        <span aria-hidden="true" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                        Sending...
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -991,7 +950,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       (function () {
         // ---- CONFIG ----
         const scriptURL =
-          "https://script.google.com/macros/s/AKfycbyE9dlJ8JAJnJndXgSPw_k8yNDnU-L9f4cwJ2cDbJaBASshEC80PKl2Tj6EohgCcdSevQ/exec";
+          "https://script.google.com/macros/s/AKfycbyK3zQjXKO656ePVyK4rH9-gbYxUwvj2irfhp0Ss7hOUghxNaPqrYOlVbaihJj_s-AagA/exec";
         const FRONTEND_TOKEN = "myFrontendToken123"; // must match Apps Script EXPECTED_TOKEN
 
         // ---- HELPERS ----
@@ -999,7 +958,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const isPhone = (s) => /^\+?\d[\d\s-]{6,20}$/.test((s || "").trim());
 
         // ---- ELEMENTS (match your HTML) ----
-        const form = document.getElementById("servicesContactForm"); // your form id
+        const form = document.getElementById("contactForm"); // your form id
         const submitButton = form
           ? form.querySelector('button[type="submit"]')
           : null;
@@ -1008,7 +967,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (!status && form) {
           status = document.createElement("div");
           status.id = "status";
-          status.className = "small text-muted mt-3";
+          status.className = "small text-white-75 mt-3";
           // insert after the submit button
           const wrapper = submitButton ? submitButton.parentNode : form;
           if (wrapper) wrapper.appendChild(status);
@@ -1016,12 +975,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         if (!form) {
           console.error(
-            "servicesContactForm not found. Ensure the form has id='servicesContactForm'"
+            "contactForm not found. Ensure the form has id='contactForm'"
           );
           return;
         }
         if (!submitButton) {
-          console.error("Submit button not found in servicesContactForm.");
+          console.error("Submit button not found in contactForm.");
         }
 
         function setButtonLoading(loading) {
