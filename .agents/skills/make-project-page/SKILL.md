@@ -36,7 +36,7 @@ than guessing. Marketing copy (overview paragraphs, "why invest" blurbs) you may
   `<loc>`. (The *only* place `.html` appears is the `llms.txt` Page line — existing
   convention — and the filename itself.)
 - **Location** — area + city (e.g. "Sector 10, Greater Noida West")
-- **Starting price** (e.g. "₹2 Cr* Onwards") + a one-line price subtitle
+- **Starting price** (e.g. "₹2 Cr*") + a one-line price subtitle. **Pricing Format Rule:** Always append `*` instead of `+` or `Onwards` after Lakhs/Lacs/Cr/Crore (e.g., `₹77 Lacs*`). For per sq.ft pricing, use `sq.ft*` instead of `sq.ft+` (e.g., `₹16,995/sq.ft*`).
 - **Property type** (Apartments / Villas / Townhouses / Commercial / Independent Floors …)
 - **Project status badge** (New Launch / Pre-Launch / Under Construction / Ready …)
 - **Unit configuration** (e.g. "3, 4 & 5 BHK")
@@ -90,7 +90,7 @@ separated in your edits and output.
 |---|---|
 | Copy template from | `sobharivana.html` (cleanest current example) |
 | Listing page (Step 3) | `properties.html` |
-| Currency / price style | `₹2 Cr* Onwards` / `₹87 Lacs Onwards` / `₹16,995/sq.ft+` |
+| Currency / price style | `₹2 Cr*` / `₹87 Lacs*` / `₹16,995/sq.ft*` (never use `+` or `Onwards`) |
 | Breadcrumb level-2 | "Properties" → `/properties` |
 | Geo tags | `geo.region` `IN-UP`, `geo.placename` `Noida`, `content-language` `en-IN` |
 | llms.txt section (Step 5) | `## Property Listings` |

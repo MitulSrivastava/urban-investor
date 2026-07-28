@@ -240,6 +240,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </script>
   <!-- Centralized Analytics Module -->
   <script type="module" src="analytics/main.js"></script>
+<script
+  src="https://app.touchnow.ai/form.js"
+  data-application-authentication-id="wziTcl4Ta8-PRBmTAfUZCq_tyiN0328E8i1xAd_WMZlkVqCUZM4DsWNaGRuyq3G9QPONYfI2GHDueD7baV-fa-g"
+  data-endpoint="https://webhook.touchnow.ai"
+  data-capture-fields="fullName,emailAddress,phoneNumber"
+  data-required-fields="phoneNumber"
+  data-debug="true"
+></script>
 </head>
 
   <body class="property-page">
@@ -873,78 +881,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="table-responsive">
-              <table class="table table-hover price-table">
-                <thead class="table-dark">
-                  <tr>
-                    <th scope="col">Unit Type</th>
-                    <th scope="col">Configuration Type</th>
-                    <th scope="col">Floor Plan</th>
-                    <th scope="col">Availability</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-building text-primary me-2"></i>
-                        <span class="fw-semibold">Office Space</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">Lockable & Virtual (IT/ITES)</td>
-                    <td data-label="Floor Plan">288 - 500 sq.ft</td>
-                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%20Office%20Space%20in%20Fairfox%20EON%20Noida" target="_blank" 
-                        class="btn btn-outline-primary btn-sm" 
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-store text-primary me-2"></i>
-                        <span class="fw-semibold">Retail Shop</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">High-Street Ground/First Floor</td>
-                    <td data-label="Floor Plan">379 - 800 sq.ft</td>
-                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%20Retail%20Shop%20in%20Fairfox%20EON%20Noida" target="_blank" 
-                        class="btn btn-outline-primary btn-sm" 
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-utensils text-primary me-2"></i>
-                        <span class="fw-semibold">Food Court & Kiosk</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">Double Height Lobby / Plaza Kiosk</td>
-                    <td data-label="Floor Plan">150 - 300 sq.ft</td>
-                    <td data-label="Availability"><span class="badge bg-warning">Limited</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%20Food%20Court%20or%20Kiosk%20in%20Fairfox%20EON%20Noida" target="_blank" 
-                        class="btn btn-outline-primary btn-sm" 
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="col-lg-11">
+            <div class="premium-config-card">
+              <!-- Header -->
+              <div class="config-header">
+                <div class="col-type">UNIT TYPE</div>
+                <div class="col-area">CONFIGURATION TYPE</div>
+                <div class="col-high">FLOOR PLAN</div>
+                <div class="col-price">AVAILABILITY</div>
+                <div class="col-status">STATUS</div>
+                <div class="col-action">ACTION</div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">PREMIUM WORKSPACES</span>
+                  <h4 class="type-title"><i class="fas fa-building text-primary d-lg-none"></i> Office Space</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">Lockable & Virtual (IT/ITES)</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN">
+                  <span class="badge-highlight">288 - 500 sq.ft</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">On Request</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%20Office%20Space%20in%20Fairfox%20EON%20Noida" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">RETAIL ZONES</span>
+                  <h4 class="type-title"><i class="fas fa-store text-primary d-lg-none"></i> Retail Shop</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">High-Street Ground/First Floor</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN">
+                  <span class="badge-highlight">379 - 800 sq.ft</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">On Request</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%20Retail%20Shop%20in%20Fairfox%20EON%20Noida" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">RETAIL ZONES</span>
+                  <h4 class="type-title"><i class="fas fa-utensils text-primary d-lg-none"></i> Food Court & Kiosk</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">Double Height Lobby / Plaza Kiosk</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN">
+                  <span class="badge-highlight">150 - 300 sq.ft</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">Limited</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%20Food%20Court%20or%20Kiosk%20in%20Fairfox%20EON%20Noida" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
             </div>
 
             <div class="text-center mt-4">

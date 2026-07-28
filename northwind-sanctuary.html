@@ -257,6 +257,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link href="lead-magnet.css" rel="stylesheet" />
   <!-- Centralized Analytics Module -->
   <script type="module" src="analytics/main.js"></script>
+<script
+  src="https://app.touchnow.ai/form.js"
+  data-application-authentication-id="wziTcl4Ta8-PRBmTAfUZCq_tyiN0328E8i1xAd_WMZlkVqCUZM4DsWNaGRuyq3G9QPONYfI2GHDueD7baV-fa-g"
+  data-endpoint="https://webhook.touchnow.ai"
+  data-capture-fields="fullName,emailAddress,phoneNumber"
+  data-required-fields="phoneNumber"
+  data-debug="true"
+></script>
 </head>
 
   <body class="property-page">
@@ -892,81 +900,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="table-responsive">
-              <table class="table table-hover price-table">
-                <thead class="table-dark">
-                  <tr>
-                    <th scope="col">Unit Numbers</th>
-                    <th scope="col">Configuration Type</th>
-                    <th scope="col">Floor Plan</th>
-                    <th scope="col">Availability</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-home text-primary me-2"></i>
-                        <span class="fw-semibold">3 BHK + 3T + Utility</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">Ultra-Luxury Residence</td>
-                    <td data-label="Floor Plan">1,895 sq.ft.</td>
-                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%203%20BHK%20in%20NorthWind%20Sanctuary" 
-                        class="btn btn-outline-primary btn-sm" 
-                        target="_blank"
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-home text-primary me-2"></i>
-                        <span class="fw-semibold">4 BHK + 3T + Utility</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">Premium Residence</td>
-                    <td data-label="Floor Plan">2,431 sq.ft.</td>
-                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%204%20BHK%20in%20NorthWind%20Sanctuary" 
-                        class="btn btn-outline-primary btn-sm" 
-                        target="_blank"
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-home text-primary me-2"></i>
-                        <span class="fw-semibold">4 BHK + 4.5T + Staff</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">Grand Penthouse Residence</td>
-                    <td data-label="Floor Plan">3,750 sq.ft.</td>
-                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%204BHK%20Grand%20in%20NorthWind%20Sanctuary" 
-                        class="btn btn-outline-primary btn-sm" 
-                        target="_blank"
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="col-lg-11">
+            <div class="premium-config-card">
+              <!-- Header -->
+              <div class="config-header">
+                <div class="col-type">UNIT NUMBERS</div>
+                <div class="col-area">CONFIGURATION TYPE</div>
+                <div class="col-high">FLOOR PLAN</div>
+                <div class="col-price">AVAILABILITY</div>
+                <div class="col-status">STATUS</div>
+                <div class="col-action">ACTION</div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">LUXURY RESIDENCE</span>
+                  <h4 class="type-title"><i class="fas fa-home text-primary d-lg-none"></i> 3 BHK + 3T + Utility</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">Ultra-Luxury Residence</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN">
+                  <span class="badge-highlight">1,895 sq.ft.</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">On Request</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%203%20BHK%20in%20NorthWind%20Sanctuary" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">LUXURY RESIDENCE</span>
+                  <h4 class="type-title"><i class="fas fa-home text-primary d-lg-none"></i> 4 BHK + 3T + Utility</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">Premium Residence</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN">
+                  <span class="badge-highlight">2,431 sq.ft.</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">On Request</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%204%20BHK%20in%20NorthWind%20Sanctuary" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">LUXURY RESIDENCE</span>
+                  <h4 class="type-title"><i class="fas fa-home text-primary d-lg-none"></i> 4 BHK + 4.5T + Staff</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">Grand Penthouse Residence</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN">
+                  <span class="badge-highlight">3,750 sq.ft.</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">On Request</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%204BHK%20Grand%20in%20NorthWind%20Sanctuary" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
             </div>
 
             <div class="text-center mt-4">

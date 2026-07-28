@@ -255,6 +255,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </script>
   <!-- Centralized Analytics Module -->
   <script type="module" src="analytics/main.js"></script>
+<script
+  src="https://app.touchnow.ai/form.js"
+  data-application-authentication-id="wziTcl4Ta8-PRBmTAfUZCq_tyiN0328E8i1xAd_WMZlkVqCUZM4DsWNaGRuyq3G9QPONYfI2GHDueD7baV-fa-g"
+  data-endpoint="https://webhook.touchnow.ai"
+  data-capture-fields="fullName,emailAddress,phoneNumber"
+  data-required-fields="phoneNumber"
+  data-debug="true"
+></script>
 </head>
 
   <body class="property-page">
@@ -884,40 +892,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="table-responsive">
-              <table class="table table-hover price-table">
-                <thead class="table-dark">
-                  <tr>
-                    <th scope="col">Unit Type</th>
-                    <th scope="col">Size</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Availability</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-home text-primary me-2"></i>
-                        <span class="fw-semibold">Studio Apartment</span>
-                      </div>
-                    </td>
-                    <td data-label="Size">650-675 Sq. Ft.</td>
-                    <td data-label="Price">₹77 Lacs*</td>
-                    <td data-label="Availability"><span class="badge bg-success">Pre-Launch</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%20Studio%20Apartment%20in%20Gaur%20Bento" target="_blank" 
-                        class="btn btn-outline-primary btn-sm" 
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="col-lg-11">
+            <div class="premium-config-card">
+              <!-- Header -->
+              <div class="config-header">
+                <div class="col-type">UNIT TYPE</div>
+                <div class="col-area">SIZE</div>
+                <div class="col-high">PRICE</div>
+                <div class="col-price">AVAILABILITY</div>
+                <div class="col-status">STATUS</div>
+                <div class="col-action">ACTION</div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">LUXURY RESIDENCE</span>
+                  <h4 class="type-title"><i class="fas fa-home text-primary d-lg-none"></i> Studio Apartment</h4>
+                </div>
+                <div class="col-area" data-label="SIZE">
+                  <p class="area-text">650-675 Sq. Ft.</p>
+                </div>
+                <div class="col-high" data-label="PRICE">
+                  <span class="badge-highlight">₹77 Lacs*</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">Pre-Launch</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%20Studio%20Apartment%20in%20Gaur%20Bento" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
             </div>
 
             <div class="text-center mt-4">

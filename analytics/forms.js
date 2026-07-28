@@ -54,11 +54,15 @@ export function initFormTracking() {
                 const response = await originalFetch.apply(this, args);
                 
                 // 3. Push success event via centralized trackEvent
-                if (response.ok) {
+                // Treat opaque responses from no-cors Google Apps Script as success
+                if (response.ok || response.type === 'opaque') {
                     try {
-                        trackEvent('generate_lead', {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            event: "generate_lead",
                             form_name: formName
                         });
+                        console.log("generate_lead pushed directly");
                     } catch (analyticsError) {
                         // Critical Requirement: Analytics failures must never block, delay, or cancel a lead submission.
                         console.error("Analytics error tracking generate_lead:", analyticsError);

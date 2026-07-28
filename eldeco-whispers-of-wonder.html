@@ -234,6 +234,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </script>
   <!-- Centralized Analytics Module -->
   <script type="module" src="analytics/main.js"></script>
+<script
+  src="https://app.touchnow.ai/form.js"
+  data-application-authentication-id="wziTcl4Ta8-PRBmTAfUZCq_tyiN0328E8i1xAd_WMZlkVqCUZM4DsWNaGRuyq3G9QPONYfI2GHDueD7baV-fa-g"
+  data-endpoint="https://webhook.touchnow.ai"
+  data-capture-fields="fullName,emailAddress,phoneNumber"
+  data-required-fields="phoneNumber"
+  data-debug="true"
+></script>
 </head>
 
   <body class="property-page">
@@ -869,97 +877,105 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="table-responsive">
-              <table class="table table-hover price-table">
-                <thead class="table-dark">
-                  <tr>
-                    <th scope="col">Unit Numbers</th>
-                    <th scope="col">Configuration Type</th>
-                    <th scope="col">Floor Plan / Size</th>
-                    <th scope="col">Availability</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-home text-primary me-2"></i>
-                        <span class="fw-semibold">3 BHK + 2T</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">Premium Apartment</td>
-                    <td data-label="Floor Plan">1,550 sq.ft (Super Area)</td>
-                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%203%20BHK%20%2B%202T%20in%20Eldeco%20Whispers%20of%20Wonder" target="_blank" 
-                        class="btn btn-outline-primary btn-sm"
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-home text-primary me-2"></i>
-                        <span class="fw-semibold">3 BHK + 3T</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">Premium Apartment</td>
-                    <td data-label="Floor Plan">1,850 sq.ft (Super Area)</td>
-                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%203%20BHK%20%2B%203T%20in%20Eldeco%20Whispers%20of%20Wonder" target="_blank" 
-                        class="btn btn-outline-primary btn-sm"
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-home text-primary me-2"></i>
-                        <span class="fw-semibold">4 BHK + 4T + Servant</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">Luxury Penthouse (31st/32nd Floor)</td>
-                    <td data-label="Floor Plan">2,700 sq.ft (Super Area)</td>
-                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%204%20BHK%20Penthouse%20%282700%20sqft%29%20in%20Eldeco%20Whispers%20of%20Wonder" target="_blank" 
-                        class="btn btn-outline-primary btn-sm"
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <i class="fas fa-home text-primary me-2"></i>
-                        <span class="fw-semibold">4 BHK + 5T + Store + Servant</span>
-                      </div>
-                    </td>
-                    <td data-label="Configuration Type">Luxury Penthouse (31st/32nd Floor)</td>
-                    <td data-label="Floor Plan">3,150 sq.ft (Super Area)</td>
-                    <td data-label="Availability"><span class="badge bg-success">Available</span></td>
-                    <td data-label="Action">
-                      <a 
-                        href="https://wa.me/911144739693?text=I%20am%20interested%20in%204%20BHK%20Penthouse%20%283150%20sqft%29%20in%20Eldeco%20Whispers%20of%20Wonder" target="_blank" 
-                        class="btn btn-outline-primary btn-sm"
-                      >
-                        Enquire
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="col-lg-11">
+            <div class="premium-config-card">
+              <!-- Header -->
+              <div class="config-header">
+                <div class="col-type">UNIT NUMBERS</div>
+                <div class="col-area">CONFIGURATION TYPE</div>
+                <div class="col-high">FLOOR PLAN / SIZE</div>
+                <div class="col-price">AVAILABILITY</div>
+                <div class="col-status">STATUS</div>
+                <div class="col-action">ACTION</div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">LUXURY RESIDENCE</span>
+                  <h4 class="type-title"><i class="fas fa-home text-primary d-lg-none"></i> 3 BHK + 2T</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">Premium Apartment</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN / SIZE">
+                  <span class="badge-highlight">1,550 sq.ft (Super Area)</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">On Request</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%203%20BHK%20%2B%202T%20in%20Eldeco%20Whispers%20of%20Wonder" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">LUXURY RESIDENCE</span>
+                  <h4 class="type-title"><i class="fas fa-home text-primary d-lg-none"></i> 3 BHK + 3T</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">Premium Apartment</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN / SIZE">
+                  <span class="badge-highlight">1,850 sq.ft (Super Area)</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">On Request</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%203%20BHK%20%2B%203T%20in%20Eldeco%20Whispers%20of%20Wonder" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">LUXURY RESIDENCE</span>
+                  <h4 class="type-title"><i class="fas fa-home text-primary d-lg-none"></i> 4 BHK + 4T + Servant</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">Luxury Penthouse (31st/32nd Floor)</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN / SIZE">
+                  <span class="badge-highlight">2,700 sq.ft (Super Area)</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">On Request</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%204%20BHK%20Penthouse%20%282700%20sqft%29%20in%20Eldeco%20Whispers%20of%20Wonder" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
+              <div class="config-row">
+                <div class="col-type">
+                  <span class="badge-collection d-none d-lg-inline-block">LUXURY RESIDENCE</span>
+                  <h4 class="type-title"><i class="fas fa-home text-primary d-lg-none"></i> 4 BHK + 5T + Store + Servant</h4>
+                </div>
+                <div class="col-area" data-label="CONFIGURATION TYPE">
+                  <p class="area-text">Luxury Penthouse (31st/32nd Floor)</p>
+                </div>
+                <div class="col-high" data-label="FLOOR PLAN / SIZE">
+                  <span class="badge-highlight">3,150 sq.ft (Super Area)</span>
+                </div>
+                <div class="col-price" data-label="AVAILABILITY">
+                  <p class="price-text">On Request</p>
+                  
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="badge-status">Available</span>
+                </div>
+                <div class="col-action">
+                  <a href="https://wa.me/911144739693?text=I%20am%20interested%20in%204%20BHK%20Penthouse%20%283150%20sqft%29%20in%20Eldeco%20Whispers%20of%20Wonder" target="_blank" class="btn btn-pill-gold fw-bold text-uppercase w-100 py-2">GET PRICE</a>
+                </div>
+              </div>
             </div>
 
             <div class="text-center mt-4">

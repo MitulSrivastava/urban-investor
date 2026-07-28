@@ -1,0 +1,71 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/aceacreville",
+      "destination": "/ace-acreville",
+      "permanent": true
+    },
+    {
+      "source": "/aceparkway",
+      "destination": "/ace-parkway",
+      "permanent": true
+    },
+    {
+      "source": "/dasnac",
+      "destination": "/dasnac-yuva",
+      "permanent": true
+    },
+    {
+      "source": "/eldecoballadsofbliss",
+      "destination": "/eldeco-ballads-of-bliss",
+      "permanent": true
+    },
+    {
+      "source": "/eldecoechoesofeden",
+      "destination": "/eldeco-echoes-of-eden",
+      "permanent": true
+    },
+    {
+      "source": "/experionsaatori",
+      "destination": "/experion-saatori",
+      "permanent": true
+    },
+    {
+      "source": "/gaurchrysalis2",
+      "destination": "/gaur-chrysalis-2",
+      "permanent": true
+    },
+    {
+      "source": "/gaurchrysalis",
+      "destination": "/gaur-chrysalis",
+      "permanent": true
+    },
+    {
+      "source": "/migsunnehru",
+      "destination": "/migsun-nehru-place",
+      "permanent": true
+    },
+    {
+      "source": "/onefng",
+      "destination": "/one-fng",
+      "permanent": true
+    },
+    {
+      "source": "/palmvillage",
+      "destination": "/palm-village",
+      "permanent": true
+    },
+    {
+      "source": "/sobharivana",
+      "destination": "/sobha-rivana",
+      "permanent": true
+    },
+    {
+      "source": "/omaxeprayagraj",
+      "destination": "/omaxe-prayagraj",
+      "permanent": true
+    }
+  ]
+}

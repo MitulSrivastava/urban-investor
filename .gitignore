@@ -16,3 +16,5 @@ package-lock.json
 
 # Temporary bin
 unused_images_bin/
+.vercel
+.env*
