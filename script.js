@@ -24,58 +24,69 @@ setTimeout(() => (inThrottle = false), limit);
 },
 };
 class ScrollAnimations {
-constructor() {
-this.animatedElements = new Set();
-this.init();
-}
-init() {
-this.observeElements();
-this.setupIntersectionObserver();
-setTimeout(() => {
-document.querySelectorAll(".animate-on-scroll, [data-animation]").forEach(el => {
-if (getComputedStyle(el).opacity === "0" || el.style.opacity === "0") {
-el.style.opacity = "1";
-el.style.transform = "translateY(0)";
-}
-});
-}, 1500);
-}
-observeElements() {
-const elements = document.querySelectorAll(
-".animate-on-scroll, [data-animation]"
-);
-elements.forEach((el) => {
-el.style.opacity = "0";
-el.style.transform = "translateY(20px)";
-el.style.transition = "all 0.6s ease-out";
-});
-}
-setupIntersectionObserver() {
-const options = {
-threshold: 0.1,
-rootMargin: "0px 0px -30px 0px",
-};
-const observer = new IntersectionObserver((entries) => {
-entries.forEach((entry) => {
-if (entry.isIntersecting && !this.animatedElements.has(entry.target)) {
-this.animateElement(entry.target);
-this.animatedElements.add(entry.target);
-}
-});
-}, options);
-document
-.querySelectorAll(".animate-on-scroll, [data-animation]")
-.forEach((el) => {
-observer.observe(el);
-});
-}
-animateElement(element) {
-const delay = element.dataset.delay || "0s";
-setTimeout(() => {
-element.style.opacity = "1";
-element.style.transform = "translateY(0)";
-}, parseFloat(delay) * 1000);
-}
+  constructor() {
+    this.animatedElements = new Set();
+    this.init();
+  }
+  init() {
+    this.setupIntersectionObserver();
+  }
+  setupIntersectionObserver() {
+    const animationClasses = ['animate-on-scroll', 'animate-scale', 'animate-fade-left', 'animate-fade-right', 'animate-fade-in-up'];
+    const selector = animationClasses.map(c => `.${c}`).join(', ') + ', [data-animation]';
+
+    // Automatically apply animation class to all major sections and cards
+    document.querySelectorAll("section:not(.hero-section), .card, .service-card, .property-card, .insight-card, .testimonial-card").forEach((el, index) => {
+      const hasAnimation = animationClasses.some(className => el.classList.contains(className));
+      if (!hasAnimation && !el.closest(".hero-section")) {
+        if (el.tagName.toLowerCase() === 'section') {
+            el.classList.add('animate-on-scroll'); // Keep sections subtle
+        } else {
+            // Alternate animations for cards for variety
+            const animClass = animationClasses[index % 4]; // Use first 4 for variety
+            el.classList.add(animClass);
+        }
+      }
+    });
+
+    if (!("IntersectionObserver" in window)) {
+      document.querySelectorAll(selector).forEach((el) => {
+        el.classList.add("animated");
+      });
+      return;
+    }
+    const options = {
+      threshold: 0.05,
+      rootMargin: "0px 0px -50px 0px",
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !this.animatedElements.has(entry.target)) {
+          this.animateElement(entry.target);
+          this.animatedElements.add(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+    
+    // Slight delay to ensure DOM is fully ready before observing
+    setTimeout(() => {
+      document.querySelectorAll(selector).forEach((el) => {
+        observer.observe(el);
+      });
+    }, 100);
+  }
+  animateElement(element) {
+    const delayStr = element.dataset.delay || "0s";
+    const delayMs = parseFloat(delayStr) * 1000;
+    if (delayMs > 0) {
+      setTimeout(() => {
+        element.classList.add("animated");
+      }, delayMs);
+    } else {
+      element.classList.add("animated");
+    }
+  }
 }
 function initializeWebsite() {
 setupNavigation();
@@ -88,32 +99,12 @@ setupHeroSlideshow();
 }
 function initializePropertyPage() {
 if (!document.querySelector(".property-page")) {
-setupPropertyContactForm();
 setupPropertyScrollEffects();
 setupPropertyCarousel();
-setupPropertyModalForms();
 setupPropertyUnitEnquiry();
 }
 }
-function setupPropertyContactForm() {
-const form = document.getElementById("propertyContactForm");
-if (!form) return;
-form.addEventListener("submit", function (e) {
-e.preventDefault();
-const formData = {
-name: form.querySelector('input[type="text"]')?.value,
-phone: form.querySelector('input[type="tel"]')?.value,
-email: form.querySelector('input[type="email"]')?.value,
-interest: form.querySelector("select")?.value,
-project: "Dasnac",
-};
-if (!validatePropertyForm(formData)) {
-showNotification("Please fill all required fields", "error");
-return;
-}
-submitPropertyContactForm(formData);
-});
-}
+// setupPropertyContactForm removed — inline Google Sheets scripts handle form submission
 function setupPropertyScrollEffects() {
 const navLinks = document.querySelectorAll('a[href^="#"]');
 navLinks.forEach((link) => {
@@ -147,27 +138,7 @@ carousel.addEventListener("mouseleave", () => {
 carouselInstance.cycle();
 });
 }
-function setupPropertyModalForms() {
-const enquireModals = document.querySelectorAll('[data-bs-toggle="modal"]');
-enquireModals.forEach((trigger) => {
-trigger.addEventListener("click", function () {
-const modalId = this.getAttribute("data-bs-target");
-const modal = document.querySelector(modalId);
-if (modal) {
-const form = modal.querySelector("form");
-if (form) {
-form.addEventListener("submit", function (e) {
-e.preventDefault();
-showNotification(
-"Thank you for your enquiry. Our team will contact you shortly.",
-"success"
-);
-});
-}
-}
-});
-});
-}
+// setupPropertyModalForms removed — inline Google Sheets scripts handle modal form submission
 function setupPropertyUnitEnquiry() {
 window.enquireUnit = function (unitType) {
 showNotification(
@@ -288,7 +259,6 @@ setupHotProjectsCarousel();
 function initializeServicesPage() {
 if (!document.querySelector(".services-hero")) return;
 setupServicesAnimations();
-setupServicesContactForm();
 setupServiceNavigation();
 }
 function setupServicesAnimations() {
@@ -331,44 +301,7 @@ entry.target.style.transform = "translateY(0)";
 processObserver.observe(step);
 });
 }
-function setupServicesContactForm() {
-const form = document.getElementById("servicesContactForm");
-if (!form) return;
-form.addEventListener("submit", function (e) {
-e.preventDefault();
-if (!form.checkValidity()) {
-e.stopPropagation();
-form.classList.add("was-validated");
-return;
-}
-const formData = {
-firstName: document.getElementById("firstName")?.value,
-lastName: document.getElementById("lastName")?.value,
-email: document.getElementById("email")?.value,
-service: document.getElementById("service")?.value,
-message: document.getElementById("message")?.value,
-};
-const submitBtn = form.querySelector('button[type="submit"]');
-const originalText = submitBtn.textContent;
-submitBtn.disabled = true;
-submitBtn.innerHTML =
-'<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-setTimeout(() => {
-form.reset();
-form.classList.remove("was-validated");
-submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!';
-submitBtn.classList.remove("btn-primary");
-submitBtn.classList.add("btn-success");
-setTimeout(() => {
-submitBtn.disabled = false;
-submitBtn.textContent = originalText;
-submitBtn.classList.remove("btn-success");
-submitBtn.classList.add("btn-primary");
-}, 3000);
-console.log("Services form submitted:", formData);
-}, 2000);
-});
-}
+// setupServicesContactForm removed — inline Google Sheets script handles form submission
 function setupServiceNavigation() {
 const serviceLinks = document.querySelectorAll('a[href^="#"]');
 serviceLinks.forEach((link) => {
@@ -598,38 +531,8 @@ message.value = `I would like to schedule a viewing for Property ID: ${propertyI
 function setupContactForm() {
 const contactForm = document.getElementById("contactForm");
 if (!contactForm) return;
-const submitBtn = contactForm.querySelector('button[type="submit"]');
-const btnText = submitBtn.querySelector(".btn-text");
-const btnLoading = submitBtn.querySelector(".btn-loading");
-contactForm.addEventListener("submit", async function (e) {
-e.preventDefault();
-this.classList.remove("was-validated");
-if (!this.checkValidity()) {
-this.classList.add("was-validated");
-return;
-}
-submitBtn.disabled = true;
-if (btnText) btnText.classList.add("d-none");
-if (btnLoading) btnLoading.classList.remove("d-none");
-try {
-await simulateFormSubmission();
-showNotification(
-"Thank you! Your message has been sent successfully. We'll contact you within 24 hours.",
-"success"
-);
-this.reset();
-this.classList.remove("was-validated");
-} catch (error) {
-showNotification(
-"Sorry, there was an error sending your message. Please try again.",
-"error"
-);
-} finally {
-submitBtn.disabled = false;
-if (btnText) btnText.classList.remove("d-none");
-if (btnLoading) btnLoading.classList.add("d-none");
-}
-});
+// Note: form submission is handled by the inline Google Sheets integration script on each page.
+// This function only sets up real-time field validation (blur/input events).
 const inputs = contactForm.querySelectorAll("input, select, textarea");
 inputs.forEach((input) => {
 input.addEventListener("blur", function () {
@@ -653,17 +556,7 @@ field.classList.add("is-invalid");
 }
 return isValid;
 }
-function simulateFormSubmission() {
-return new Promise((resolve, reject) => {
-setTimeout(() => {
-if (Math.random() > 0.05) {
-resolve();
-} else {
-reject(new Error("Submission failed"));
-}
-}, 2000);
-});
-}
+// simulateFormSubmission removed — inline Google Sheets scripts handle actual submission
 function setupNewsletterForm() {
 const newsletterForm = document.querySelector(".newsletter-form");
 if (newsletterForm) {
@@ -1223,3 +1116,33 @@ currentSlide = (currentSlide + 1) % slides.length;
 slides[currentSlide].classList.add("active");
 }, 5000);
 }
+
+// Global Share Button Handler (Web Share API + Clipboard Fallback)
+document.addEventListener("click", async function (e) {
+  const shareBtn = e.target.closest("#shareBtn, .share-btn");
+  if (!shareBtn) return;
+
+  e.preventDefault();
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: document.title,
+        url: window.location.href,
+      });
+    } catch (err) {
+      console.log("Share cancelled or failed:", err);
+    }
+  } else {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      const originalHTML = shareBtn.innerHTML;
+      shareBtn.innerHTML = '<i class="fas fa-check me-2 text-success"></i>Copied!';
+      setTimeout(() => {
+        shareBtn.innerHTML = originalHTML;
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy link:", err);
+    }
+  }
+});

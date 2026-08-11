@@ -17,7 +17,7 @@ EXCLUDES=(
   ".git" ".gitignore" ".vscode" "google analyttics"
   "node_modules" "package.json" "package-lock.json" ".claude"
   ".env" ".env.example" ".env.local"
-  "deploy.sh" "update_links.py"
+  "deploy.sh" "update_links.py" "server.py"
   "urban-investors-deploy.zip" "urban-investors-hostinger.zip"
   "images/unsplash" "unused_images_bin"
 )
@@ -57,7 +57,11 @@ deploy_ftp() {
   echo "Deploying to ftp://$FTP_HOST$FTP_REMOTE_DIR ..."
   lftp -u "$FTP_USER","$FTP_PASS" -p "$FTP_PORT" "$FTP_HOST" <<LFTP
     set ssl:verify-certificate no
-    set ftp:ssl-allow yes
+    set ftp:ssl-allow no
+    set ftp:passive-mode yes
+    set net:timeout 30
+    set net:reconnect-interval-base 5
+    set net:max-retries 3
     mirror -R --verbose --only-newer --no-perms $mirror_excludes ./ $FTP_REMOTE_DIR
     bye
 LFTP

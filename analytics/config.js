@@ -41,7 +41,7 @@ export function getSessionId() {
 /**
  * Utility to extract the project/property name from the URL path.
  * Used automatically by trackEvent() to append property context to all events.
- * e.g. /gaur-plume.html -> Gaur Plume
+ * e.g. /gaur-alaris.html -> Gaur Plume
  * 
  * @returns {string} The formatted project name, or 'Home' if no project is detected.
  */
@@ -66,7 +66,7 @@ export function getProjectName() {
         'gaur-chrysalis-2': "Gaur Chrysalis",
         'gaurchrysalis': "Gaur Chrysalis",
         'gaurchrysalis2': "Gaur Chrysalis",
-        'gaur-plume': "Gaur Plume",
+        'gaur-alaris': "Gaur Alaris",
         'migsun-nehru-place': "Migsun Nehru Place",
         'migsunnehru': "Migsun Nehru Place",
         'one-fng': "One FNG",

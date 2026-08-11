@@ -52,7 +52,7 @@ overlay.innerHTML = `
 </div>
 <h3>Wait! Don't Miss Out</h3>
 <p>Get exclusive pre-launch prices & a free property consultation. Our property expert will call you within 24hrs.</p>
-<form class="ui-exit-form" id="uiExitForm">
+<form class="ui-exit-form" id="uiExitForm" action="#" method="POST">
 <input type="text" class="ui-exit-input" placeholder="Your Name" id="uiExitName" required />
 <input type="tel" class="ui-exit-input" placeholder="Your Phone Number" id="uiExitPhone" required  pattern="[0-9]{10}" minlength="10" maxlength="10" title="Please enter a valid 10-digit phone number" />
 <button type="submit" class="ui-exit-submit">
@@ -177,7 +177,7 @@ overlay.innerHTML = `
 <div class="ui-gp-icon"><i class="fas fa-tag"></i></div>
 <h3>Get the Exact Price</h3>
 <p>Enter your details and we'll send the latest price &amp; payment plan for <strong>${project}</strong> on WhatsApp right away.</p>
-<form class="ui-gp-form" id="uiGpForm">
+<form class="ui-gp-form" id="uiGpForm" action="#" method="POST">
 <input type="text" class="ui-gp-input" placeholder="Your Name" id="uiGpName" required />
 <input type="tel" class="ui-gp-input" placeholder="Your Phone Number" id="uiGpPhone" required  pattern="[0-9]{10}" minlength="10" maxlength="10" title="Please enter a valid 10-digit phone number" />
 <button type="submit" class="ui-gp-submit">
