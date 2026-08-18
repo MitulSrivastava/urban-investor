@@ -63,6 +63,11 @@
       "permanent": true
     },
     {
+      "source": "/gaur-plume",
+      "destination": "/gaur-alaris",
+      "permanent": true
+    },
+    {
       "source": "/omaxeprayagraj",
       "destination": "/omaxe-prayagraj",
       "permanent": true
