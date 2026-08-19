@@ -84,7 +84,7 @@ export function getProjectName() {
         'onyx-by-splendor': "Onyx By Splendor",
         'northwind-sanctuary': "Northwind Sanctuary",
         'omaxe-prayagraj': "Omaxe Prayagraj",
-        'ace-parkway': "Ace Parkway",
+        'acearte': "Ace Arte",
         'crown-residences-godrej-golf-links-greater-noida': "Crown Residences Godrej",
         'eldeco-whispers-of-wonder': "Eldeco Whispers of Wonder",
         'gaur-bento': "Gaur Bento",

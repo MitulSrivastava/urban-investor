@@ -187,12 +187,7 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  <url>
-    <loc>https://urbaninvestors.in/ace-parkway</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+
   <url>
     <loc>https://urbaninvestors.in/crc-the-flagship</loc>
     <lastmod>2026-07-08</lastmod>

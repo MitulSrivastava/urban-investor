@@ -17,8 +17,11 @@ class CleanURLRequestHandler(http.server.SimpleHTTPRequestHandler):
             
         return super().do_GET()
 
+class ReusableTCPServer(socketserver.TCPServer):
+    allow_reuse_address = True
+
 # Set up the server
-with socketserver.TCPServer(("", PORT), CleanURLRequestHandler) as httpd:
+with ReusableTCPServer(("", PORT), CleanURLRequestHandler) as httpd:
     print(f"🚀 Local Development Server running!")
     print(f"👉 Local URL: http://localhost:{PORT}")
     print(f"✅ Clean URLs (like /about instead of /about.html) are fully supported.")

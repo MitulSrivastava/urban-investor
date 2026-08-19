@@ -9,7 +9,12 @@
     },
     {
       "source": "/aceparkway",
-      "destination": "/ace-parkway",
+      "destination": "/acearte",
+      "permanent": true
+    },
+    {
+      "source": "/ace-parkway",
+      "destination": "/acearte",
       "permanent": true
     },
     {

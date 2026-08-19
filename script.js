@@ -384,6 +384,7 @@ bootstrap.Collapse.getInstance(navbarCollapse).hide();
 });
 });
 window.addEventListener("scroll", updateActiveNavLink);
+updateActiveNavLink(); // Call once to set initial state
 }
 function updateActiveNavLink() {
 if (document.querySelector(".property-page")) {
