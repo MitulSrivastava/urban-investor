@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <meta content="Learn about Urban Investors, since 2017 India's premier luxury real estate investment partner. Discover our mission, vision, values, and outstanding ROI in Delhi NCR and Yamuna Expressway." name="description"/>
-<meta content="Urban Investors, luxury real estate India, real estate investment Delhi NCR, Yamuna Expressway premium properties, luxury property investment, Mahendra Rai, generational wealth real estate, premium property consultant India" name="keywords"/>
+<meta content="Urban Investors, luxury real estate India, real estate investment Delhi NCR, Yamuna Expressway premium properties, luxury property investment, Mahendra Rai, Manjit Choudhary, generational wealth real estate, premium property consultant India" name="keywords"/>
 <title>About Us | Urban Investors - Luxury Real Estate Investment India</title>
 <!-- Favicon -->
 <link href="/favicon.ico?v=4" rel="icon" type="image/x-icon"/>
@@ -122,6 +122,162 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           font-size: 0.62rem !important;
         }
       }
+
+      /* Executive Leadership Cards */
+      .leadership-card {
+        background: linear-gradient(180deg, #ffffff 0%, #fcfbf9 100%);
+        border-radius: 24px;
+        border: 1px solid rgba(212, 165, 116, 0.28);
+        box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
+        padding: 2rem 1.75rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.35s ease, border-color 0.35s ease;
+      }
+      .leadership-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(212, 165, 116, 0.7) !important;
+        box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12) !important;
+      }
+      .leadership-img-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        max-width: 220px;
+        margin: 0 auto;
+      }
+      .leadership-img-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: -10px;
+        bottom: -10px;
+        background: var(--accent-color);
+        border-radius: 18px;
+        z-index: 1;
+      }
+      .leadership-img-box {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        z-index: 2;
+        aspect-ratio: 4 / 5;
+        background: #f1f5f9;
+      }
+      .leadership-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+      .leadership-card:hover .leadership-img-box img {
+        transform: scale(1.05);
+      }
+
+      /* Premium Team Member Cards */
+      .team-member-card {
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 165, 116, 0.25);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.35s ease, border-color 0.35s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .team-member-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(212, 165, 116, 0.7) !important;
+        box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12) !important;
+      }
+      .team-member-img-box {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 4.8;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      }
+      .team-member-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .team-member-card:hover .team-member-img-box img {
+        transform: scale(1.07);
+      }
+      .team-member-badge {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: rgba(11, 30, 54, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #d4a574;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 30px;
+        border: 1px solid rgba(212, 165, 116, 0.35);
+        z-index: 2;
+      }
+      .team-member-body {
+        padding: 1.35rem 1.15rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        text-align: center;
+        background: linear-gradient(180deg, #ffffff 0%, #fdfbf7 100%);
+      }
+      .team-member-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #0b1e36;
+        margin-bottom: 0.25rem;
+      }
+      .team-member-role {
+        color: #d4a574;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.6rem;
+      }
+      .team-member-specialty {
+        font-size: 0.82rem;
+        color: #64748b;
+        line-height: 1.45;
+        margin-bottom: 0;
+      }
+      .team-contact-btn {
+        margin-top: auto;
+        padding-top: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #1e3a8a;
+        text-decoration: none;
+        transition: color 0.2s ease, transform 0.2s ease;
+      }
+      .team-contact-btn:hover {
+        color: #d4a574;
+        transform: translateX(2px);
+      }
     </style>
 <!-- Lead Magnet Components -->
 <link href="lead-magnet.css" rel="stylesheet"/>
@@ -140,6 +296,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             "foundingDate": "2017",
             "description": "Premium luxury real estate for high-net-worth clients. Discover exclusive properties and investment opportunities in Noida and Yamuna Expressway.",
             "url": "https://urbaninvestors.in",
+            "founders": [
+              {
+                "@type": "Person",
+                "name": "Mahendra Rai",
+                "jobTitle": "Founder & Director of Sales"
+              },
+              {
+                "@type": "Person",
+                "name": "Manjit Choudhary",
+                "jobTitle": "Co-Founder & Managing Director"
+              }
+            ],
+            "employee": [
+              { "@type": "Person", "name": "Satyendra", "jobTitle": "Senior Investment Advisor" },
+              { "@type": "Person", "name": "Shritosh", "jobTitle": "Senior Investment Advisor" },
+              { "@type": "Person", "name": "Jyoti", "jobTitle": "Senior Investment Advisor" },
+              { "@type": "Person", "name": "Mohit", "jobTitle": "Investment Consultant" },
+              { "@type": "Person", "name": "Anjali", "jobTitle": "Investment Consultant" },
+              { "@type": "Person", "name": "Manish Mishra", "jobTitle": "Investment Consultant" },
+              { "@type": "Person", "name": "Harsh Gupta", "jobTitle": "Investment Consultant" }
+            ],
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "Corporate Park Sector 142",
@@ -160,10 +337,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             "name": "Urban Investors",
             "url": "https://urbaninvestors.in"
           },
-          "description": "Mahendra Rai is the Founder and Director of Sales at Urban Investors, with expertise in luxury real estate investment across Delhi NCR and Yamuna Expressway since 2017.",
+          "description": "Mahendra Rai is the Co-Founder and Director of Sales at Urban Investors, with expertise in luxury real estate investment across Delhi NCR and Yamuna Expressway since 2017.",
           "image": "https://urbaninvestors.in/images/team/mahendra%20rai.webp",
           "url": "https://urbaninvestors.in/about",
           "knowsAbout": ["Luxury real estate", "Property investment", "Delhi NCR real estate", "Yamuna Expressway properties", "Generational wealth"]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Manjit Choudhary",
+          "jobTitle": "Co-Founder & Managing Director",
+          "worksFor": {
+            "@type": "RealEstateAgent",
+            "name": "Urban Investors",
+            "url": "https://urbaninvestors.in"
+          },
+          "description": "Manjit Choudhary is the Co-Founder and Managing Director at Urban Investors, leading strategic property advisory and high-growth corridor investments across Noida & NCR.",
+          "image": "https://urbaninvestors.in/images/team/manjit%20choudhary.webp",
+          "url": "https://urbaninvestors.in/about",
+          "knowsAbout": ["Luxury Estates", "Managing Director", "Expressway Corridor", "High-Yield Assets", "Real estate advisory", "Commercial real estate"]
         }
       ]
     </script>
@@ -278,33 +470,184 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Meet the Leadership Section -->
 <section class="py-5 bg-white">
 <div class="container py-4">
-<div class="row align-items-center g-5">
-<div class="animate-on-scroll col-lg-5 text-center">
-<div class="position-relative d-inline-block">
-<!-- Decorative border behind image -->
-<div class="position-absolute rounded-4" style="top: 15px; left: 15px; right: -15px; bottom: -15px; z-index: 1; background-color: var(--accent-color) !important;"></div>
-<div class="position-relative rounded-4 overflow-hidden shadow-lg team-image-container" style="z-index: 2; max-width: 380px; margin: 0 auto;">
-<img alt="Mahendra Rai" class="img-fluid w-100" src="images/team/mahendra%20rai.webp" style="object-fit: cover; min-height: 400px; display: block;"/>
+<div class="text-center mb-5">
+<span class="text-accent fw-bold text-uppercase tracking-wider d-block mb-2 font-accent" style="font-size: 0.85rem;">Executive Leadership</span>
+<h2 class="display-5 fw-bold mb-3 font-luxury text-dark">Meet Our Leadership</h2>
+<p class="lead text-muted max-w-700 mx-auto" style="font-size: 1.1rem;">
+  Guiding Urban Investors with proven real-estate mastery, absolute transparency, and a client-first philosophy.
+</p>
+</div>
+<div class="row g-4 align-items-stretch justify-content-center">
+<!-- Mahendra Rai -->
+<div class="animate-on-scroll col-lg-6">
+<div class="leadership-card">
+<div class="row align-items-center g-4">
+<div class="col-sm-5 text-center">
+<div class="leadership-img-wrapper">
+<div class="leadership-img-box">
+<img alt="Mahendra Rai - Co-Founder &amp; Director of Sales" loading="lazy" src="images/team/mahendra%20rai.webp" style="object-position: center top;"/>
 </div>
 </div>
 </div>
-<div class="animate-on-scroll col-lg-7">
-<span class="text-accent fw-bold text-uppercase tracking-wider d-block mb-2 font-accent">Meet the Leadership</span>
-<h2 class="display-5 fw-bold mb-1 font-luxury text-dark">Mahendra Rai</h2>
-<p class="text-muted fw-bold mb-4 font-accent">Founder &amp; Director of Sales</p>
-<div class="pe-lg-4">
-<blockquote class="border-start border-4 ps-4 py-2 my-4 bg-light rounded-end-4 shadow-soft" style="font-style: italic; border-left-color: var(--accent-color) !important;">
-<span class="text-accent fs-1 lh-1 d-block mb-1" style="font-family: serif;">“</span>
-<p class="mb-3 lead text-dark fw-normal" style="font-family: var(--font-secondary); line-height: 1.8; font-size: 1.1rem;">
-                  Real estate is not just about square footage; it is about building the foundation for generational wealth and securing your family's future. My vision for Urban Investors has always been to democratize luxury property investment—transforming the landscape by prioritizing absolute transparency, rigorous market research, and exceptional ROI above all else. When you invest with us, you are not just buying a property; you are securing a legacy.
-                </p>
-<span class="text-accent fs-1 lh-1 d-block text-end" style="font-family: serif;">”</span>
+<div class="col-sm-7">
+<span class="badge bg-primary-light text-primary mb-2 fw-semibold" style="font-size: 0.72rem;">FOUNDER &amp; DIRECTOR</span>
+<h3 class="font-luxury fw-bold mb-1 text-dark" style="font-size: 1.55rem;">Mahendra Rai</h3>
+<p class="text-muted fw-bold mb-3 font-accent" style="font-size: 0.82rem; color: #d4a574 !important;">Founder &amp; Director of Sales</p>
+<div class="pe-sm-2">
+<blockquote class="border-start border-3 ps-3 py-1 my-2 bg-light rounded-end-3" style="border-left-color: var(--accent-color) !important;">
+<p class="mb-0 text-dark small" style="font-family: var(--font-secondary); line-height: 1.6; font-style: italic; font-size: 0.88rem;">
+  “Real estate is about building generational wealth and securing your legacy. My vision is to democratize luxury property investment with absolute transparency and unmatched ROI.”
+</p>
 </blockquote>
 </div>
 </div>
 </div>
 </div>
+</div>
+
+<!-- Manjit Choudhary -->
+<div class="animate-on-scroll col-lg-6">
+<div class="leadership-card">
+<div class="row align-items-center g-4">
+<div class="col-sm-5 text-center">
+<div class="leadership-img-wrapper">
+<div class="leadership-img-box">
+<img alt="Manjit Choudhary - Co-Founder &amp; Managing Director" loading="lazy" src="images/team/manjit%20choudhary.webp" style="object-position: center 20%;"/>
+</div>
+</div>
+</div>
+<div class="col-sm-7">
+<span class="badge bg-primary-light text-primary mb-2 fw-semibold" style="font-size: 0.72rem;">CO-FOUNDER &amp; MD</span>
+<h3 class="font-luxury fw-bold mb-1 text-dark" style="font-size: 1.55rem;">Manjit Choudhary</h3>
+<p class="text-muted fw-bold mb-3 font-accent" style="font-size: 0.82rem; color: #d4a574 !important;">Co-Founder &amp; Managing Director</p>
+<div class="pe-sm-2">
+<blockquote class="border-start border-3 ps-3 py-1 my-2 bg-light rounded-end-3" style="border-left-color: var(--accent-color) !important;">
+<p class="mb-0 text-dark small" style="font-family: var(--font-secondary); line-height: 1.6; font-style: italic; font-size: 0.88rem;">
+  “Strategic investments in high-growth NCR corridors deliver enduring value. We empower investors with deep market intelligence and tailored wealth advisory.”
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
+
+<!-- Meet Our Investment Team Section -->
+<section class="py-5 bg-light border-top border-bottom" id="team-section">
+<div class="container py-4">
+<div class="text-center mb-5">
+<span class="text-accent fw-bold text-uppercase tracking-wider d-block mb-2 font-accent" style="font-size: 0.85rem;">Advisory &amp; Sales Force</span>
+<h2 class="display-5 fw-bold mb-3 font-luxury text-dark">Meet Our Investment Team</h2>
+<p class="lead text-muted max-w-700 mx-auto" style="font-size: 1.1rem;">
+  Experienced professionals helping you make informed real-estate decisions across Noida &amp; NCR.
+</p>
+</div>
+<div class="row g-4 justify-content-center">
+<!-- Jyoti -->
+<div class="animate-on-scroll col-xl-3 col-lg-4 col-md-6 col-sm-6">
+<div class="team-member-card">
+<div class="team-member-img-box">
+<span class="team-member-badge">Team Lead</span>
+<img alt="Jyoti - Senior Investment Advisor at Urban Investors" loading="lazy" src="images/team/jyoti.webp" style="object-position: center 20%;"/>
+</div>
+<div class="team-member-body">
+<h3 class="team-member-name">Jyoti</h3>
+<p class="team-member-role">Senior Investment Advisor</p>
+<p class="team-member-specialty">NRI Wealth Advisory • Bespoke Client Relations • Global Portfolios</p>
+</div>
+</div>
+</div>
+<!-- Shritosh -->
+<div class="animate-on-scroll col-xl-3 col-lg-4 col-md-6 col-sm-6">
+<div class="team-member-card">
+<div class="team-member-img-box">
+<span class="team-member-badge">Team Lead</span>
+<img alt="Shritosh - Senior Investment Advisor at Urban Investors" loading="lazy" src="images/team/shritosh_office.webp" style="object-position: center 55%;"/>
+</div>
+<div class="team-member-body">
+<h3 class="team-member-name">Shritosh</h3>
+<p class="team-member-role">Senior Investment Advisor</p>
+<p class="team-member-specialty">High-Yield Corridors • Market Intelligence • Portfolio Optimization</p>
+</div>
+</div>
+</div>
+<!-- Satyendra -->
+<div class="animate-on-scroll col-xl-3 col-lg-4 col-md-6 col-sm-6">
+<div class="team-member-card">
+<div class="team-member-img-box">
+<span class="team-member-badge">Advisor</span>
+<img alt="Satyendra - Senior Investment Advisor at Urban Investors" loading="lazy" src="images/team/satyendra.webp" style="object-position: center 15%;"/>
+</div>
+<div class="team-member-body">
+<h3 class="team-member-name">Satyendra</h3>
+<p class="team-member-role">Senior Investment Advisor</p>
+<p class="team-member-specialty">Premium Residential Assets • Wealth Management • Strategic Advisory</p>
+</div>
+</div>
+</div>
+<!-- Mohit -->
+<div class="animate-on-scroll col-xl-3 col-lg-4 col-md-6 col-sm-6">
+<div class="team-member-card">
+<div class="team-member-img-box">
+<span class="team-member-badge">Consultant</span>
+<img alt="Mohit - Investment Consultant at Urban Investors" loading="lazy" src="images/team/mohit.webp" style="object-position: center 15%;"/>
+</div>
+<div class="team-member-body">
+<h3 class="team-member-name">Mohit</h3>
+<p class="team-member-role">Investment Consultant</p>
+<p class="team-member-specialty">Asset Discovery • Experiential Site Advisory • Client Success</p>
+</div>
+</div>
+</div>
+<!-- Anjali -->
+<div class="animate-on-scroll col-xl-3 col-lg-4 col-md-6 col-sm-6">
+<div class="team-member-card">
+<div class="team-member-img-box">
+<span class="team-member-badge">Consultant</span>
+<img alt="Anjali - Investment Consultant at Urban Investors" loading="lazy" src="images/team/anjali.webp" style="object-position: center 15%;"/>
+</div>
+<div class="team-member-body">
+<h3 class="team-member-name">Anjali</h3>
+<p class="team-member-role">Investment Consultant</p>
+<p class="team-member-specialty">Ultra-Luxury Segments • HNWI Advisory • Transaction Excellence</p>
+</div>
+</div>
+</div>
+<!-- Manish Mishra -->
+<div class="animate-on-scroll col-xl-3 col-lg-4 col-md-6 col-sm-6">
+<div class="team-member-card">
+<div class="team-member-img-box">
+<span class="team-member-badge">Consultant</span>
+<img alt="Manish Mishra - Investment Consultant at Urban Investors" loading="lazy" src="images/team/manish%20mishra.webp" style="object-position: center 15%;"/>
+</div>
+<div class="team-member-body">
+<h3 class="team-member-name">Manish Mishra</h3>
+<p class="team-member-role">Investment Consultant</p>
+<p class="team-member-specialty">Expressway Corridors • Premium High-Rises • ROI Maximization</p>
+</div>
+</div>
+</div>
+<!-- Harsh Gupta -->
+<div class="animate-on-scroll col-xl-3 col-lg-4 col-md-6 col-sm-6">
+<div class="team-member-card">
+<div class="team-member-img-box">
+<span class="team-member-badge">Consultant</span>
+<img alt="Harsh Gupta - Investment Consultant at Urban Investors" loading="lazy" src="images/team/harsh%20gupta.webp" style="object-position: center 15%;"/>
+</div>
+<div class="team-member-body">
+<h3 class="team-member-name">Harsh Gupta</h3>
+<p class="team-member-role">Investment Consultant</p>
+<p class="team-member-specialty">Commercial Real Estate • Institutional Assets • Risk Mitigation</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 <!-- Our Story Section -->
 <section class="py-5 bg-light">
 <div class="container py-4">
