@@ -55,3 +55,7 @@
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
   }
 }
+
+/* Missing FontAwesome Icons */
+.fa-gift::before { content: "\f06b"; }
+.fa-tag::before { content: "\f02b"; }

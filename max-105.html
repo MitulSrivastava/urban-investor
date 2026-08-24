@@ -2,12 +2,18 @@
 
 <html lang="en">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WQM7844P');</script>
+<!-- Google Tag Manager (Delayed for Performance) -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WQM7844P');
+    }, 4000);
+  });
+</script>
 <!-- End Google Tag Manager -->
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
@@ -142,16 +148,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   ]
 }
     </script>
+<!-- Performance: Preload LCP hero image -->
+<link rel="preload" as="image" href="images/max105/imgi_16_banner.webp" fetchpriority="high"/>
 <!-- Performance: Preconnect to external domains -->
 <link crossorigin="" href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
 <!-- Bootstrap 5 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/bootstrap-purged.min.css" rel="stylesheet"/>
 <!-- Font Awesome Icons (async) -->
-<link as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/></noscript>
+<link as="style" href="css/fontawesome-purged.min.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<noscript><link href="css/fontawesome-purged.min.css" rel="stylesheet"/></noscript>
 <!-- Google Fonts (async) -->
 <link as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
@@ -313,7 +321,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Left Column - Main Image -->
 <div class="col-lg-8">
 <div class="position-relative rounded-4 overflow-hidden shadow-lg">
-<img alt="Max 105" class="w-100 main-project-image" src="images/max105/imgi_16_banner.webp" style="height: 450px; object-fit: cover"/>
+<img alt="Max 105" class="w-100 main-project-image" fetchpriority="high" height="450" src="images/max105/imgi_16_banner.webp" style="height: 450px; object-fit: cover" width="800"/>
 <!-- Overlay Gradient -->
 <div class="position-absolute top-0 start-0 w-100 h-100" style="
                   background: linear-gradient(
@@ -352,7 +360,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Floor Plan Images -->
 <div class="col-6">
 <div class="position-relative rounded-3 overflow-hidden shadow-sm sidebar-gallery-item">
-<img alt="Interiors" class="w-100 gallery-thumb" src="images/max105/imgi_12_2.webp"/>
+<img alt="Interiors" class="w-100 gallery-thumb" loading="lazy" src="images/max105/imgi_12_2.webp"/>
 <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white text-center" style="padding: 2px 0">
 <span class="fw-bold" style="font-size: 10px; letter-spacing: 0.5px">EXTERIORS</span>
 </div>
@@ -360,7 +368,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="col-6">
 <div class="position-relative rounded-3 overflow-hidden shadow-sm sidebar-gallery-item">
-<img alt="Landscapes" class="w-100 gallery-thumb" src="images/max105/imgi_9_open-spaces.webp"/>
+<img alt="Landscapes" class="w-100 gallery-thumb" loading="lazy" src="images/max105/imgi_9_open-spaces.webp"/>
 <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white text-center" style="padding: 2px 0">
 <span class="fw-bold" style="font-size: 10px; letter-spacing: 0.5px">LANDSCAPES</span>
 </div>
@@ -369,7 +377,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Video Preview -->
 <div class="col-6">
 <div class="position-relative rounded-3 overflow-hidden shadow-sm sidebar-gallery-item">
-<img alt="Location Map" class="w-100 gallery-thumb" src="images/max105/imgi_14_4.webp"/>
+<img alt="Location Map" class="w-100 gallery-thumb" loading="lazy" src="images/max105/imgi_14_4.webp"/>
 <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white text-center" style="padding: 2px 0">
 <span class="fw-bold" style="font-size: 10px; letter-spacing: 0.5px">SITE TOUR</span>
 </div>
@@ -378,7 +386,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Additional Images -->
 <div class="col-6">
 <div class="position-relative rounded-3 overflow-hidden shadow-sm sidebar-gallery-item">
-<img alt="Clubhouse" class="w-100 gallery-thumb" src="images/max105/imgi_6_club-house.webp"/>
+<img alt="Clubhouse" class="w-100 gallery-thumb" loading="lazy" src="images/max105/imgi_6_club-house.webp"/>
 <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white text-center" style="padding: 2px 0">
 <span class="fw-bold" style="font-size: 10px; letter-spacing: 0.5px">CLUBHOUSE</span>
 </div>
