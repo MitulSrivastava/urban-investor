@@ -18,7 +18,39 @@ Site domain: **urbaninvestors.in**
 
 ## SEO Optimizations Applied
 
-### 1. Meta Description Enhancement
+### 0. Title Tag Formatting (CRITICAL)
+
+Every page's `<title>` MUST be:
+- **Single-line** — `<title>` and `</title>` on the SAME line, no multi-line splits
+- **Premium brand tone** — Never use words like "dealer", "agent", "broker", or "cheap". Position Urban Investors as a luxury real estate advisory firm.
+- **Format:** `<title>[Project Name] - [Product Type], [Sector/Location] | [Price & Floor Plan] | Urban Investors</title>`
+- **Include transactional modifiers** — "Price", "Floor Plan", or "Price, Plots & Master Plan" in the title
+- **Correct project type** — Use actual product (e.g., "Independent Floors" not "Apartments" if it's floors)
+
+**Examples of correct titles:**
+```html
+<title>Gaur Chrysalis - Luxury 3 & 4 BHK, Sector 22D Yamuna Expressway | Price & Floor Plan | Urban Investors</title>
+<title>One FNG - IGBC Platinum IT/ITES Office Spaces, Sector 142 Noida | Price & Floor Plan | Urban Investors</title>
+<title>Ace Acreville - 100-Acre Gated Township, Yamuna Expressway | Price, Plots & Master Plan | Urban Investors</title>
+```
+
+**Common mistakes to fix:**
+- Multi-line titles (split across 2-3 lines with whitespace)
+- Missing sector/location info
+- Wrong product type (e.g., calling commercial projects "residential")
+- Missing transactional keywords ("Price", "Floor Plan")
+
+### 1. Factual Accuracy Audit (CRITICAL)
+
+Before any other SEO work, verify these facts are correct:
+- **Location/Sector** — Cross-check sector number against the RERA registration and official developer site
+- **Project type** — Is it residential, commercial, mixed-use, plotted? The title and description must match
+- **Developer name** — Exact legal name
+- **RERA number** — Verify it matches the actual project
+
+> **Known past errors fixed:** Experion Saatori was labelled "Sector 108" (correct: Sector 151), Migsun Nehru Place was called "residential" (correct: commercial/mixed-use), Max 105 was called "apartments" (correct: independent floors), Sobha Rivana sector discrepancy.
+
+### 2. Meta Description Enhancement
 
 Update `<meta name="description">` to include:
 - Pricing info (e.g., "Starting ₹2 Cr" or "₹16,995/sq.ft")
@@ -257,6 +289,20 @@ Ensure the page is listed in sitemap.xml (should already be there from `make-pro
 3. **Use correct @type** - Match schema type to property type
 4. **Full URLs for images** - Always use `https://urbaninvestors.in/images/...`
 5. **Valid JSON-LD** - Ensure proper escaping of quotes within JSON strings
+6. **Premium brand tone** - Never use "dealer", "agent", "broker", "cheap" in any meta tag. Urban Investors is a luxury real estate advisory.
+7. **Title tag must be single-line** - Always `<title>text</title>` on one line
+
+### Transactional Keyword Requirements
+
+Every property page's `<meta name="keywords">` MUST include these patterns:
+- `[Project Name] price`, `[Project Name] price list`
+- `[Project Name] floor plan`, `[Project Name] brochure`
+- `[Project Name] payment plan`
+- `[Project Name] RERA` + the actual RERA registration number
+- `[Project Name] possession date`
+- Config-specific: `[Project Name] 3 BHK price`, `[Project Name] 4 BHK price`
+- For Yamuna Expressway / Greater Noida projects: `near Jewar Airport`, `near Noida International Airport`
+- For commercial projects: `[Project Name] rental yield`, `[Project Name] rental income`
 
 ## Bulk Mode
 
@@ -272,6 +318,10 @@ For each page, complete Steps 1-5 before moving to the next.
 
 Before finishing, verify:
 
+- [ ] **Title tag is single-line** with premium tone, includes transactional keywords
+- [ ] **Factual accuracy** — sector number, project type, developer name are correct
+- [ ] **Transactional keywords present** — price, floor plan, payment plan, RERA number in meta keywords
+- [ ] **Jewar Airport keyword** added (for Yamuna Expressway / Greater Noida projects)
 - [ ] Meta description includes pricing/location
 - [ ] og:image points to project-specific image (not preview.webp)
 - [ ] ApartmentComplex schema has image, priceRange, floorSize
@@ -279,6 +329,7 @@ Before finishing, verify:
 - [ ] VideoObject schema added if YouTube present
 - [ ] properties.html ItemList includes this property
 - [ ] No visible UI changes made
+- [ ] No "dealer", "agent", "broker" language anywhere in meta tags
 
 ## Finish
 

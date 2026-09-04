@@ -17,6 +17,12 @@ class CleanURLRequestHandler(http.server.SimpleHTTPRequestHandler):
             
         return super().do_GET()
 
+    def do_HEAD(self):
+        path = self.translate_path(self.path)
+        if not os.path.exists(path) and os.path.exists(path + ".html"):
+            self.path += ".html"
+        return super().do_HEAD()
+
 class ReusableTCPServer(socketserver.TCPServer):
     allow_reuse_address = True
 

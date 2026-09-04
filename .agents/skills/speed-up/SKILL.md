@@ -132,6 +132,37 @@ Common dimensions used across the site:
 - Sidebar gallery thumbs: Skip (CSS controlled, small)
 - Gallery carousel on mobile: CSS overrides to 300px height
 
+### 7. FontAwesome Purged CSS Icon Check
+
+The site uses a purged/minified FontAwesome CSS (`css/fontawesome-purged.min.css`) that only
+contains icons actively used across the site. If a page or `lead-magnet.js` references an
+icon class that was stripped from the purged file, the icon will be invisible.
+
+**Check procedure:**
+1. Grep the page for all `fa-*` icon classes used
+2. Also check `lead-magnet.js` for icons used in dynamically injected elements (exit popup, Get Price modal, WhatsApp button, mobile CTA)
+3. Verify each icon exists in `css/fontawesome-purged.min.css`
+4. If missing, add the icon's CSS rule to `lead-magnet.css` (NOT the purged file)
+
+```bash
+# Check if an icon exists in purged CSS
+grep -o 'fa-gift' css/fontawesome-purged.min.css
+
+# If missing, find the content code from the full CSS
+grep -oE '\.fa-gift:before\{content:"[^"]*"\}' css/fontawesome.min.css
+# Result: .fa-gift:before{content:"\f06b"}
+
+# Then add to lead-magnet.css:
+# .fa-gift::before { content: "\f06b"; }
+```
+
+**Known missing icons (already fixed in lead-magnet.css):**
+- `fa-gift` (exit popup icon) — `content: "\f06b"`
+- `fa-tag` (Get Price modal icon) — `content: "\f02b"`
+
+**Icons confirmed present in purged CSS:**
+- `fa-whatsapp`, `fa-phone-alt`, `fa-check-circle`, `fa-shield-alt`, `fa-lock`
+
 ## Procedure
 
 ### Step 1: Read the Page
@@ -196,6 +227,7 @@ Before finishing, verify:
 - [ ] No `data-src` on any iframe (use `src` + `loading="lazy"`)
 - [ ] No dead lazy-video IntersectionObserver JS remains
 - [ ] Key images have `width`/`height` attributes
+- [ ] **FontAwesome icons** — All icons used in page + lead-magnet.js exist in purged CSS or lead-magnet.css
 - [ ] Zero visual changes to the page
 
 ## Expected Results

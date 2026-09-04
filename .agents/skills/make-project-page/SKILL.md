@@ -119,6 +119,29 @@ Copy **`sobharivana.html`** — it is the cleanest current template. Copy it and
 every project-specific value. Walk through these spots (all present in the template):
 
 - `<title>`, meta `description`, meta `keywords`, author stays "Urban Investors"
+
+**Title Tag Rules (CRITICAL):**
+- MUST be a **single line**: `<title>text</title>` — never split across multiple lines
+- **Format:** `<title>[Project Name] - [Product Type], [Sector/Location] | Price & Floor Plan | Urban Investors</title>`
+- Include transactional modifiers: "Price & Floor Plan" or "Price, Plots & Master Plan"
+- Use the **correct product type** (e.g., "Independent Floors" not "Apartments" if it's floors; "Studio Apartments & Business Suites" not "Residential" if it's commercial)
+- **Premium tone only** — Never use words like "dealer", "agent", "broker", "cheap". Urban Investors is a luxury real estate advisory.
+- Examples:
+  ```html
+  <title>Gaur Chrysalis - Luxury 3 &amp; 4 BHK, Sector 22D Yamuna Expressway | Price &amp; Floor Plan | Urban Investors</title>
+  <title>One FNG - IGBC Platinum IT/ITES Office Spaces, Sector 142 Noida | Price &amp; Floor Plan | Urban Investors</title>
+  ```
+
+**Meta Keywords Rules:**
+Every page's `<meta name="keywords">` MUST include:
+- `[Project Name] price`, `[Project Name] price list`
+- `[Project Name] floor plan`, `[Project Name] brochure`
+- `[Project Name] payment plan`
+- `[Project Name] RERA` + the actual RERA registration number
+- `[Project Name] possession date`
+- Config-specific: `[Project Name] 3 BHK price`, `[Project Name] 4 BHK price` etc.
+- For Yamuna Expressway / Greater Noida projects: `near Jewar Airport`, `near Noida International Airport`
+- For commercial projects: `[Project Name] rental yield`, `[Project Name] rental income`
 - Open Graph `og:title` / `og:description` / `og:url` and Twitter tags
 - Canonical link `<link rel="canonical" href="https://urbaninvestors.in/<slug>"/>`
 - Structured Data JSON-LD (`@type`, `name`, `description`, `address`, `developer`)
@@ -178,7 +201,7 @@ Every project page MUST include these JSON-LD schemas in `<head>`:
      "name": "<Project Name> - Expert Property Analysis",
      "description": "Complete review and expert analysis of <Project Name>...",
      "thumbnailUrl": "https://img.youtube.com/vi/<VIDEO_ID>/maxresdefault.jpg",
-     "uploadDate": "<approx date>",
+     "uploadDate": "<approx date in ISO 8601 with timezone, e.g. 2024-01-01T00:00:00+05:30>",
      "duration": "PT10M",
      "embedUrl": "https://www.youtube.com/embed/<VIDEO_ID>",
      "contentUrl": "https://www.youtube.com/watch?v=<VIDEO_ID>"
@@ -400,6 +423,11 @@ Every project page MUST include a "Deep Dive Investment Guide" section positione
   - All image `src` paths end in `.webp` and point to the correct project folder
   - `data-*` filter attributes on the properties card are accurate
   - JSON-LD schemas present: ApartmentComplex, FAQPage, VideoObject (if video)
+  - **Title is single-line** with transactional keywords ("Price & Floor Plan") and premium tone
+  - **Meta keywords include** transactional terms: price, floor plan, brochure, payment plan, RERA number
+  - **Jewar Airport keyword** added for Yamuna Expressway / Greater Noida properties
+  - **Factual accuracy verified** — correct sector, correct project type (residential/commercial/plots), correct developer name
+  - **No "dealer", "agent", "broker"** language anywhere in meta tags
   - **Deep Dive Investment Guide section present before footer** (6 accordion items)
 - **Recommended:** Run `apply-seo` skill to verify all structured data is in place.
 - Do **not** commit or push unless the user asks.

@@ -31,6 +31,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://urbaninvestors.in/careers</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- Property Listings -->
   <url>
@@ -168,7 +174,19 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Legal Pages -->
+    <url>
+    <loc>https://urbaninvestors.in/kbcentral</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://urbaninvestors.in/arqismall</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+<!-- Legal Pages -->
   <url>
     <loc>https://urbaninvestors.in/privacy-policy</loc>
     <lastmod>2026-06-13</lastmod>

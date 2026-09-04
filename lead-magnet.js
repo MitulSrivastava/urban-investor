@@ -138,19 +138,44 @@ passive: true,
 }
 }
 const PROJECTS = {
-experionsaatori: "Experion Saatori",
-dasnac: "Dasnac Yuva",
-eldecoballadsofbliss: "Eldeco Ballads of Bliss",
-eldecoechoesofeden: "Eldeco Echoes of Eden",
-"eldeco-7-peaks": "Eldeco 7 Peaks",
-gaurchrysalis: "Gaur Chrysalis",
-gaurchrysalis2: "Gaur Chrysalis",
-migsunnehru: "Migsun Nehru Place",
-onefng: "One FNG",
-palmvillage: "Palm Village",
-aceacreville: "Ace Acreville",
-"max-105": "Max 105",
-sobharivana: "Sobha Rivana",
+  "ace-acreville": { name: "Ace Acreville", uirCode: "UIR-001" },
+  "acearte": { name: "Ace Arte", uirCode: "UIR-002" },
+  "crc-150": { name: "CRC 150", uirCode: "UIR-003" },
+  "crc-the-flagship": { name: "CRC The Flagship", uirCode: "UIR-004" },
+  "crown-residences-godrej-golf-links-greater-noida": { name: "Crown Residences at Godrej Golf Links", uirCode: "UIR-005" },
+  "dasnac-yuva": { name: "Dasnac Yuva", uirCode: "UIR-006" },
+  "eldeco-7-peaks": { name: "Eldeco 7 Peaks", uirCode: "UIR-007" },
+  "eldeco-ballads-of-bliss": { name: "Eldeco Ballads of Bliss", uirCode: "UIR-008" },
+  "eldeco-echoes-of-eden": { name: "Eldeco Echoes of Eden", uirCode: "UIR-009" },
+  "eldeco-whispers-of-wonder": { name: "Eldeco Whispers of Wonder", uirCode: "UIR-010" },
+  "experion-saatori": { name: "Experion Saatori", uirCode: "UIR-011" },
+  "fairfox-eon": { name: "Fairfox EON", uirCode: "UIR-012" },
+  "gaur-alaris": { name: "Gaur Alaris", uirCode: "UIR-013" },
+  "gaur-bento": { name: "Gaur Bento", uirCode: "UIR-014" },
+  "gaur-chrysalis": { name: "Gaur Chrysalis", uirCode: "UIR-015" },
+  "grandthum": { name: "Grandthum", uirCode: "UIR-016" },
+  "hero-homes-sector-mu": { name: "Hero Homes Sector MU", uirCode: "UIR-017" },
+  "max-105": { name: "Max 105", uirCode: "UIR-018" },
+  "migsun-nehru-place": { name: "Migsun Nehru Place", uirCode: "UIR-019" },
+  "noida-sector-145-plots": { name: "Noida Sector 145 Kisan Kota Plots", uirCode: "UIR-020" },
+  "northwind-sanctuary": { name: "NorthWind Sanctuary Residences", uirCode: "UIR-021" },
+  "onyx-by-splendor": { name: "ONYX by Splendor", uirCode: "UIR-022" },
+  "omaxe-prayagraj": { name: "Omaxe Be Together Prayagraj", uirCode: "UIR-023" },
+  "one-fng": { name: "One FNG", uirCode: "UIR-024" },
+  "palm-village": { name: "Palm Village", uirCode: "UIR-025" },
+  "sobha-rivana": { name: "Sobha Rivana", uirCode: "UIR-026" },
+  "kbcentral": { name: "KB Central" },
+  "arqismall": { name: "ARQIS MALL" },
+  "experionsaatori": { name: "Experion Saatori", uirCode: "UIR-011" },
+  "dasnac": { name: "Dasnac Yuva", uirCode: "UIR-006" },
+  "eldecoballadsofbliss": { name: "Eldeco Ballads of Bliss", uirCode: "UIR-008" },
+  "eldecoechoesofeden": { name: "Eldeco Echoes of Eden", uirCode: "UIR-009" },
+  "gaurchrysalis": { name: "Gaur Chrysalis", uirCode: "UIR-015" },
+  "gaurchrysalis2": { name: "Gaur Chrysalis", uirCode: "UIR-015" },
+  "migsunnehru": { name: "Migsun Nehru Place", uirCode: "UIR-019" },
+  "onefng": { name: "One FNG", uirCode: "UIR-024" },
+  "palmvillage": { name: "Palm Village", uirCode: "UIR-025" },
+  "aceacreville": { name: "Ace Acreville", uirCode: "UIR-001" },
 };
 function currentProject() {
 var slug = window.location.pathname
@@ -160,7 +185,30 @@ var slug = window.location.pathname
 .toLowerCase();
 return PROJECTS[slug] || null;
 }
-function injectGetPrice(project) {
+
+function appendUirCodeToWaLinks(projectObj) {
+  if (!projectObj || !projectObj.uirCode) return;
+  const uir = projectObj.uirCode;
+  document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+    try {
+      const url = new URL(link.href);
+      if (url.searchParams.has('text')) {
+        let text = url.searchParams.get('text');
+        // Check if the UIR code is already appended
+        if (!text.endsWith(uir)) {
+          text = text.trim() + " " + uir;
+          url.searchParams.set('text', text);
+          link.href = url.toString();
+        }
+      }
+    } catch (e) {
+      // Ignore invalid URLs
+    }
+  });
+}
+
+function injectGetPrice(projectObj) {
+var project = projectObj.name;
 var fab = document.createElement("button");
 fab.type = "button";
 fab.className = "ui-gp-fab";
@@ -223,9 +271,11 @@ fd.append("phoneNumber", phone);
 fd.append("investmentRange", "Get Price Request");
 fd.append("Token", FRONTEND_TOKEN);
 fetch(SCRIPT_URL, { method: "POST", body: fd, mode: "no-cors" }).catch(function () {});
-var waMsg = encodeURIComponent(
-"Hi Urban Investors, this is " + name + ". Please share the exact price & payment plan for " + project + "."
-);
+var baseMsg = "Hi Urban Investors, this is " + name + ". Please share the exact price & payment plan for " + project + ".";
+if (projectObj.uirCode) {
+  baseMsg += " " + projectObj.uirCode;
+}
+var waMsg = encodeURIComponent(baseMsg);
 var waUrl = "https://wa.me/" + WA_NUMBER + "?text=" + waMsg;
 var link = document.getElementById("uiGpWaLink");
 if (link) link.href = waUrl;
@@ -241,8 +291,11 @@ injectFloatingWA();
 injectMobileCTA();
 injectExitPopup();
 setupExitIntent();
-var project = currentProject();
-if (project) injectGetPrice(project);
+var projectObj = currentProject();
+if (projectObj) {
+  injectGetPrice(projectObj);
+  appendUirCodeToWaLinks(projectObj);
+}
 }
 if (document.readyState === "loading") {
 document.addEventListener("DOMContentLoaded", init);
