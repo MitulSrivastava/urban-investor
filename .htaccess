@@ -17,8 +17,12 @@ RewriteRule ^sobharivana$ /sobha-rivana [R=301,L]
 RewriteRule ^omaxeprayagraj$ /omaxe-prayagraj [R=301,L]
 RewriteRule ^gaur-plume$ /gaur-alaris [R=301,L]
 
-# Clean routing for Blog Hub
-RewriteRule ^blog/?$ blog/index.html [L]
+# 301 Redirects: Old /blog to /insights
+RewriteRule ^blog/(.*)$ /insights/$1 [R=301,L]
+RewriteRule ^blog/?$ /insights [R=301,L]
+
+# Clean routing for Insights Hub
+RewriteRule ^insights/?$ insights/index.html [L]
 
 # Remove .html extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-f

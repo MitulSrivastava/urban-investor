@@ -24,7 +24,7 @@ Contact: +91-7705015689 | info@urbaninvestors.in
 - [Properties](https://urbaninvestors.in/properties): Full portfolio of premium real estate projects in Noida and Yamuna Expressway.
 - [Services](https://urbaninvestors.in/services): Property search, investment advisory, legal documentation, home loan guidance, and portfolio management.
 - [Careers](https://urbaninvestors.in/careers): Urban Investors career opportunities, hiring roles, and job application form.
-- [Insights & News](https://urbaninvestors.in/blog): Noida real estate news, infrastructure updates, corridor investment guides, and luxury market reports.
+- [Insights & News](https://urbaninvestors.in/insights): Noida real estate news, infrastructure updates, corridor investment guides, and luxury market reports.
 - [Contact](https://urbaninvestors.in/contact): Office hours, consultation booking, and frequently asked questions.
 
 ## Property Listings
@@ -58,11 +58,11 @@ Contact: +91-7705015689 | info@urbaninvestors.in
 - [ARQIS MALL](https://urbaninvestors.in/arqismall): Premium High Street Commercial by ARQIS GROUP in Sector 129, Noida.
 - [Hero Homes Sector MU](https://urbaninvestors.in/hero-homes-sector-mu): Ultra-luxury residential project by Hero Homes in Sector MU, Greater Noida with 70,000 sq.ft clubhouse and AQI-controlled residences.
 
-## Research & Market Intelligence (Blog)
+## Research & Market Intelligence (Insights & News)
 
-- [Top 10 Luxury Projects in Noida](https://urbaninvestors.in/blog/top-luxury-projects-noida): Definitive 2026 rankings, price appreciation trends, and RERA analysis for luxury apartments in Noida.
-- [Yamuna Expressway Investment Guide](https://urbaninvestors.in/blog/yamuna-expressway-investment-guide): Jewar Airport economic impact, Film City, industrial corridor progress, and 5-year capital appreciation forecasts.
-- [Sector 150 Noida Real Estate Analysis](https://urbaninvestors.in/blog/sector-150-noida-real-estate-guide): In-depth guide to Noida's Sports City, 80% green coverage master plan, low-density zoning, and premier project reviews.
+- [Top 10 Luxury Projects in Noida](https://urbaninvestors.in/insights/top-luxury-projects-noida): Definitive 2026 rankings, price appreciation trends, and RERA analysis for luxury apartments in Noida.
+- [Yamuna Expressway Investment Guide](https://urbaninvestors.in/insights/yamuna-expressway-investment-guide): Jewar Airport economic impact, Film City, industrial corridor progress, and 5-year capital appreciation forecasts.
+- [Sector 150 Noida Real Estate Analysis](https://urbaninvestors.in/insights/sector-150-noida-real-estate-guide): In-depth guide to Noida's Sports City, 80% green coverage master plan, low-density zoning, and premier project reviews.
 
 ## Legal
 

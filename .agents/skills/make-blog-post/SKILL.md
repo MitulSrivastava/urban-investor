@@ -1,16 +1,16 @@
 ---
 name: make-blog-post
-description: Create a new SEO-optimized blog post or research article for the Urban Investors site (under /blog/<slug>). Applies the signature blue gradient, async Google Sheets lead form, complete schema markup (BlogPosting, FAQPage, BreadcrumbList), sitemap, llms.txt, and blog hub interlinking.
+description: Create a new SEO-optimized blog post or research article for the Urban Investors site (under /insights/<slug>). Applies the signature blue gradient, async Google Sheets lead form, complete schema markup (BlogPosting, FAQPage, BreadcrumbList), sitemap, llms.txt, and insights hub interlinking.
 ---
 
 # Create an Urban Investors Blog Post / Research Guide
 
-This skill builds and wires a high-ranking, luxury-branded real estate research article or news guide for Urban Investors under `/blog/<slug>`.
+This skill builds and wires a high-ranking, luxury-branded real estate research article or news guide for Urban Investors under `/insights/<slug>`.
 
 Site domain: **urbaninvestors.in**  
 Brand: **Urban Investors**  
 Section Name: **Insights & News**  
-File location: **`blog/<slug>.html`** (served extensionlessly as `/blog/<slug>`)
+File location: **`insights/<slug>.html`** (served extensionlessly as `/insights/<slug>`)
 
 ---
 
@@ -44,7 +44,7 @@ The `<title>` tag MUST be written on a **single line** without line breaks and i
 <meta name="description" content="[140-158 characters describing the report with high-intent keywords, RERA data, and pricing]." />
 <meta name="keywords" content="[comma-separated high-intent search phrases: e.g., luxury projects noida, sector 150 apartments, jewar airport investment]" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-<link rel="canonical" href="https://urbaninvestors.in/blog/<slug>" />
+<link rel="canonical" href="https://urbaninvestors.in/insights/<slug>" />
 ```
 
 ### C. Open Graph & Twitter Cards
@@ -54,7 +54,7 @@ The `<title>` tag MUST be written on a **single line** without line breaks and i
 <meta property="og:site_name" content="Urban Investors" />
 <meta property="og:title" content="[Single-line Title] | Urban Investors" />
 <meta property="og:description" content="[Compelling description]" />
-<meta property="og:url" content="https://urbaninvestors.in/blog/<slug>" />
+<meta property="og:url" content="https://urbaninvestors.in/insights/<slug>" />
 <meta property="og:image" content="https://urbaninvestors.in/images/<folder>/<image>.webp" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -76,10 +76,10 @@ Every article requires 3 linked schemas:
   "@graph": [
     {
       "@type": "BlogPosting",
-      "@id": "https://urbaninvestors.in/blog/<slug>#article",
+      "@id": "https://urbaninvestors.in/insights/<slug>#article",
       "isPartOf": {
         "@type": "Blog",
-        "@id": "https://urbaninvestors.in/blog#blog"
+        "@id": "https://urbaninvestors.in/insights#blog"
       },
       "headline": "[Article Title]",
       "description": "[Article description]",
@@ -102,11 +102,11 @@ Every article requires 3 linked schemas:
           "url": "https://urbaninvestors.in/images/logo/IMG-20251123-WA00103.webp"
         }
       },
-      "mainEntityOfPage": "https://urbaninvestors.in/blog/<slug>"
+      "mainEntityOfPage": "https://urbaninvestors.in/insights/<slug>"
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://urbaninvestors.in/blog/<slug>#breadcrumbs",
+      "@id": "https://urbaninvestors.in/insights/<slug>#breadcrumbs",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -118,19 +118,19 @@ Every article requires 3 linked schemas:
           "@type": "ListItem",
           "position": 2,
           "name": "Insights & News",
-          "item": "https://urbaninvestors.in/blog"
+          "item": "https://urbaninvestors.in/insights"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "[Short Article Name]",
-          "item": "https://urbaninvestors.in/blog/<slug>"
+          "item": "https://urbaninvestors.in/insights/<slug>"
         }
       ]
     },
     {
       "@type": "FAQPage",
-      "@id": "https://urbaninvestors.in/blog/<slug>#faq",
+      "@id": "https://urbaninvestors.in/insights/<slug>#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -305,15 +305,15 @@ Every article must feature a sticky sidebar (`<aside class="advisor-callout-side
 
 When creating a new article, execute these steps in order:
 
-1. **Create the file:** Save to `blog/<slug>.html` using `blog/top-luxury-projects-noida.html` as the base template.
+1. **Create the file:** Save to `insights/<slug>.html` using `blog/top-luxury-projects-noida.html` as the base template.
 2. **Add card to Blog Hub:**
    - In `blog.html`, add a `<div class="col-md-6 col-lg-4 article-item" data-category="...">` card with image, title link, meta, excerpt, and CTA.
-   - Sync root mirror: `cp blog.html blog/index.html`.
+   - Sync root mirror: `cp blog.html insights/index.html`.
 3. **Register in `sitemap.xml`:**
    Add entry under `<!-- Blog Articles & Insights -->`:
    ```xml
    <url>
-     <loc>https://urbaninvestors.in/blog/<slug></loc>
+     <loc>https://urbaninvestors.in/insights/<slug></loc>
      <lastmod>2026-09-13</lastmod>
      <changefreq>monthly</changefreq>
      <priority>0.8</priority>
@@ -322,14 +322,14 @@ When creating a new article, execute these steps in order:
 4. **Register in `llms.txt`:**
    Add under `## Research & Market Intelligence (Blog)`:
    ```text
-   - [Article Title](https://urbaninvestors.in/blog/<slug>): Brief summary of key takeaways and covered developers.
+   - [Article Title](https://urbaninvestors.in/insights/<slug>): Brief summary of key takeaways and covered developers.
    ```
 5. **Cross-Link relevant property pages:**
    Add contextual in-content anchor links pointing to relevant project pages (`/experion-saatori`, `/acearte`, `/gaur-bento`, etc.).
 6. **Validate Schema:**
    Run a Python verification check on the JSON-LD script block:
    ```bash
-   python3 -c "import json, re; c=open('blog/<slug>.html').read(); [json.loads(s) for s in re.findall(r'<script type=\"application/ld\+json\">(.*?)</script>', c, re.S)]; print('VALID')"
+   python3 -c "import json, re; c=open('insights/<slug>.html').read(); [json.loads(s) for s in re.findall(r'<script type=\"application/ld\+json\">(.*?)</script>', c, re.S)]; print('VALID')"
    ```
 7. **Rebuild Deploy Archive:**
    Run `./deploy.sh` to package `urban-investors-deploy.zip`.
