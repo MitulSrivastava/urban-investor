@@ -17,6 +17,9 @@ RewriteRule ^sobharivana$ /sobha-rivana [R=301,L]
 RewriteRule ^omaxeprayagraj$ /omaxe-prayagraj [R=301,L]
 RewriteRule ^gaur-plume$ /gaur-alaris [R=301,L]
 
+# Clean routing for Blog Hub
+RewriteRule ^blog/?$ blog/index.html [L]
+
 # Remove .html extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
