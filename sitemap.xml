@@ -192,7 +192,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-<!-- Legal Pages -->
+  <url>
+    <loc>https://urbaninvestors.in/prestige-sector-150-noida</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Legal Pages -->
   <url>
     <loc>https://urbaninvestors.in/privacy-policy</loc>
     <lastmod>2026-06-13</lastmod>

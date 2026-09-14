@@ -6,8 +6,18 @@ description: Create a new Noida property project page for the Urban Investors si
 # Make a new Urban Investors project page
 
 This site is a set of static HTML property pages (Bootstrap 5, no build step). Every
-project page shares the same structure — only the content values change. This skill
-produces a complete, correctly-wired page so nothing gets forgotten.
+project page shares the same structural framework (Bootstrap 5 grid, cards, accordions,
+modals, and forms), but **EVERY PIECE OF CONTENT MUST BE WRITTEN 100% FRESH**.
+
+> [!CAUTION]
+> **STRICT ANTI-LEAKAGE RULE: ZERO "SOBHA RIVANA" LEFTOVERS**
+> In the past, copying `sobharivana.html` resulted in leftover Sobha Rivana text, Sobha Limited
+> developer bios, Sobha amenities, and Sobha Deep Dive text appearing across newly generated pages.
+> **DO NOT simply clone `sobharivana.html` and do a find-and-replace!**
+> `sobharivana.html` must ONLY be used as a structural visual reference for DOM elements, Bootstrap
+> classes, and grid hierarchy. Every sentence of marketing copy, overview, "Why Invest", amenities,
+> developer bio, FAQ questions/answers, and Deep Dive accordions **MUST BE WRITTEN BESPOKE** for the
+> new project from its brochure.
 
 Site domain: **urbaninvestors.in**
 Company: **Urban Investors**
@@ -19,33 +29,40 @@ The user provides project details one of two ways — accept either:
 - **A brochure** (PDF/image/text dump) — extract the fields below from it.
 - **A details doc / pasted notes** — read the fields straight from it.
 
-**One project or many.** The input may describe a single project or several at once (a
-doc listing multiple projects, or multiple brochures). When there are multiple, treat
-each as its own project and run the full procedure (Steps 1–5) for each — see
-"Batch mode" below.
+> [!IMPORTANT]
+> **MANDATORY FIRST STEP: ASK FOR THE UIR CODE**
+> Urban Investors assigns a unique tracking identifier to every project (e.g. `UIR-026`, `UIR-027`).
+> Before generating or finalizing the page, check `lead-magnet.js` under `const PROJECTS` to find the
+> highest currently used UIR code, then **explicitly ask the user**:
+> > *"What is the UIR Code for this project? (The last registered code in lead-magnet.js was `UIR-XXX`, so this may be `UIR-YYY`)."*
+>
+> You MUST have this code to populate pre-filled WhatsApp links and register the project in `lead-magnet.js`.
 
 If a required field is missing from what they gave you, ask for just those fields. Do
 not invent prices, RERA numbers, or amenities — if unknown, omit that element rather
-than guessing. Marketing copy (overview paragraphs, "why invest" blurbs) you may write.
+than guessing. Marketing copy (overview paragraphs, "why invest" blurbs, deep dive guides)
+you may write fresh based on the developer and micro-market analysis.
 
 ### Fields to collect
-- **Project name** + **developer** (e.g. "Sobha Rivana" / "Sobha Limited")
-- **Slug** — kebab-case, e.g. `sobharivana`. The **file on disk is `<slug>.html`**,
+- **UIR Code (MANDATORY)** — e.g. `UIR-027`. Ask the user for this code.
+- **Project name** + **developer** (e.g. "Migsun Nehru Place" / "Migsun Group")
+- **Slug** — kebab-case, e.g. `migsun-nehru-place`. The **file on disk is `<slug>.html`**,
   but **every link is extensionless** (`href="<slug>"`) — the site rewrites URLs via
   .htaccess. Never put `.html` in an `href`, canonical, OG url, breadcrumb, or sitemap
   `<loc>`. (The *only* place `.html` appears is the `llms.txt` Page line — existing
   convention — and the filename itself.)
-- **Location** — area + city (e.g. "Sector 10, Greater Noida West")
+- **Location** — area + city (e.g. "Sector 22D, Yamuna Expressway" or "Sector 142, Noida")
 - **Starting price** (e.g. "₹2 Cr*") + a one-line price subtitle. **Pricing Format Rule:** Always append `*` instead of `+` or `Onwards` after Lakhs/Lacs/Cr/Crore (e.g., `₹77 Lacs*`). For per sq.ft pricing, use `sq.ft*` instead of `sq.ft+` (e.g., `₹16,995/sq.ft*`).
-- **Property type** (Apartments / Villas / Townhouses / Commercial / Independent Floors …)
-- **Project status badge** (New Launch / Pre-Launch / Under Construction / Ready …)
-- **Unit configuration** (e.g. "3, 4 & 5 BHK")
-- **3–4 "Why invest" highlights** (icon + title + one line each)
-- **4 overview feature cards** (icon + title + one line)
-- **Price/config table rows** (unit type, description, price, availability)
-- **6-ish amenities** (icon + title + description)
-- **Nearby destinations** with drive times (for the Location section)
-- **Investor highlights** (bullet list)
+- **Property type** (Apartments / Villas / Townhouses / Commercial / Independent Floors / Studio Apartments / Land Plots …)
+- **Project status badge** (New Launch / Pre-Launch / Under Construction / Ready to Move …)
+- **Unit configuration** (e.g. "3, 4 & 5 BHK" or "Retail Shops & Office Spaces")
+- **3–4 "Why invest" highlights** (icon + title + one line each) — written fresh for this project
+- **4 overview feature cards** (icon + title + one line) — written fresh for this project
+- **Price/config table rows** (unit type, description/size, price, availability)
+- **6-ish amenities** (icon + title + description) — matching actual brochure amenities
+- **Nearby destinations** with drive times (for the Location section — actual local landmarks)
+- **Developer background** (history, track record, delivered projects of the actual builder)
+- **Investor highlights** (bullet list of ROI, appreciation drivers, rental yield)
 - **Images** — see below
 
 ### Images
@@ -56,27 +73,29 @@ every reference before continuing.
 
 **All images on the page must be `.webp`.** The user often uploads `.jpg`/`.jpeg`/`.png`
 — convert these to `.webp` and delete the originals **before** building the page
-(see Step 1 below). The page needs:
-- 1 hero main image + 2 hero sub-images
-- 4 gallery carousel images (can reuse hero images if only a few exist)
-- 1 listing-card thumbnail (used in `properties.html`)
+(see Step 1 below).
 
-Reference them with the exact relative path, e.g.
-`images/sobharivana/hero.webp`.
+**Image SEO Naming Standard (MANDATORY):**
+- Name images descriptively using lowercase kebab-case:
+  `[project-slug]-[feature-or-amenity]-[view-or-perspective].webp`
+  (e.g., `migsun-nehru-place-commercial-tower-elevation.webp`, `migsun-nehru-place-retail-high-street-shops.webp`).
+- **NEVER** use generic names like `hero.webp`, `thumbnail.webp`, `gallery1.webp`, `banner1.webp` or camera dumps `imgi_...`, `WhatsApp...`.
+- Ensure NO spaces or special characters exist in any filename.
+- Reference them with the exact relative path, e.g. `images/migsun-nehru-place/migsun-nehru-place-tower-elevation.webp`.
 
 ## Batch mode (multiple projects at once)
 
 You can process several projects in one run. When the input covers more than one:
 
-1. **First, list the projects** you parsed (name, slug, image folder) and show
-   that short list back to the user before building, so mismatches are caught early.
+1. **First, list the projects** you parsed (name, slug, image folder, and ask for each project's UIR code)
+   and show that short list back to the user before building, so mismatches are caught early.
    If any project is missing required fields or its image folder, flag just those.
-2. **Process them one at a time**, fully completing Steps 1–5 for a project before moving
+2. **Process them one at a time**, fully completing Steps 1–6 for a project before moving
    to the next. This keeps each project's edits isolated and easy to review.
 3. **Match images to projects** by folder name (`images/<Project Name>/`). Don't share or
    cross-wire images between projects. If a folder is missing, ask which folder belongs to
    that project rather than guessing.
-4. **End with a summary table**: one row per project → slug and the 4 files
+4. **End with a summary table**: one row per project → slug, UIR code, and the 5 files
    touched, so the user can verify the whole batch at a glance.
 
 Do the work directly (no need to spawn sub-agents); just keep the projects clearly
@@ -88,14 +107,16 @@ separated in your edits and output.
 
 | Setting | Value |
 |---|---|
-| Copy template from | `sobharivana.html` (cleanest current example) |
+| Structural DOM reference | `sobharivana.html` (Use ONLY for CSS classes/grid layout; NEVER copy text!) |
 | Listing page (Step 3) | `properties.html` |
+| Lead Magnet dictionary (Step 5) | `lead-magnet.js` |
 | Currency / price style | `₹2 Cr*` / `₹87 Lacs*` / `₹16,995/sq.ft*` (never use `+` or `Onwards`) |
 | Breadcrumb level-2 | "Properties" → `/properties` |
 | Geo tags | `geo.region` `IN-UP`, `geo.placename` `Noida`, `content-language` `en-IN` |
-| llms.txt section (Step 5) | `## Property Listings` |
+| llms.txt section (Step 6) | `## Property Listings` |
 | Domain | `urbaninvestors.in` |
 | Author | `Urban Investors` |
+| Official WhatsApp Phone | `+91 11 4473 9693` (API format: `911144739693`) |
 
 ### 1. Convert any JPG/PNG images to .webp (and delete originals)
 
@@ -113,55 +134,49 @@ find "images/<Project Name>" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.
 `-q 82` is a good size/quality balance. After this, the folder should contain only
 `.webp` files — reference those in the page. Never link a `.jpg`/`.png` from the HTML.
 
-### 2. Build `<slug>.html`
+### 2. Build `<slug>.html` (100% Fresh Copywriting)
 
-Copy **`sobharivana.html`** — it is the cleanest current template. Copy it and replace
-every project-specific value. Walk through these spots (all present in the template):
+Use **`sobharivana.html`** strictly for the page scaffolding, Bootstrap classes, responsive grid layout, and JS includes. Every line of user-facing content must be written fresh from the new project's materials.
 
-- `<title>`, meta `description`, meta `keywords`, author stays "Urban Investors"
+Walk through these sections and write fresh content:
 
-**Title Tag Rules (CRITICAL):**
-- MUST be a **single line**: `<title>text</title>` — never split across multiple lines
-- **Format:** `<title>[Project Name] - [Product Type], [Sector/Location] | Price & Floor Plan | Urban Investors</title>`
-- Include transactional modifiers: "Price & Floor Plan" or "Price, Plots & Master Plan"
-- Use the **correct product type** (e.g., "Independent Floors" not "Apartments" if it's floors; "Studio Apartments & Business Suites" not "Residential" if it's commercial)
-- **Premium tone only** — Never use words like "dealer", "agent", "broker", "cheap". Urban Investors is a luxury real estate advisory.
-- Examples:
-  ```html
-  <title>Gaur Chrysalis - Luxury 3 &amp; 4 BHK, Sector 22D Yamuna Expressway | Price &amp; Floor Plan | Urban Investors</title>
-  <title>One FNG - IGBC Platinum IT/ITES Office Spaces, Sector 142 Noida | Price &amp; Floor Plan | Urban Investors</title>
-  ```
+#### A. Head, SEO & Meta Tags
+- `<title>`: MUST be a **single line**: `<title>text</title>` — never split across lines.
+  - **Format:** `<title>[Project Name] - [Product Type], [Sector/Location] | Price & Floor Plan | Urban Investors</title>`
+  - Examples:
+    ```html
+    <title>Gaur Chrysalis - Luxury 3 &amp; 4 BHK, Sector 22D Yamuna Expressway | Price &amp; Floor Plan | Urban Investors</title>
+    <title>Migsun Nehru Place - Premium Commercial Suites &amp; Retail, Greater Noida | Price &amp; Floor Plan | Urban Investors</title>
+    ```
+- Meta `description`: 150–160 chars summarizing the project's exact offering, starting price, location, developer, and key connectivity.
+- Meta `keywords`:
+  - `[Project Name] price`, `[Project Name] price list`
+  - `[Project Name] floor plan`, `[Project Name] brochure`
+  - `[Project Name] payment plan`
+  - `[Project Name] RERA` + the actual RERA registration number
+  - `[Project Name] possession date`
+  - Unit-specific: `[Project Name] 3 BHK price`, etc.
+  - For Yamuna Expressway / Greater Noida: `near Jewar Airport`, `near Noida International Airport`
+  - For commercial: `[Project Name] rental yield`, `[Project Name] office space`
+- Canonical: `<link rel="canonical" href="https://urbaninvestors.in/<slug>"/>` (NO `.html`)
+- Open Graph & Twitter tags: title, description, image (`https://urbaninvestors.in/images/<project-folder>/<hero-image>.webp`), url (`https://urbaninvestors.in/<slug>`).
 
-**Meta Keywords Rules:**
-Every page's `<meta name="keywords">` MUST include:
-- `[Project Name] price`, `[Project Name] price list`
-- `[Project Name] floor plan`, `[Project Name] brochure`
-- `[Project Name] payment plan`
-- `[Project Name] RERA` + the actual RERA registration number
-- `[Project Name] possession date`
-- Config-specific: `[Project Name] 3 BHK price`, `[Project Name] 4 BHK price` etc.
-- For Yamuna Expressway / Greater Noida projects: `near Jewar Airport`, `near Noida International Airport`
-- For commercial projects: `[Project Name] rental yield`, `[Project Name] rental income`
-- Open Graph `og:title` / `og:description` / `og:url` and Twitter tags
-- Canonical link `<link rel="canonical" href="https://urbaninvestors.in/<slug>"/>`
-- Structured Data JSON-LD (`@type`, `name`, `description`, `address`, `developer`)
-
-**Structured Data Requirements:**
+#### B. Structured Data JSON-LD (Fresh Data Only)
 Every project page MUST include these JSON-LD schemas in `<head>`:
 
-1. **ApartmentComplex / CommercialEvent / LandPlot schema** (main property info):
+1. **ApartmentComplex / CommercialComplex / LandPlot schema**:
    ```json
    {
      "@context": "https://schema.org",
      "@type": "ApartmentComplex",
      "name": "<Project Name>",
-     "description": "<Detailed description with price, location, key features>",
+     "description": "<Detailed description with price, location, developer, key features>",
      "address": {
        "@type": "PostalAddress",
        "streetAddress": "<Sector/Area>",
        "addressLocality": "<City>",
        "addressRegion": "Uttar Pradesh",
-       "postalCode": "<PIN if known>",
+       "postalCode": "<PIN>",
        "addressCountry": "India"
      },
      "geo": { "@type": "GeoCoordinates", "latitude": "...", "longitude": "..." },
@@ -169,141 +184,135 @@ Every project page MUST include these JSON-LD schemas in `<head>`:
      "image": "https://urbaninvestors.in/images/<project-folder>/<hero-image>.webp",
      "numberOfBedrooms": "<BHK options>",
      "floorSize": { "@type": "QuantitativeValue", "minValue": ..., "maxValue": ..., "unitText": "sq.ft" },
-     "priceRange": "<e.g. ₹2 Cr - ₹3 Cr>",
+     "priceRange": "<e.g. ₹2 Cr - ₹3.5 Cr*>",
      "amenityFeature": [
-       { "@type": "LocationFeatureSpecification", "name": "Clubhouse" },
-       { "@type": "LocationFeatureSpecification", "name": "Swimming Pool" },
-       ...
+       { "@type": "LocationFeatureSpecification", "name": "<Amenity 1>" },
+       { "@type": "LocationFeatureSpecification", "name": "<Amenity 2>" }
      ]
    }
    ```
 
-2. **FAQPage schema** (for rich snippets):
+2. **FAQPage schema** (5+ bespoke questions & answers specifically about THIS project):
    ```json
    {
      "@context": "https://schema.org",
      "@type": "FAQPage",
      "mainEntity": [
-       { "@type": "Question", "name": "What is <Project Name>?", "acceptedAnswer": { "@type": "Answer", "text": "..." } },
-       { "@type": "Question", "name": "Where is <Project Name> located?", "acceptedAnswer": { "@type": "Answer", "text": "..." } },
-       { "@type": "Question", "name": "What configurations are available?", "acceptedAnswer": { "@type": "Answer", "text": "..." } },
-       { "@type": "Question", "name": "Is <Project Name> a good investment?", "acceptedAnswer": { "@type": "Answer", "text": "..." } },
-       { "@type": "Question", "name": "Why should I invest through Urban Investors?", "acceptedAnswer": { "@type": "Answer", "text": "Urban Investors offers verified project information, professional consultation, transparent pricing assistance, site visit support, and complete guidance throughout your investment journey." } }
+       { "@type": "Question", "name": "What is <Project Name>?", "acceptedAnswer": { "@type": "Answer", "text": "<Bespoke description>" } },
+       { "@type": "Question", "name": "Where is <Project Name> located and what is its connectivity?", "acceptedAnswer": { "@type": "Answer", "text": "<Bespoke location description>" } },
+       { "@type": "Question", "name": "What are the available configurations and starting prices in <Project Name>?", "acceptedAnswer": { "@type": "Answer", "text": "<Bespoke pricing details>" } },
+       { "@type": "Question", "name": "What is the RERA registration number of <Project Name>?", "acceptedAnswer": { "@type": "Answer", "text": "<Actual RERA number>" } },
+       { "@type": "Question", "name": "Why should I invest in <Project Name> through Urban Investors?", "acceptedAnswer": { "@type": "Answer", "text": "Urban Investors offers verified inventory, transparent direct developer pricing, priority allotment assistance, complimentary site visits, and end-to-end documentation advisory with zero brokerage." } }
      ]
    }
    ```
 
-3. **VideoObject schema** (if YouTube video embedded on page):
+3. **VideoObject schema** (if a YouTube review video is embedded):
    ```json
    {
      "@context": "https://schema.org",
      "@type": "VideoObject",
-     "name": "<Project Name> - Expert Property Analysis",
-     "description": "Complete review and expert analysis of <Project Name>...",
+     "name": "<Project Name> - Expert Property Review",
+     "description": "Comprehensive review, master plan walkthrough, and investment analysis of <Project Name>...",
      "thumbnailUrl": "https://img.youtube.com/vi/<VIDEO_ID>/maxresdefault.jpg",
-     "uploadDate": "<approx date in ISO 8601 with timezone, e.g. 2024-01-01T00:00:00+05:30>",
+     "uploadDate": "2024-01-01T00:00:00+05:30",
      "duration": "PT10M",
      "embedUrl": "https://www.youtube.com/embed/<VIDEO_ID>",
      "contentUrl": "https://www.youtube.com/watch?v=<VIDEO_ID>"
    }
    ```
-   
-   > **CRITICAL SEO RULE:** When embedding the video in the HTML, the `iframe` must use the standard `src` attribute with `loading="lazy"`. **NEVER** use javascript-based lazy loading like `data-src="..."` for video iframes. If `src` is missing, Googlebot will fail to associate the `VideoObject` structured data with the page DOM.
+   > **Note on Video Iframe:** The embedded `<iframe>` MUST have a standard `src` attribute with `loading="lazy"`. Never use `data-src="..."` for YouTube iframes.
 
-- BreadcrumbList JSON-LD (if present — position-3 name + item = this project)
-- Hero: badges, `<h1>` name + "BY <DEVELOPER>", location row, developer line
-- Price bar: price, subtitle, status badge
-- Project Configuration cards (4), "Why Invest" highlights
-- Enquiry form `select` options (match the unit types)
-- Project Overview heading + lead paragraph + 4 feature cards
-- Property Configuration table rows (+ WhatsApp "Enquire" links with the project name
-  URL-encoded in the `?text=` param)
-- Gallery carousel (indicators count must match slide count) + captions
-- Amenities cards, Location "Nearby Destinations", Investor highlights
-- All image `src` attributes → point to files in `images/<Project Name>/`
+#### C. Pre-filled WhatsApp Links Specification (MANDATORY UIR CODE)
+Every project page includes multiple WhatsApp action buttons. **Every single link MUST include the user-provided `[UIR-XXX]` code** at the end of the URL-encoded query string:
 
-**Leave global blocks byte-for-byte identical**: nav, WhatsApp float, mobile CTA bar,
-contact form (`#contactForm` with hidden `token` field), footer, the two `<script>`
-tags at the end (`script.js` and `lead-magnet.js`), and the analytics/Google Tag
-Manager snippet in `<head>` (GA ID: `G-EYY9YSKPZY`).
-
-Keep phone numbers, emails, and office addresses exactly as in the template.
-
-### 3. Add the listing card to `properties.html`
-
-Insert a new card at the **top** of the `<div ... id="properties-grid">` grid (newest
-first), matching the existing card markup exactly. Use ₹ currency in the price span.
-
-**Also update the properties.html JSON-LD structured data:**
-Add the new project to the `ItemList` schema's `itemListElement` array (increment position):
-```json
-{
-  "@type": "ListItem",
-  "position": <next number>,
-  "item": {
-    "@type": "ApartmentComplex",
-    "name": "<Project Name>",
-    "description": "<Brief description>",
-    "url": "https://urbaninvestors.in/<slug>",
-    "image": "images/<project-folder>/<thumbnail>.webp"
-  }
-}
-```
-
-The `data-*` attributes for the filter system — fill
-them accurately:
-
-```html
-<!-- <Project Name> Card -->
-<div class="col-lg-4 col-md-6 mb-4"
-     data-amenities="gym,pool,club,security"
-     data-bhk="3,4"
-     data-location="noida"
-     data-price-range="<price-tag>"
-     data-property-type="apartment"
-     data-status="new-launch">
-<div class="property-card bg-white rounded-4 overflow-hidden shadow-sm h-100">
-<div class="position-relative">
-<img alt="<Project Name>" class="img-fluid w-100 property-img" loading="lazy"
-     src="<card-thumbnail.webp>" style="height: 200px; object-fit: cover;"/>
-<div class="position-absolute top-0 start-0 m-3">
-<span class="badge bg-primary px-3 py-2 rounded-pill shadow-sm"><Status Badge></span>
-</div>
-</div>
-<div class="p-4">
-<div class="d-flex justify-content-between align-items-center mb-3">
-<span class="text-primary fw-bold fs-5"><₹ price></span>
-<span class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i><Area></span>
-</div>
-<h3 class="h5 fw-bold mb-3 text-dark"><Project Name></h3>
-<div class="d-flex gap-3 mb-4 text-muted small">
-<span><i class="fas fa-bed me-2"></i><BHK config></span>
-<span><i class="fas fa-building me-2"></i><Type></span>
-</div>
-<a class="btn btn-outline-primary w-100 rounded-pill" href="<slug>">
-                  View Details <i class="fas fa-arrow-right ms-2"></i>
-</a>
-</div>
-</div>
-</div>
-```
-
-#### `data-*` attribute reference
-| Attribute | Values (match existing cards) |
+| Button / Location | URL Structure & Pre-filled Message Text |
 |---|---|
-| `data-location` | `noida`, `greater-noida`, `yamuna-expressway`, `prayagraj` |
-| `data-property-type` | `apartment`, `villa`, `commercial`, `independent-floor` |
-| `data-status` | `new-launch`, `pre-launch`, `under-construction`, `ready` |
-| `data-bhk` | Comma-separated: `1,2,3,4`, or `commercial` for non-residential |
-| `data-amenities` | Comma-separated: `gym,pool,club,security,garden,parking` etc. |
-| `data-price-range` | The price string like `2.34cr`, `87lacs`, `on-request` |
+| **Hero Section (Brochure CTA)** | `https://wa.me/911144739693?text=Please%20provide%20me%20with%20brochure%20and%20offer%20pricing%20of%20<Project+Name>%20[<UIR-CODE>]` |
+| **Quick Consultation Card** | `https://wa.me/911144739693?text=Tell%20me%20more%20about%20<Project+Name>%20[<UIR-CODE>]` |
+| **Expert Guidance CTA** | `https://wa.me/911144739693?text=Guide%20me%20for%20this%20project%20<Project+Name>%20[<UIR-CODE>]` |
+| **Configuration Table (Row Buttons)** | `https://wa.me/911144739693?text=I%20am%20interested%20in%20<Unit+Type>%20in%20<Project+Name>%20[<UIR-CODE>]` |
+| **Complete Price List CTA** | `https://wa.me/911144739693?text=Please%20share%20the%20complete%20price%20list%20for%20<Project+Name>%20[<UIR-CODE>]` |
+| **Footer WhatsApp Icon** | `https://wa.me/911144739693?text=Hi%20Urban%20Investors,%20I%20am%20interested%20in%20this%20property%20[<UIR-CODE>]` |
+
+*Example for Palm Village with UIR-025:*
+`https://wa.me/911144739693?text=Please%20provide%20me%20with%20brochure%20and%20offer%20pricing%20of%20Palm%20Village%20[UIR-025]`
+
+#### D. Page Content Sections (Write Bespoke)
+1. **Hero Header:**
+   - Badges: Status (e.g. `NEW LAUNCH`), Property Type, Location
+   - `<h1>`: Project Name + `<span class="d-block fs-4 fw-normal text-white-50 mt-1">BY <DEVELOPER></span>`
+   - Location row with pin icon
+2. **Pricing & Stats Ribbon:**
+   - Starting price (`₹X.XX Cr*` or `₹XX Lacs*`)
+   - Price subtitle / per sq.ft rate
+   - RERA Registration Number badge
+3. **Why Invest in [Project Name]:**
+   - 3 to 4 distinct value propositions (e.g. High Capital Growth Corridor, Builder Track Record, Low Density Living, Institutional Infrastructure).
+4. **Project Overview & 4 Feature Cards:**
+   - Bespoke paragraphs introducing the development concept.
+   - 4 cards highlighting Total Land Area, Towers/Floors, Green Open Space %, Possession Timeline.
+5. **Configuration & Pricing Table:**
+   - Responsive Bootstrap table with unit types, carpet/super areas, indicative pricing (`₹...*`), and "GET PRICE" / "ENQUIRE" WhatsApp buttons with the specific unit type and `[UIR-XXX]`.
+6. **Amenities Section:**
+   - 6 to 9 distinct amenities with FontAwesome icons (e.g., Olympic Lap Pool, Clubhouse, Co-working Lounge, Badminton Court, 3-Tier Security, Landscaped Greens).
+7. **Location & Connectivity:**
+   - Proximity cards with realistic travel times (e.g., Noida-Gr. Noida Expressway - 5 mins, Metro Station - 7 mins, Jewar Airport - 25 mins, DND Flyway - 20 mins).
+8. **Developer Profile:**
+   - MUST be the actual developer of this project! (e.g., Gaur Group, Migsun, ACE, Eldeco, Fairfox, Splendor).
+   - Write their verified portfolio, delivered square footage, and credibility metrics. **NEVER mention Sobha Limited unless the project is actually by Sobha.**
+9. **Deep Dive Investment Guide (Detailed in Section 7 below):**
+   - 6 accordion items — **ALL COLLAPSED BY DEFAULT** (`aria-expanded="false"`, no `show` class).
+10. **FAQ Section:**
+    - Accordion matching the FAQPage JSON-LD schema with questions and answers tailored to this project.
+
+#### E. Global Elements (Preserve Intact)
+Keep these global elements identical:
+- Navbar brand, navigation links, and desktop phone CTA
+- Contact Form `#contactForm` with hidden `token` field
+- Footer with Urban Investors office addresses, phone numbers, emails, and RERA disclaimer
+- The two script tags at the bottom:
+  ```html
+  <script src="script.js"></script>
+  <script src="lead-magnet.js"></script>
+  ```
+- Google Tag Manager snippet (`G-EYY9YSKPZY`) in `<head>`
+
+---
+
+### 3. Add Listing Card to `properties.html`
+
+1. **Insert new card at the top** of `<div class="row g-4" id="properties-grid">` (newest first).
+2. Use ₹ currency in price span.
+3. Accurate `data-*` filter attributes:
+   - `data-location`: `noida`, `greater-noida`, `yamuna-expressway`, `prayagraj`
+   - `data-property-type`: `apartment`, `villa`, `commercial`, `independent-floor`
+   - `data-status`: `new-launch`, `pre-launch`, `under-construction`, `ready`
+   - `data-bhk`: `1,2,3,4` or `commercial`
+   - `data-amenities`: `gym,pool,club,security,garden,parking`
+   - `data-price-range`: `2.34cr`, `87lacs`, `on-request`
+
+4. **Update the `ItemList` JSON-LD Structured Data in `properties.html`:**
+   Add a new `ListItem` at position 1 (and shift others or append at next position):
+   ```json
+   {
+     "@type": "ListItem",
+     "position": <number>,
+     "item": {
+       "@type": "ApartmentComplex",
+       "name": "<Project Name>",
+       "description": "<Brief description>",
+       "url": "https://urbaninvestors.in/<slug>",
+       "image": "images/<project-folder>/<card-image>.webp"
+     }
+   }
+   ```
+
+---
 
 ### 4. Add to `sitemap.xml`
 
-Add at the end of the `<!-- Property Listings -->` block (before the
-`<!-- Legal Pages -->` comment). Use today's date for `lastmod` and the extensionless
-`<loc>`:
-
+Insert before `<!-- Legal Pages -->`:
 ```xml
   <url>
     <loc>https://urbaninvestors.in/<slug></loc>
@@ -313,121 +322,67 @@ Add at the end of the `<!-- Property Listings -->` block (before the
   </url>
 ```
 
-### 5. Add to `llms.txt`
+---
 
-Add an entry at the end of the `## Property Listings` section — before the
-`## Legal` heading. Note: the `Page` URL here **includes `.html`** (the only link that
-does — existing convention):
+### 5. Register in `lead-magnet.js`
 
+Add the project slug, display name, and user-provided UIR code into the `PROJECTS` dictionary in `lead-magnet.js`:
+```javascript
+  "<slug>": { name: "<Project Name>", uirCode: "<UIR-CODE>" },
+```
+*Example:*
+```javascript
+  "migsun-nehru-place": { name: "Migsun Nehru Place", uirCode: "UIR-019" },
+```
+
+---
+
+### 6. Add to `llms.txt`
+
+Add an entry at the end of `## Property Listings` (before `## Legal`):
 ```
 - [<Project Name>](https://urbaninvestors.in/<slug>): <Short description, price, and location>.
 ```
 
-Match the format of existing entries, e.g.:
-```
-- [Sobha Rivana](https://urbaninvestors.in/sobharivana): Luxury apartment complex by Sobha.
-```
+---
 
-### 6. Add Deep Dive Investment Guide section
+### 7. Deep Dive Investment Guide Section Rules
 
-Every project page MUST include a "Deep Dive Investment Guide" section positioned **ABOVE the Contact Section** (before "Schedule Your Consultation"). This placement ensures users read the investment rationale before seeing the contact form, improving conversion.
+Position: Placed right **ABOVE the Contact Section** (`<section id="contact" ...>`).
 
-**Insert position:** Place after all content sections, but BEFORE:
-```html
-<!-- Contact Section -->
-<section id="contact" class="py-5 bg-primary text-white">
-```
+**Accordion Collapse Rule (CRITICAL):**
+Every accordion item **MUST BE COLLAPSED BY DEFAULT**.
+- Button: `class="accordion-button collapsed fw-bold text-primary fs-5"` and `aria-expanded="false"`
+- Collapse container: `class="accordion-collapse collapse"` (NO `show` class on any item)
 
-**Structure:**
-```html
-<!-- Deep Dive Investment Guide -->
-<section class="py-5 mt-5">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold text-dark">Deep Dive Investment Guide</h2>
-      <p class="text-muted">Everything you need to know about <Project Name></p>
-    </div>
-    
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="accordion accordion-flush shadow-sm rounded-4 border" id="deepDiveAccordion">
-          <!-- 6 accordion items - ALL COLLAPSED BY DEFAULT -->
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-```
+**6 Bespoke Accordion Items:**
+1. **Why Invest in <Project Name>?** — Strategic advantages, location upside, unique selling points.
+2. **About <Project Name>: <Project Tagline>** — Development vision, architectural concept, master layout.
+3. **<Project Name> Highlights** — Bulleted summary of high-value specs (e.g. low density, ceiling heights, green views).
+4. **Unit Configurations & Floor Plans** — In-depth breakdown of unit sizes, carpet efficiencies, layout options.
+5. **Location Advantages & Connectivity: <Sector/Area>** — Infrastructure catalysts (Jewar Airport, FNG, Metro, Expressway connectivity).
+6. **Investment Potential & ROI Analysis** — Expected rental yields, historical capital appreciation in sector, 3–5 year outlook.
 
-**CRITICAL: All accordions must be collapsed by default:**
-- Button classes: `accordion-button collapsed fw-bold text-primary fs-5`
-- Button attribute: `aria-expanded="false"`
-- Accordion body: `class="accordion-collapse collapse"` (NO "show")
-- Remove `rounded-top-4` from first item button unless it's the only one
+---
 
-**Example of correct collapsed state:**
-```html
-<!-- Item 1 -->
-<div class="accordion-item rounded-top-4">
-  <h2 class="accordion-header">
-    <button class="accordion-button collapsed fw-bold text-primary fs-5 rounded-top-4" 
-            type="button" data-bs-toggle="collapse" data-bs-target="#ddCollapse1" 
-            aria-expanded="false">
-      Why <Project Name>?
-    </button>
-  </h2>
-  <div id="ddCollapse1" class="accordion-collapse collapse" data-bs-parent="#deepDiveAccordion">
-    <div class="accordion-body text-muted lh-lg">
-      Content here...
-    </div>
-  </div>
-</div>
-```
+## Post-Generation Sanity Check & Verification Checklist
 
-**6 content blocks (customize for each project):**
+Before reporting completion to the user, run these strict verification checks:
 
-1. **Why <Project Name>?** - Investment rationale, what makes this project special
-2. **About <Project Name>: <Tagline>** - Project overview, developer reputation, key differentiators
-3. **<Project Name> Highlights** - Bullet list of key advantages (pricing, location, amenities, developer)
-4. **Unit Configurations / Commercial Spaces** - Detailed breakdown of available units:
-   - Residential: BHK types, sizes, target demographics
-   - Commercial: Office sizes, ideal businesses, target industries
-   - Land/Plots: Size ranges, development potential
-5. **Location Advantages: <Area Name>** - Connectivity, infrastructure, future developments, proximity benefits
-6. **Investment Potential** - Capital appreciation, rental yields, market trends, ROI expectations
-
-**Content guidelines:**
-- Adapt tone to property type (residential = lifestyle-focused, commercial = ROI-focused)
-- Include specific details: sector numbers, expressway names, distances to key landmarks
-- Reference infrastructure developments (Jewar Airport, metro extensions, highways)
-- Highlight developer credibility with track record points
-- Always mention Urban Investors' role in Step 6
-
-**Example from grandthum-tower-c.html (lines 1560-1697):**
-- Commercial project emphasis on office ecosystem, rental yields
-- Reference to mixed-use development advantages
-- Specific ROI potential and target tenant industries
-
-## Finish
-
-- Report the 4 files touched and the new page's path:
+- [ ] **UIR Code Prompted & Applied:** The user was asked for the UIR code and all WhatsApp links contain `[UIR-XXX]`.
+- [ ] **ZERO Sobha / Rivana Leakage:** Grep `<slug>.html` for `Sobha` and `Rivana` (case-insensitive). If the project is NOT Sobha, result MUST be 0 matches.
+- [ ] **100% Fresh Content:** Overview, Developer Profile, "Why Invest", Amenities, Deep Dive Guide, and FAQs are bespoke to this project.
+- [ ] **All Deep Dive Accordions Collapsed:** None of the 6 accordion items contain the class `show`. All buttons have `class="... collapsed"`.
+- [ ] **Image SEO:** All image filenames use kebab-case (`project-feature-view.webp`), exist in the filesystem, and have accurate descriptive `alt` tags. No `.jpg` or `.png` images remain.
+- [ ] **Single-Line Title:** `<title>` tag is strictly on a single line and contains transactional keywords ("Price & Floor Plan | Urban Investors").
+- [ ] **No Broker Terminology:** Zero occurrences of "dealer", "broker", "agent", or "cheap".
+- [ ] **Properties Card Filterable:** Correct `data-*` attributes set on the card in `properties.html`.
+- [ ] **Registered in `lead-magnet.js`:** Added to `PROJECTS` dictionary with proper UIR code.
+- [ ] **Sitemap & llms.txt Updated:** Both updated with the clean extensionless URL.
+- [ ] **All 5 Files Reported:**
   1. `<slug>.html` (new)
-  2. `properties.html` (card added + ItemList updated)
-  3. `sitemap.xml` (URL added)
-  4. `llms.txt` (entry added)
-- Quick sanity check:
-  - Gallery indicator count == slide count
-  - Canonical / OG URLs use the extensionless slug
-  - WhatsApp links carry the right project name
-  - No leftover template text from `sobharivana.html`
-  - All image `src` paths end in `.webp` and point to the correct project folder
-  - `data-*` filter attributes on the properties card are accurate
-  - JSON-LD schemas present: ApartmentComplex, FAQPage, VideoObject (if video)
-  - **Title is single-line** with transactional keywords ("Price & Floor Plan") and premium tone
-  - **Meta keywords include** transactional terms: price, floor plan, brochure, payment plan, RERA number
-  - **Jewar Airport keyword** added for Yamuna Expressway / Greater Noida properties
-  - **Factual accuracy verified** — correct sector, correct project type (residential/commercial/plots), correct developer name
-  - **No "dealer", "agent", "broker"** language anywhere in meta tags
-  - **Deep Dive Investment Guide section present before footer** (6 accordion items)
-- **Recommended:** Run `apply-seo` skill to verify all structured data is in place.
-- Do **not** commit or push unless the user asks.
+  2. `properties.html`
+  3. `sitemap.xml`
+  4. `lead-magnet.js`
+  5. `llms.txt`
+

@@ -1,12 +1,12 @@
 ---
 name: apply-seo
-description: Apply comprehensive SEO optimizations to Urban Investors property pages. Adds structured data (ApartmentComplex/FAQPage/VideoObject), improves meta descriptions, fixes og:image, and updates properties.html ItemList. Run after creating a new property page or to audit existing pages.
+description: Apply comprehensive SEO optimizations to Urban Investors property pages. Adds structured data (ApartmentComplex/FAQPage/VideoObject), optimizes image filenames and alt tags for Image SEO, improves meta descriptions, fixes og:image, and updates properties.html ItemList. Run after creating a new property page or to audit existing pages.
 ---
 
 # Apply SEO to Property Pages
 
 Optimize Urban Investors property pages for search engines. This skill ensures every
-page has proper structured data, meta tags, and is properly indexed.
+page has proper structured data, meta tags, optimized image assets, and is properly indexed.
 
 Site domain: **urbaninvestors.in**
 
@@ -14,7 +14,7 @@ Site domain: **urbaninvestors.in**
 
 - After creating a new property page (via `make-project-page` skill)
 - To audit/fix existing property pages
-- When updating property information
+- When updating property information or adding new images
 
 ## SEO Optimizations Applied
 
@@ -68,20 +68,61 @@ Update `<meta name="description">` to include:
 <meta name="description" content="Discover Ace Parkway 2.0 in Sector 150 Noida - Ultra-luxurious 3,4,4.5 BHK by Ace Group. Only 790 units. Starting ₹16,995/sq.ft. RERA registered.">
 ```
 
-### 2. Open Graph & Twitter Images
+### 3. Image SEO & Asset Optimization (MANDATORY)
 
-Replace generic `preview.webp` with project-specific images:
+Every image used in a project page directly impacts Google Image search rankings and site crawlability. Raw camera dumps or generic filenames hurt SEO.
+
+#### A. Strict Naming Conventions
+- **Visual Inspection Required**: Always view the image first to confirm what it actually displays (clubhouse, master plan, entrance gate, badminton court, living room, swimming pool, etc.). Never rename blindly with regex or numbers.
+- **Hyphen-Separated & All-Lowercase**: Use clean kebab-case:
+  `[project-slug]-[feature-or-amenity]-[view-or-perspective].[ext]`
+  - *Good:* `gaur-alaris-night-elevation-towers.png`
+  - *Good:* `northwind-sanctuary-badminton-court-landscape.webp`
+  - *Good:* `eldeco-7-peaks-master-site-plan-layout.webp`
+  - *Good:* `crc-sector-150-noida-clubhouse-lounge.webp`
+- **FORBIDDEN Filename Patterns**:
+  - Raw camera/export strings: `imgi_...`, `WhatsApp Image...`, `download...`, `IMG-2025...`
+  - Blind generic names: `gallery1.webp`, `hero.webp`, `thumbnail.webp`, `sub1.webp`, `banner1.webp`, `45.png`
+  - Spaces or parentheses: e.g. `download (1).webp`, `harsh gupta.webp` (spaces cause `%20` encoding issues and broken URLs)
+
+#### B. Accurate Alt Tags & Image Attributes
+- Every `<img>` tag MUST have a meaningful, descriptive `alt` attribute that matches the actual image and includes project and feature keywords:
+  ```html
+  <!-- Bad -->
+  <img alt="Gallery" src="images/alari/gaur-alaris-peacock-clubhouse-exterior.jpg" />
+  
+  <!-- Good -->
+  <img alt="Gaur Alaris Grand Peacock Clubhouse Exterior at Night" class="d-block w-100 gallery-image" src="images/alari/gaur-alaris-peacock-clubhouse-exterior.jpg" />
+  ```
+- Use `loading="lazy"` on all gallery/off-screen images.
+- Use `fetchpriority="high"` and `<link rel="preload">` ONLY on the above-the-fold hero image.
+
+#### C. Full-Stack Synchronization
+When images are renamed or added:
+1. Rename the files on disk inside `images/<project-folder>/`.
+2. Update all references in the project page (`<slug>.html`):
+   - `<meta property="og:image" content="https://urbaninvestors.in/images/<folder>/<hero-image>.webp" />`
+   - `<meta name="twitter:image" content="https://urbaninvestors.in/images/<folder>/<hero-image>.webp" />`
+   - Schema JSON-LD `"image": "https://urbaninvestors.in/images/<folder>/<hero-image>.webp"`
+   - Preload `<link rel="preload" as="image" href="images/<folder>/<hero-image>.webp" fetchpriority="high" />`
+   - Main project image `<img class="... main-project-image" src="images/<folder>/<hero-image>.webp" />`
+   - Gallery thumbnails and carousel slides
+3. Update `properties.html`:
+   - Property listing card image `src`
+   - `ItemList` schema JSON-LD `"image"`
+4. Update `index.html` if the project is featured in the hot projects carousel.
+5. Run a link validation check to verify **0 broken image references** exist.
+
+### 4. Open Graph & Twitter Social Metadata
+
+Ensure `og:image` and `twitter:image` use the primary high-resolution project hero render:
 
 ```html
-<!-- Find project images -->
-ls images/<project-folder>/
-
-<!-- Update these tags -->
-<meta property="og:image" content="https://urbaninvestors.in/images/<folder>/<image>.webp" />
-<meta name="twitter:image" content="https://urbaninvestors.in/images/<folder>/<image>.webp" />
+<meta property="og:image" content="https://urbaninvestors.in/images/<folder>/<project-slug>-<feature>-elevation.webp" />
+<meta name="twitter:image" content="https://urbaninvestors.in/images/<folder>/<project-slug>-<feature>-elevation.webp" />
 ```
 
-### 3. Structured Data (JSON-LD) - REQUIRED
+### 5. Structured Data (JSON-LD) - REQUIRED
 
 Every property page MUST have these schemas in `<head>`:
 
@@ -255,42 +296,58 @@ Identify:
 - Any embedded YouTube videos
 - Image folder for the project
 
-### Step 2: Check Available Images
+### Step 2: Image Audit & SEO Optimization (MANDATORY)
 
 ```bash
 ls "images/<project-folder>/"
 ```
 
-Pick the best hero/banner image for og:image and structured data.
+1. **Visually Inspect Every Image**:
+   - Open and view each image in `images/<project-folder>/` to identify what is depicted (e.g. entrance gate, clubhouse, swimming pool, landscape garden, master layout plan, 3BHK/4BHK floor plan, tower elevation).
+   - NEVER use generic camera names (`imgi_...`, `WhatsApp...`, `download...`), blind numbers (`45.png`), or generic labels (`gallery1.webp`, `hero.webp`, `thumbnail.webp`).
 
-### Step 3: Apply Optimizations
+2. **Rename to Hyphenated SEO Standard**:
+   - Format: `[project-slug]-[feature-or-amenity]-[view-or-perspective].[ext]`
+   - Example: `gaur-alaris-night-elevation-towers.png`, `gaur-alaris-master-site-plan.png`.
+   - Ensure NO spaces or special characters exist in any filename.
+
+3. **Update All Code References**:
+   - Rename the files on disk: `git mv images/<folder>/<old-name> images/<folder>/<new-name>`
+   - Update all references in `<slug>.html`, `properties.html`, `index.html`, and relevant guides.
+   - Update `alt` tags to be richly descriptive and keyword-focused.
+   - Designate the best exterior render as the hero image for `og:image`, `twitter:image`, structured data `image`, and preload.
+
+### Step 3: Apply Page Optimizations
 
 Edit `<slug>.html`:
 
 1. **Meta description** - Add pricing, location, RERA
-2. **og:image & twitter:image** - Use project-specific image
+2. **og:image & twitter:image** - Use project-specific primary hero image
 3. **og:description & twitter:description** - Match meta description
-4. **ApartmentComplex schema** - Add/update with full details
+4. **ApartmentComplex schema** - Add/update with full details and hero image URL
 5. **FAQPage schema** - Add 5 FAQ entries
 6. **VideoObject schema** - Add if YouTube video present
 
 ### Step 4: Update properties.html
 
-Add the property to the ItemList schema in properties.html.
+1. Update property card image thumbnail `src` with the new SEO image filename.
+2. Add/update the property in the `ItemList` schema JSON-LD with the new SEO image path.
 
-### Step 5: Verify sitemap.xml
+### Step 5: Verify sitemap.xml & Image Links
 
-Ensure the page is listed in sitemap.xml (should already be there from `make-project-page`).
+1. Ensure the page is listed in `sitemap.xml`.
+2. Run link validation to verify **0 broken image references** exist in the workspace.
 
 ## Important Notes
 
-1. **NO UI changes** - Only modify `<head>` section and JSON-LD scripts
-2. **Preserve existing content** - Don't change visible text, buttons, images
+1. **NO UI layout changes** - Only modify `<head>` section, JSON-LD scripts, image filenames, and `alt` attributes
+2. **Preserve existing content** - Don't change visible text, buttons, pricing
 3. **Use correct @type** - Match schema type to property type
-4. **Full URLs for images** - Always use `https://urbaninvestors.in/images/...`
+4. **Full URLs for meta images** - Always use `https://urbaninvestors.in/images/...`
 5. **Valid JSON-LD** - Ensure proper escaping of quotes within JSON strings
 6. **Premium brand tone** - Never use "dealer", "agent", "broker", "cheap" in any meta tag. Urban Investors is a luxury real estate advisory.
 7. **Title tag must be single-line** - Always `<title>text</title>` on one line
+8. **No spaces in image filenames** - Always use hyphens (`-`)
 
 ### Transactional Keyword Requirements
 
@@ -322,13 +379,16 @@ Before finishing, verify:
 - [ ] **Factual accuracy** — sector number, project type, developer name are correct
 - [ ] **Transactional keywords present** — price, floor plan, payment plan, RERA number in meta keywords
 - [ ] **Jewar Airport keyword** added (for Yamuna Expressway / Greater Noida projects)
+- [ ] **All image filenames are SEO-optimized** — hyphen-separated, descriptive (no `imgi_`, `WhatsApp`, `download`, `hero.webp`, `gallery1`, spaces)
+- [ ] **Image alt tags are descriptive** — accurately describe each feature/amenity
+- [ ] **0 broken image references** in HTML / properties.html
 - [ ] Meta description includes pricing/location
 - [ ] og:image points to project-specific image (not preview.webp)
 - [ ] ApartmentComplex schema has image, priceRange, floorSize
 - [ ] FAQPage schema has 5 Q&As matching page content
 - [ ] VideoObject schema added if YouTube present
-- [ ] properties.html ItemList includes this property
-- [ ] No visible UI changes made
+- [ ] properties.html ItemList includes this property with optimized image path
+- [ ] No unwanted UI changes made
 - [ ] No "dealer", "agent", "broker" language anywhere in meta tags
 
 ## Finish
