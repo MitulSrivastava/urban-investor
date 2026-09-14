@@ -215,7 +215,7 @@ Every project page MUST include these JSON-LD schemas in `<head>`:
      "name": "<Project Name> - Expert Property Review",
      "description": "Comprehensive review, master plan walkthrough, and investment analysis of <Project Name>...",
      "thumbnailUrl": "https://img.youtube.com/vi/<VIDEO_ID>/maxresdefault.jpg",
-     "uploadDate": "2024-01-01T00:00:00+05:30",
+     \"uploadDate\": \"2024-01-01\",
      "duration": "PT10M",
      "embedUrl": "https://www.youtube.com/embed/<VIDEO_ID>",
      "contentUrl": "https://www.youtube.com/watch?v=<VIDEO_ID>"
