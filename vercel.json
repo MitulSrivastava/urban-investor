@@ -76,6 +76,11 @@
       "source": "/omaxeprayagraj",
       "destination": "/omaxe-prayagraj",
       "permanent": true
+    },
+    {
+      "source": "/hero-homes-sector-mu",
+      "destination": "/hero-homes-leafsong-retreat",
+      "permanent": true
     }
   ]
 }

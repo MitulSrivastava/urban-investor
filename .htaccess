@@ -16,6 +16,7 @@ RewriteRule ^palmvillage$ /palm-village [R=301,L]
 RewriteRule ^sobharivana$ /sobha-rivana [R=301,L]
 RewriteRule ^omaxeprayagraj$ /omaxe-prayagraj [R=301,L]
 RewriteRule ^gaur-plume$ /gaur-alaris [R=301,L]
+RewriteRule ^hero-homes-sector-mu$ /hero-homes-leafsong-retreat [R=301,L]
 
 # 301 Redirects: Old /blog to /insights
 RewriteRule ^blog/(.*)$ /insights/$1 [R=301,L]

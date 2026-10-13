@@ -138,6 +138,7 @@ passive: true,
 }
 }
 const PROJECTS = {
+  "godrej-global-business-city": { name: "Godrej Global Business City", uirCode: "UIR-032" },
   "ace-acreville": { name: "Ace Acreville", uirCode: "UIR-001" },
   "acearte": { name: "Ace Arte", uirCode: "UIR-002" },
   "crc-150": { name: "CRC 150", uirCode: "UIR-003" },
@@ -154,7 +155,8 @@ const PROJECTS = {
   "gaur-bento": { name: "Gaur Bento", uirCode: "UIR-014" },
   "gaur-chrysalis": { name: "Gaur Chrysalis", uirCode: "UIR-015" },
   "grandthum": { name: "Grandthum", uirCode: "UIR-016" },
-  "hero-homes-sector-mu": { name: "Hero Homes Sector MU", uirCode: "UIR-017" },
+  "hero-homes-leafsong-retreat": { name: "Hero Homes Leafsong Retreat", uirCode: "UIR-017" },
+  "hero-homes-sector-mu": { name: "Hero Homes Leafsong Retreat", uirCode: "UIR-017" },
   "max-105": { name: "Max 105", uirCode: "UIR-018" },
   "migsun-nehru-place": { name: "Migsun Nehru Place", uirCode: "UIR-019" },
   "noida-sector-145-plots": { name: "Noida Sector 145 Kisan Kota Plots", uirCode: "UIR-020" },
